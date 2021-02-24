@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buy & Sell</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+<h2>test ads.html</h2>
     {% for ad in ads %}
         {{ ad.category }} <br>
         {{ ad.title }} <br>
@@ -18,5 +13,5 @@
         {{ ad.location }} <br>
         {{ ad.urgent}} <br>
     {% endfor %}
-</body>
-</html>
+
+{% endblock %}
