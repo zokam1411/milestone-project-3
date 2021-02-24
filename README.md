@@ -26,6 +26,7 @@ Buy & Sell app is an online marketplace where users can buy and sell items. Purp
   - <a href="#manualtesting">Manual Testing</a>
   - <a href="#ustesting">User Stories</a>
   - <a href="#bugs">Bugs</a>
+- <a href="#deployment">Deployment 🚀</a>
 
 <p id="project"></p>
 
@@ -185,3 +186,56 @@ Admin can see various statistics in 'Profile' page.
 
  <div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
  
+ <p id="deployment"></p>
+
+## 6️⃣ Deployment 🚀
+
+This project was developed in GitPod. All developments were pushed to the corresponding repository in GitHub account. App was deployed in Heroku.
+
+In order to deploy the website to Heroku:
+
+- I ensured that app.py, requirements.txt and Procfile files are created and pushed to GitHub.  
+
+- I Created new account on Heroku and I set up new application.
+
+- In 'Deploy' tab I set 'Deployment method' to 'GitHub' so Heroku is automatically updated with GitHub.
+
+- In 'App connected to Github' I set my Github nick and matching repository and clicked 'Connect' button.
+
+- In 'Settings' tab I set 'Config Vars' to match those in app.py file.
+
+- In 'Deploy' tab I clicked "Enable Automatic Deploys".
+
+- To see my deployed app I clicked 'Open App' on the top of Heroku page.
+
+### Run this project locally:
+
+- Select the Repository from the GitHub Dashboard.
+
+- Click the green button labelled 'Code'.
+
+- Click 'Download ZIP'.
+
+- Extract ZIP file on your computer.
+
+- Open folder and open index.html in web browser.
+
+### Clone this project:
+
+- Select the Repository from the GitHub Dashboard.
+
+- Click the green button labelled 'Code'.
+
+- To clone the repository using:
+    - HTTPS: under "Clone with HTTPS", click checklist icon.
+    - SSH: click Use SSH, then click checklist icon.
+
+- Open Git Bash.
+
+- Change the current working directory to the location where you want the cloned directory.
+
+- Type 'git clone', and then paste the URL you copied earlier.
+
+- Press Enter to create your local clone.
+
+<div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
