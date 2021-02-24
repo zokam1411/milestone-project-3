@@ -1,4 +1,4 @@
-# Milestone Project 2
+# Milestone Project 3
 
 ---
 
@@ -15,6 +15,10 @@ Buy & Sell app is an online marketplace where users can buy and sell items. Purp
 - <a href="#project">Project Construction 👷</a>
 - <a href="#ux">User Experience Design 🧠</a>
     - <a href="#us">User Stories</a>
+    - <a href="#us">Design</a>
+- <a href="#tech">Technologies Used 🔨</a>
+  - <a href="#lang">Languages</a>
+  - <a href="#flp">Frameworks, Libraries & Programs</a>
 
 <p id="project"></p>
 
@@ -76,6 +80,8 @@ Admin can see various statistics in 'Profile' page.
 2. As a developer, I want to create fully responsive app.
 - Application is fully responsive thanks to Materialize framework.
 
+<p id="design"></p>
+
 ### Design:
 
 #### Color Scheme:
@@ -98,3 +104,34 @@ Admin can see various statistics in 'Profile' page.
 
 - <a href="static/readmeimages/desktop-wireframes.pdf" target="_blank">Desktop wireframes</a>
 - <a href="static/readmeimages/mobile-wireframes.pdf" target="_blank">Mobile wireframes</a>
+
+<div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
+
+<p id="tech"></p>
+
+## 3️⃣ Technologies Used 🔨
+
+<p id="lang"></p>
+
+### Languages Used:
+
+- <a href="https://en.wikipedia.org/wiki/HTML" rel="noopener" target="_blank">HTML</a> - Standard mark-up language for documents designed to be displayed in a web browser.
+- <a href="https://en.wikipedia.org/wiki/CSS" rel="noopener" target="_blank">CSS</a> - Describes how HTML elements are to be displayed on screen, paper, or in other media.
+- <a href="https://en.wikipedia.org/wiki/JavaScript" rel="noopener" target="_blank">JavaScript</a> - Programming language that conforms to the ECMAScript specification.
+- <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" rel="noopener" target="_blank">Python</a> - Interpreted, high-level and general-purpose programming language
+
+<p id="flp"></p>
+
+### Frameworks, Libraries & Programs Used:
+
+- <a href="hhttps://www.heroku.com/ttps://materializecss.com/" rel="noopener" target="_blank">Materialize</a> - A modern responsive front-end framework based on Material Design
+- <a href="https://jquery.com/" rel="noopener" target="_blank">jQuery</a> - Fast, small, and feature-rich JavaScript library.
+- <a href="https://git-scm.com/" rel="noopener" target="_blank">Git</a> - Free and open source distributed version control system.
+- <a href="https://github.com/" rel="noopener" target="_blank">GitHub</a> - A Git repository hosting service.
+- <a href="https://www.heroku.com/" rel="noopener" target="_blank">Heroku</a> - A cloud platform as a service supporting several programming languages.
+- <a href="https://www.mongodb.com/" rel="noopener" target="_blank">mongoDB</a> -general purpose, document-based, distributed database built for modern application developers and for the cloud era.
+- <a href="https://fontawesome.com/" rel="noopener" target="_blank">Font Awesome</a> - A web font containing all the icons from the Twitter Bootstrap framework, and now many more.
+- <a href="https://fonts.google.com/" rel="noopener" target="_blank">Google Fonts</a> - A library of 999 free licensed font families.
+- <a href="balsamiq.com" rel="noopener" target="_blank">Balsamiq</a> - Wireframing tool.
+
+<div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
