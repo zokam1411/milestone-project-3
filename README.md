@@ -19,6 +19,9 @@ Buy & Sell app is an online marketplace where users can buy and sell items. Purp
 - <a href="#tech">Technologies Used 🔨</a>
   - <a href="#lang">Languages</a>
   - <a href="#flp">Frameworks, Libraries & Programs</a>
+- <a href="#features">Features List 😲</a>
+  - <a href="#existing">Existing Features</a>
+  - <a href="#future">Future Features</a>
 
 <p id="project"></p>
 
@@ -133,5 +136,23 @@ Admin can see various statistics in 'Profile' page.
 - <a href="https://fontawesome.com/" rel="noopener" target="_blank">Font Awesome</a> - A web font containing all the icons from the Twitter Bootstrap framework, and now many more.
 - <a href="https://fonts.google.com/" rel="noopener" target="_blank">Google Fonts</a> - A library of 999 free licensed font families.
 - <a href="balsamiq.com" rel="noopener" target="_blank">Balsamiq</a> - Wireframing tool.
+
+<div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
+
+<p id="features"></p>
+
+## 4️⃣ Features List 😲
+
+<p id="existing"></p>
+
+### Existing features:
+
+?????????????????????????????????????????????????????????
+
+<p id="future"></p>
+
+### Future features:
+
+??????????????????????????????????????????????????????????
 
 <div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
