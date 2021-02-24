@@ -27,6 +27,10 @@ Buy & Sell app is an online marketplace where users can buy and sell items. Purp
   - <a href="#ustesting">User Stories</a>
   - <a href="#bugs">Bugs</a>
 - <a href="#deployment">Deployment 🚀</a>
+- <a href="#credits">Credits 🙏</a>
+  - <a href="#code">Code</a>
+  - <a href="#media">Media</a>
+  - <a href="#ack">Acknowledgments</a>
 
 <p id="project"></p>
 
@@ -237,5 +241,33 @@ In order to deploy the website to Heroku:
 - Type 'git clone', and then paste the URL you copied earlier.
 
 - Press Enter to create your local clone.
+
+<div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
+
+<p id="credits"></p>
+
+## 7️⃣ Credits 🙏
+
+<p id="code"></p>
+
+### Code:
+
+????????????????????????????????????????????????????
+
+<p id="media"></p>
+
+### Media:
+
+???????????????????????????????????????????????????????????
+
+<p id="ack"></p>
+
+### Acknowledgments:
+
+- <a href="https://codeinstitute.net" rel="noopener" target="_blank">Code Institute</a>
+- <a href="https://stackoverflow.com/" rel="noopener" target="_blank">Stack Overflow</a>
+- Code Institute Slack Community.
+- My mentor Guido Cecilio for guidance and support.
+- My family and friends for their patience and honest critique throughout.
 
 <div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
