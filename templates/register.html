@@ -14,7 +14,7 @@
                     {% if messages %}
                         {% for message in messages %}
                             <div class="row flashes">
-                                 <p class="red lighten-4 center-align">{{ message }}</hp>
+                                 <p class="red lighten-4 center-align">{{ message }}</p>
                             </div>
                          {% endfor %}
                     {% endif %}
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="card-panel grey lighten-2">
-            Already have an account? <a href="">Log In</a>
+            Already have an account? <a href="{{ url_for('login') }}">Log In</a>
         </div>
     </form>
 </div>
