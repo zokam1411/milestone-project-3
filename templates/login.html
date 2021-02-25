@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <form class="col s12 m6 offset-m3 center-align" method="POST" action="{{url_for('login')}}">
+        <div class="card-panel blue lighten-4">
+            <div class="title">
+                <h4>Log In to your Buy & Sell account</h4>
+                <p>to buy and sell with us!</p>
+            </div>
+            <div>
+                <!-- flash message -->
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="row flashes">
+                                 <p class="red lighten-4 center-align">{{ message }}</p>
+                            </div>
+                         {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <!-- Username input field -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-user prefix"></i>
+                    <input id="username" name="username" type="text" class="validate">
+                    <label for="username">Username</label>
+                </div>
+            </div>
+            <!-- Password input field -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-lock prefix"></i>
+                    <input id="password" name="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                    <span class="helper-text left-align" data-error="wrong" data-success="right">Password must
+                        contain at least one number.</span>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="far fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-panel grey lighten-2">
+            Do not have an account yet? <a href="{{url_for('register')}}">Register</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

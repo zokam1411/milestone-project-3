@@ -27,7 +27,7 @@
                     <li><a href="{{ url_for('get_ads') }}"><i class="fas fa-home"></i></a></li>
                     <li><a class="waves-effect waves-light btn"><i class="fas fa-plus-square"></i> Place Ad</a></li>
                     <li><a href="{{ url_for('register') }}">Register</a></li>
-                    <li><a href="#">Log In</a></li>
+                    <li><a href="{{ url_for('login') }}">Log In</a></li>
                     <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Profile<i
                                 class="fas fa-angle-down"></i></a></li>
                 </ul>
@@ -36,16 +36,16 @@
         <!-- Top navbar dropdown -->
         <ul id="dropdown1" class="dropdown-content">
             <li>Hello Profile!</li>
-            <li><a href="#!">My Profile</a></li>
+            <li><a href="#">My Profile</a></li>
             <li class="divider"></li>
-            <li><a href="#!">Log Out</a></li>
+            <li><a href="#">Log Out</a></li>
         </ul>
         <!-- Mobile sidenav -->
         <ul class="sidenav" id="mobile-demo">
             <li>Hello Profile!</li>
             <!-- <li><a href="{{ url_for('get_ads') }}">Home</a></li> -->
             <li><a class="waves-effect waves-light btn"><i class="fas fa-plus-square"></i>Place Ad</a></li>
-            <li><a href="#">Log In</a></li>
+            <li><a href="{{ url_for('login') }}">Log In</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
             <li><a href="#">My Profile</a></li>
             <li class="divider"></li>
