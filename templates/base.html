@@ -36,7 +36,7 @@
         <!-- Top navbar dropdown -->
         <ul id="dropdown1" class="dropdown-content">
             <li>Hello Profile!</li>
-            <li><a href="#">My Profile</a></li>
+            <li><a href="{{ url_for('profile') }}">My Profile</a></li>
             <li class="divider"></li>
             <li><a href="#">Log Out</a></li>
         </ul>
@@ -47,7 +47,7 @@
             <li><a class="waves-effect waves-light btn"><i class="fas fa-plus-square"></i>Place Ad</a></li>
             <li><a href="{{ url_for('login') }}">Log In</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
-            <li><a href="#">My Profile</a></li>
+            <li><a href="{{ url_for('profile') }}">My Profile</a></li>
             <li class="divider"></li>
             <li><a href="#">Log Out</a></li>
         </ul>
