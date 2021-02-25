@@ -1,17 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    {% for ad in ads %}
-        {{ ad.category }} <br>
-        {{ ad.title }} <br>
-        {{ ad.description }} <br>
-        {{ ad.condition }} <br>
-        {{ ad.photo }} <br>
-        {{ ad.price }} <br>
-        {{ ad.payment_method}} <br>
-        {{ ad.shipping }} <br>
-        {{ ad.location }} <br>
-        {{ ad.urgent}} <br>
-    {% endfor %}
+<div>
+    <!-- flash message -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+    <div class="row flashes">
+        <p class="red lighten-4 center-align">{{ message }}</p>
+    </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+{% for ad in ads %}
+{{ ad.category }} <br>
+{{ ad.title }} <br>
+{{ ad.description }} <br>
+{{ ad.condition }} <br>
+{{ ad.photo }} <br>
+{{ ad.price }} <br>
+{{ ad.payment_method}} <br>
+{{ ad.shipping }} <br>
+{{ ad.location }} <br>
+{{ ad.urgent}} <br>
+{% endfor %}
 
 {% endblock %}
