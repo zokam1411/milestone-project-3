@@ -8,6 +8,18 @@
                 <h4>Create Buy & Sell account</h4>
                 <p>to buy and sell with us!</p>
             </div>
+            <div>
+                <!-- flash message -->
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="row flashes">
+                                 <p class="red lighten-4 center-align">{{ message }}</hp>
+                            </div>
+                         {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
             <!-- Username input field -->
             <div class="row">
                 <div class="input-field col s12">
