@@ -52,6 +52,10 @@ def register():
         }
         mongo.db.users.insert_one(register)
 
+        # put new user into 'session' cookie
+        session['user'] = username
+        flash('Registration successful!')
+
     return render_template('register.html')
 
 
