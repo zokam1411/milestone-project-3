@@ -2,9 +2,9 @@
 {% block content %}
 
 <div class="row">
-    <form class="col s12 m6 offset-m3" method="POST" action="{{url_for('register')}}">
+    <form class="col s12 m6 offset-m3 center-align" method="POST" action="{{url_for('register')}}">
         <div class="card-panel blue lighten-4">
-            <div class="title center-align">
+            <div class="title">
                 <h4>Create Buy & Sell account</h4>
                 <p>to buy and sell with us!</p>
             </div>
@@ -20,11 +20,14 @@
                     <i class="fas fa-key prefix"></i>
                     <input id="password" name="password" type="password" class="validate">
                     <label for="password">Password</label>
-                    <span class="helper-text" data-error="wrong" data-success="right">Password must contain...</span>
-
+                    <span class="helper-text left-align" data-error="wrong" data-success="right">Password must
+                        contain...</span>
                 </div>
             </div>
         </div>
+        <div class="card-panel grey lighten-2">
+                Already have an account? <a href="">Log In</a>
+            </div>
     </form>
 </div>
 
