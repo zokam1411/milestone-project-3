@@ -23,12 +23,13 @@
             <div class="img-holder center-align">
                 Image
             </div>
-                <div class="col s7 m8 truncate"><strong>{{ ad.title }}</strong></div>
-                <div class="col s5 m4 right-align"><strong>€{{ ad.price }}</strong></div>
-                <div class="col s8">{{ ad.location }}</div>
-                {% if ad.urgent == "on" %}
-                <div class="col s4 right-align"><i class="fas fa-hammer yellow-text text-accent-4"></i></div>
-                {% endif %}
+            <div class="col s7 m8 truncate"><strong>{{ ad.title }}</strong></div>
+            <div class="col s5 m4 right-align"><strong>€{{ ad.price }}</strong></div>
+            <div class="col s8">{{ ad.location }}</div>
+            {% if ad.urgent == "on" %}
+            <div class="col s4 right-align"><i class="fas fa-hammer yellow-text text-accent-4 tooltipped"
+                    data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></div>
+            {% endif %}
         </a>
     </div>
 </div>
