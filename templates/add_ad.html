@@ -73,7 +73,7 @@
                     <label for="price">Item price:</label>
                 </div>
                 <div class="input-field col s12">
-                    <select>
+                    <select id="payment" name="payment" class="validate" required>
                         <option value="" disabled selected>Preferred payment method:</option>
                         <option value="1">Cash</option>
                         <option value="2">PayPal</option>
@@ -89,19 +89,20 @@
         <div class="card-panel tab-bottom">
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-phone prefix"></i>
-                    <input id="phone" name="phone" type="number" class="validate" minlength="1" maxlength="5"
-                        data-length="20" required>
-                    <label for="phone">Seller phone number:</label>
-                </div>
-                <div class="input-field col s12">
                     <i class="fas fa-map-marker-alt prefix"></i>
-                    <select>
-                        <option value="" disabled selected>Item location:</option>
+                    <select id="location" name="location" class="validate" required>
+                        <option value="" disabled selected>Locations:</option>
                         <option value="1">Dublin</option>
                         <option value="2">Cork</option>
                         <option value="3">Galway</option>
                     </select>
+                    <label for="location">Select item location:</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="fas fa-phone prefix"></i>
+                    <input id="phone" name="phone" type="number" class="validate" minlength="1" maxlength="5"
+                        data-length="20" required>
+                    <label for="phone">Seller phone number:</label>
                 </div>
             </div>
         </div>
