@@ -3,6 +3,7 @@
 
 <div class="row">
     <form class="col s12 m8 offset-m2">
+        <!-- Category -->
         <div class="card-panel grey lighten-2 tab-top">
             <h6><strong>Category:</strong></h6>
         </div>
@@ -10,15 +11,17 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="far fa-folder-open prefix"></i>
-                    <select>
-                        <option value="" disabled selected>Select category:</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
+                    <select id="category" name="category" class="validate" required>
+                        <option value="" disabled selected>Categories:</option>
+                        {% for category in categories %}
+                        <option value="{{ category.category }}">{{ category.category }}</option>
+                        {% endfor %}
                     </select>
+                    <label for="category">Select item category:</label>
                 </div>
             </div>
         </div>
+        <!-- Description -->
         <div class="card-panel grey lighten-2 tab-top">
             <h6><strong>Description:</strong></h6>
         </div>
@@ -38,6 +41,7 @@
                 </div>
             </div>
         </div>
+        <!-- Photo -->
         <div class="card-panel grey lighten-2 tab-top">
             <h6><strong>Photo:</strong></h6>
         </div>
@@ -56,6 +60,7 @@
                 <p><span class="red-text">*</span>Ads with pictures are selling 5 times faster!</p>
             </div>
         </div>
+        <!-- Payment -->
         <div class="card-panel grey lighten-2 tab-top">
             <h6><strong>Payment:</strong></h6>
         </div>
@@ -77,6 +82,7 @@
                 </div>
             </div>
         </div>
+        <!-- Contact -->
         <div class="card-panel grey lighten-2 tab-top">
             <h6><strong>Contact:</strong></h6>
         </div>
@@ -99,6 +105,7 @@
                 </div>
             </div>
         </div>
+        <!-- Quick sale -->
         <div class="card-panel grey lighten-2 tab-top">
             <h6><strong>Quick sale? <i class="fas fa-hammer yellow-text text-accent-4"></i></strong></h6>
         </div>

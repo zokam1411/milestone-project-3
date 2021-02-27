@@ -107,7 +107,8 @@ def logout():
 
 @app.route('/add_ad')
 def add_ad():
-    return render_template('add_ad.html')
+    categories = mongo.db.categories.find().sort('category', -1)
+    return render_template('add_ad.html', categories=categories)
 
 
 if __name__ == '__main__':
