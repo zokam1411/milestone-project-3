@@ -27,7 +27,7 @@
                     <li><a href="{{ url_for('get_ads') }}"><i class="fas fa-home"></i></a></li>
                     <li><a href="{{ url_for('add_ad') }}" class="waves-effect waves-light btn"><i class="fas fa-plus-square"></i> Place Ad</a></li>
                     {% if session.user %}
-                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Profile<i
+                    <li><a class="dropdown-trigger" data-target="dropdown1">Profile<i
                                 class="fas fa-angle-down"></i></a></li>
                     {% else %}
                     <li><a href="{{ url_for('register') }}">Register</a></li>

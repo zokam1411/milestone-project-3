@@ -105,8 +105,24 @@ def logout():
     return redirect(url_for('get_ads'))
 
 
-@app.route('/add_ad')
+@app.route('/add_ad', methods=['GET', 'POST'])
 def add_ad():
+    if request.method == 'POST':
+        urgent = 'on' if request.form.get('urgent') else 'off'
+        ad = {
+            'category': request.form.get('category'),
+            'title': request.form.get('title'),
+            'description': request.form.get('description'),
+            'photo': request.form.get('photo'),
+            'price': request.form.get('price'),
+            'payment': request.form.get('payment'),
+            'location': request.form.get('location'),
+            'phone': request.form.get('phone'),
+            'urgent': urgent
+        }
+        mongo.db.ads.insert_one(ad)
+        flash('Ad successfully added and is live now.')
+        return redirect(url_for('get_ads'))
     categories = mongo.db.categories.find().sort('category', -1)
     return render_template('add_ad.html', categories=categories)
 

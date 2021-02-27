@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="row">
-    <form class="col s12 m8 offset-m2">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_ad') }}">
         <!-- Category -->
         <div class="card-panel grey lighten-2 tab-top">
             <h6><strong>Category:</strong></h6>
