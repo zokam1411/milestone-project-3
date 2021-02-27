@@ -3,4 +3,5 @@ $(document).ready(function(){
     $(".dropdown-trigger").dropdown({coverTrigger: false});
     $('.tooltipped').tooltip();
     $('select').formSelect();
+    $('input#title, textarea#description').characterCounter();
 });
