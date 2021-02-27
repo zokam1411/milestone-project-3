@@ -36,15 +36,6 @@
                         maxlength="300" data-length="300" required></textarea>
                     <label for="description">Describe your item:</label>
                 </div>
-                <div class="input-field col s12">
-                    <p>
-                        <i class="fas fa-hammer yellow-text text-accent-4"></i> <strong>Quick sale </strong>
-                        <label for="urgent">
-                            <input type="checkbox" id="urgent" name="urgent" />
-                            <span>Let others know you will accept lower offer for quick sale.</span>
-                        </label>
-                    </p>
-                </div>
             </div>
         </div>
         <div class="card-panel grey lighten-2 tab-top">
@@ -58,15 +49,35 @@
                         <input type="file">
                     </div>
                     <div class="file-path-wrapper">
-                        <input id="photo" name="photo" class="file-path validate" type="text" placeholder="Upload item picture">
+                        <input id="photo" name="photo" class="file-path validate" type="text"
+                            placeholder="Upload item picture">
                     </div>
                 </div>
                 <p><span class="red-text">*</span>Ads with pictures are selling 5 times faster!</p>
             </div>
         </div>
         <div class="card-panel grey lighten-2 tab-top">
-            <h6><strong>Payment and contact:</strong></h6>
+            <h6><strong>Payment:</strong></h6>
         </div>
+        <div class="card-panel tab-bottom">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-euro-sign prefix"></i>
+                    <input id="price" name="price" type="number" class="validate" minlength="1" maxlength="5"
+                        data-length="20" required>
+                    <label for="price">Item price:</label>
+                </div>
+                <div class="input-field col s12">
+                    <select>
+                        <option value="" disabled selected>Preferred payment method:</option>
+                        <option value="1">Cash</option>
+                        <option value="2">PayPal</option>
+                        <option value="3">Crypto</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    
     </form>
 </div>
 
