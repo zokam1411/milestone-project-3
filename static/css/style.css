@@ -16,3 +16,27 @@
     height: 137px;
     background: grey;
 }
+
+/* Add ad */
+.tab-top {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid black;
+}
+
+.tab-bottom {
+    padding-top: 0;
+    padding-bottom: 0;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.tab-bottom .row {
+    margin: 0px;
+}
+
+.tab-bottom .row .input-field {
+    margin: 0;
+}

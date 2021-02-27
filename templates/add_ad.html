@@ -1,4 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-<p>Add Ad!</p>
+
+<div class="row">
+    <form class="col s12 m8 offset-m2">
+        <div class="card-panel grey lighten-2 tab-top">
+            <h6><strong>Category:</strong></h6>
+        </div>
+        <div class="card-panel tab-bottom">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="far fa-folder-open prefix"></i>
+                    <select>
+                        <option value="" disabled selected>Select category:</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 {% endblock %}
