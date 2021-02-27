@@ -21,8 +21,9 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_ads')
 def get_ads():
+    categories = mongo.db.categories.find()
     ads = mongo.db.ads.find()
-    return render_template('ads.html', ads=ads)
+    return render_template('ads.html', ads=ads, categories=categories)
 
 
 @app.route('/register', methods=['GET', 'POST'])

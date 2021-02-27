@@ -4,6 +4,10 @@
 }
 
 /* Registration */
+.icon-holder {
+    font-size: 45px;
+}
+
 .card-panel {
     margin: 0;
 }
