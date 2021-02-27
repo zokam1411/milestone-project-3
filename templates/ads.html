@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<!-- flash message -->
 <div>
-    <!-- flash message -->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages %}
@@ -13,16 +13,16 @@
     {% endif %}
     {% endwith %}
 </div>
-
+<!-- Categories -->
 <h4>Categories:</h4>
-
 <div class="row categories">
     {% for category in categories %}
     <div class="col s4 m2">
         <div class="grey lighten-4">
             <a href="#">
                 <div class="icon-holder center-align">
-                    {{category.icon|safe}}
+                    <!-- Safe template filter to allow html tags -->
+                    {{category.icon|safe}} 
                 </div>
                 <div class="center-align">
                     {{category.category}}
@@ -32,9 +32,8 @@
     </div>
     {% endfor %}
 </div>
-
+<!-- Recent ads -->
 <h4>Recent added ads:</h4>
-
 <div class="row">
     {% for ad in ads %}
     <div class="col s6 m3">
