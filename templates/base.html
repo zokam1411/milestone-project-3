@@ -25,7 +25,7 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('get_ads') }}"><i class="fas fa-home"></i></a></li>
-                    <li><a class="waves-effect waves-light btn"><i class="fas fa-plus-square"></i> Place Ad</a></li>
+                    <li><a href="{{ url_for('add_ad') }}" class="waves-effect waves-light btn"><i class="fas fa-plus-square"></i> Place Ad</a></li>
                     {% if session.user %}
                     <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Profile<i
                                 class="fas fa-angle-down"></i></a></li>
@@ -49,7 +49,7 @@
             <li>Hello {{session['user']}}!</li>
             {% endif %}
             <!-- <li><a href="{{ url_for('get_ads') }}">Home</a></li> -->
-            <li><a class="waves-effect waves-light btn"><i class="fas fa-plus-square"></i>Place Ad</a></li>
+            <li><a href="{{ url_for('add_ad') }}" class="waves-effect waves-light btn"><i class="fas fa-plus-square"></i>Place Ad</a></li>
             {% if session.user %}
             <li><a href="{{ url_for('profile', username=session['user']) }}">My Profile</a></li>
             <li class="divider"></li>

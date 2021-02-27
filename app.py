@@ -99,10 +99,15 @@ def profile(username):
 
 
 @app.route('/logout')
-def logout ():
+def logout():
     flash('You have been logged out')
     session.pop('user')
     return redirect(url_for('get_ads'))
+
+
+@app.route('/add_ad')
+def add_ad():
+    return render_template('add_ad.html')
 
 
 if __name__ == '__main__':
