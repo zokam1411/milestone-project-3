@@ -127,6 +127,11 @@ def add_ad():
     return render_template('add_ad.html', categories=categories)
 
 
+@app.route('/view_ad')
+def view_ad():
+    return render_template('view_ad.html')
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
