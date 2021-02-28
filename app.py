@@ -133,6 +133,11 @@ def view_ad(ad_id):
     return render_template('view_ad.html', ad=ad)
 
 
+@app.route('/view_category')
+def view_category():
+    return render_template('view_category.html')
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

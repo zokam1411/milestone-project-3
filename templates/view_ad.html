@@ -18,7 +18,11 @@
             <li>Seller info:</li>
             <li>Username:</li>
             <li>Location: {{ ad.location }}</li>
+            {% if session.user %}
             <li>Contact: {{ ad.phone }}</li>
+            {% else %}
+            <li>Contact: Please Log In to see contact details.</li>
+            {% endif %}
         </ul>
     </div>
     <div class="row">
