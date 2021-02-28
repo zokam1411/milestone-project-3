@@ -133,9 +133,11 @@ def view_ad(ad_id):
     return render_template('view_ad.html', ad=ad)
 
 
-@app.route('/view_category')
-def view_category():
-    return render_template('view_category.html')
+@app.route('/view_category/<category_name>')
+def view_category(category_name):
+    category = mongo.db.categories.find_one({'category': category_name})
+    ads = mongo.db.ads.find({'category': category_name})
+    return render_template('view_category.html', category=category, ads=ads)
 
 
 if __name__ == '__main__':
