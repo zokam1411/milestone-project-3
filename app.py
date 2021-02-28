@@ -118,7 +118,8 @@ def add_ad():
             'payment': request.form.get('payment'),
             'location': request.form.get('location'),
             'phone': request.form.get('phone'),
-            'urgent': urgent
+            'urgent': urgent,
+            'created_by': session['user']
         }
         mongo.db.ads.insert_one(ad)
         flash('Ad successfully added and is live now.')
@@ -153,7 +154,8 @@ def edit_ad(ad_id):
             'payment': request.form.get('payment'),
             'location': request.form.get('location'),
             'phone': request.form.get('phone'),
-            'urgent': urgent
+            'urgent': urgent,
+            'created_by': session['user']
         }
         mongo.db.ads.update({'_id': ObjectId(ad_id)}, update)
         flash('Ad successfully updated')

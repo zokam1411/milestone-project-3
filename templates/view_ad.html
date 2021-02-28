@@ -23,22 +23,20 @@
         Image
     </div>
     <div class="col s12 m6">
-        <div class="row">
+        {% if session.user == ad.created_by %}
             <a href="{{ url_for('edit_ad', ad_id=ad._id) }}"
                 class="waves-effect waves-light btn-small yellow black-text">Edit</a>
             <span>or</span>
             <a class="waves-effect waves-light btn-small red black-text">Delete</a>
             <span>your ad</span>
-
-        </div>
-
+        {% endif %}
         <ul>
             <li><strong>Asking price:</strong></li>
             <li>{{ ad.price }}</li>
         </ul>
         <ul>
             <li>Seller info:</li>
-            <li>Username:</li>
+            <li>Username: {{ad.created_by}}</li>
             <li>Location: {{ ad.location }}</li>
             {% if session.user %}
             <li>Contact: {{ ad.phone }}</li>
