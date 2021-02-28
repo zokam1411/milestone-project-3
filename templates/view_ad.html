@@ -2,7 +2,7 @@
 {% block content %}
 <div class="row">
     <div class="col s12">
-        Title:
+        {{ ad.title }}
     </div>
 </div>
 <div class="row">
@@ -12,17 +12,17 @@
     <div class="col s12 m6">
         <ul>
             <li><strong>Asking price:</strong></li>
-            <li>$$$$$$$$$$</li>
+            <li>{{ ad.price }}</li>
         </ul>
         <ul>
             <li>Seller info:</li>
             <li>Username:</li>
-            <li>Location:</li>
-            <li>Contact:</li>
+            <li>Location: {{ ad.location }}</li>
+            <li>Contact: {{ ad.phone }}</li>
         </ul>
     </div>
     <div class="row">
-        Description:
+        Description: {{ ad.description }}
     </div>
 </div>
 

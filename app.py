@@ -127,9 +127,10 @@ def add_ad():
     return render_template('add_ad.html', categories=categories)
 
 
-@app.route('/view_ad')
-def view_ad():
-    return render_template('view_ad.html')
+@app.route('/view_ad/<ad_id>')
+def view_ad(ad_id):
+    ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
+    return render_template('view_ad.html', ad=ad)
 
 
 if __name__ == '__main__':
