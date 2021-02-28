@@ -140,6 +140,13 @@ def view_category(category_name):
     return render_template('view_category.html', category=category, ads=ads)
 
 
+@app.route('/edit_ad/<ad_id>')
+def edit_ad(ad_id):
+    ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
+    categories = mongo.db.categories.find().sort('category', -1)
+    return render_template('add_ad.html', ad=ad, categories=categories)
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
