@@ -142,6 +142,24 @@ def view_category(category_name):
 
 @app.route('/edit_ad/<ad_id>', methods=['GET', 'POST'])
 def edit_ad(ad_id):
+    if request.method == 'POST':
+        urgent = 'on' if request.form.get('urgent') else 'off'
+        update = {
+            'category': request.form.get('category'),
+            'title': request.form.get('title'),
+            'description': request.form.get('description'),
+            'photo': request.form.get('photo'),
+            'price': request.form.get('price'),
+            'payment': request.form.get('payment'),
+            'location': request.form.get('location'),
+            'phone': request.form.get('phone'),
+            'urgent': urgent
+        }
+        mongo.db.ads.update({'_id': ObjectId(ad_id)}, update)
+        flash('Ad successfully updated')
+        ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
+        return render_template('view_ad.html', ad=ad)
+
     ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
     categories = mongo.db.categories.find().sort('category', -1)
     return render_template('edit_ad.html', ad=ad, categories=categories)
