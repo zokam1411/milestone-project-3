@@ -21,14 +21,18 @@
         <!-- Top navbar -->
         <nav class="z-depth-2 white">
             <div class="container">
-                <a href="{{ url_for('get_ads') }}" class="brand-logo"><span class="blue-text text-darken-2 logo">&#8383uy</span><span class="black-text logo">&</span><span class="red-text logo">$ell</span></a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars black-text"></i></a>
+                <a href="{{ url_for('get_ads') }}" class="brand-logo"><span
+                        class="blue-text text-darken-2 logo">&#8383uy</span><span class="black-text logo">&</span><span
+                        class="red-text logo">$ell</span></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
+                        class="fas fa-bars black-text"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('get_ads') }}">Home</a></li>
-                    <li><a href="{{ url_for('add_ad') }}" class="waves-effect waves-light btn green accent-4"><i class="fas fa-plus-square"></i> Place Ad</a></li>
+                    <li><a href="{{ url_for('add_ad') }}" class="waves-effect waves-light btn green accent-4"><i
+                                class="fas fa-plus-square"></i> Place Ad</a></li>
                     {% if session.user %}
-                    <li><a class="dropdown-trigger" data-target="dropdown1">Profile<i
-                                class="fas fa-angle-down"></i></a></li>
+                    <li><a class="dropdown-trigger" data-target="dropdown1">Hello! <strong>{{session['user']}}</strong>
+                        <i class="fas fa-angle-down"></i></a></li>
                     {% else %}
                     <li><a href="{{ url_for('register') }}">Register</a></li>
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
@@ -38,21 +42,20 @@
         </nav>
         <!-- Top navbar dropdown -->
         <ul id="dropdown1" class="dropdown-content">
-            <li>Hello {{session['user']}}!</li>
             <li><a href="{{ url_for('profile', username=session['user']) }}">My Profile</a></li>
-            <li class="divider"></li>
+            <li class="divider nav-divider"></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
         </ul>
         <!-- Mobile sidenav -->
         <ul class="sidenav center-align" id="mobile-demo">
             {% if session.user %}
-            <li>Hello {{session['user']}}!</li>
+            <li>Hello! <strong>{{session['user']}}</strong></li>
             {% endif %}
             <!-- <li><a href="{{ url_for('get_ads') }}">Home</a></li> -->
-            <li><a href="{{ url_for('add_ad') }}" class="waves-effect waves-light btn green accent-4"><i class="fas fa-plus-square"></i>Place Ad</a></li>
+            <li><a href="{{ url_for('add_ad') }}" class="waves-effect waves-light btn green accent-4">Place Ad</a></li>
             {% if session.user %}
-            <li><a href="{{ url_for('profile', username=session['user']) }}">My Profile</a></li>
-            <li class="divider"></li>
+            <li><a href="{{ url_for('profile', username=session['user']) }}" class="waves-effect waves-light btn blue-grey lighten-5 black-text">My Profile<i class="fas fa-user-cog"></i></a></li>
+            <li class="divider nav-divider"></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
             <li><a href="{{ url_for('login') }}">Log In</a></li>
@@ -61,11 +64,11 @@
         </ul>
     </header>
     <main class="container">
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
     </main>
     <!-- Footer -->
-    <footer class="teal accent-1">
+    <footer class="grey lighten-4">
         <div class="container">
             <div class="row">
                 <div class="col s6 m4 text-left">
@@ -82,11 +85,11 @@
                     <h4>Join Us!</h4>
                     <ul>
                         <li> <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"
-                                aria-label="facebook"><i class="fab fa-facebook-f"></i> Buy & Sale on Facebook</a></li>
+                                aria-label="facebook"><i class="fab fa-facebook-square"></i> Buy & Sale on Facebook</a></li>
                         <li> <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer"
-                                aria-label="twitter"><i class="fab fa-twitter"></i> Buy & Sale on Twitter</a></li>
+                                aria-label="twitter"><i class="fab fa-twitter-square"></i> Buy & Sale on Twitter</a></li>
                         <li> <a href="https://www.reddit.com" target="_blank" rel="noopener noreferrer"
-                                aria-label="reddit"><i class="fab fa-reddit-alien"></i> Buy & Sale on Reddit</a></li>
+                                aria-label="reddit"><i class="fab fa-reddit-square"></i> Buy & Sale on Reddit</a></li>
                     </ul>
                 </div>
                 <div class="col s12 m4 center-align">

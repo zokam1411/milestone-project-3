@@ -14,7 +14,21 @@ nav ul a {
 .logo {
     font-weight: 700;
 }
+
+.fa-angle-down {
+    height: 24px;
+    font-size: 15px;
+}
+
+.nav-divider {
+    height: 10px;
+}
+
 /* Footer */
+footer {
+    border-top: 5px solid #4fc3f7;
+}
+
 .footer-bottom p {
     margin: 0;
 }
