@@ -29,6 +29,23 @@ footer {
     border-top: 5px solid #4fc3f7;
 }
 
+footer li a {
+    color: black;
+}
+
+footer li a:hover {
+    color: red;
+}
+
+h5 {
+    margin-bottom: 0;
+    font-weight: 700;
+}
+
+footer .row {
+    margin-bottom: 0;
+}
+
 .footer-bottom p {
     margin: 0;
 }
