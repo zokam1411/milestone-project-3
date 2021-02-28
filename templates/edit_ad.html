@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_ad', ad=ad._id) }}">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_ad', ad_id=ad._id) }}">
         <!-- Category -->
         <div class="card-panel grey lighten-2 tab-top">
             <h6><strong>Category:</strong></h6>
@@ -12,9 +12,13 @@
                 <div class="input-field col s12">
                     <i class="far fa-folder-open prefix"></i>
                     <select id="category" name="category" class="validate" required>
-                        <option value="" disabled selected>Categories:</option>
+                        <option value="" disabled>Categories:</option>
                         {% for category in categories %}
+                        {% if category.category == ad.category %}
+                        <option value="{{ category.category }}" selected>{{ category.category }}</option>
+                        {% else %}
                         <option value="{{ category.category }}">{{ category.category }}</option>
+                        {% endif %}
                         {% endfor %}
                     </select>
                     <label for="category">Select item category:</label>
@@ -30,13 +34,13 @@
                 <div class="input-field col s12">
                     <i class="fas fa-pen-alt prefix"></i>
                     <input id="title" name="title" type="text" class="validate" minlength="5" maxlength="20"
-                        data-length="20" required>
+                        data-length="20" value="{{ ad.title }}" required>
                     <label for="title">Ad title:</label>
                 </div>
                 <div class="input-field col s12">
                     <i class="far fa-file-alt prefix"></i>
                     <textarea id="description" name="description" class="validate materialize-textarea" minlength="10"
-                        maxlength="300" data-length="300" required></textarea>
+                        maxlength="300" data-length="300" required>{{ ad.description }}</textarea>
                     <label for="description">Describe your item:</label>
                 </div>
             </div>
@@ -69,15 +73,15 @@
                 <div class="input-field col s12">
                     <i class="fas fa-euro-sign prefix"></i>
                     <input id="price" name="price" type="number" class="validate" minlength="1" maxlength="5"
-                        data-length="20" required>
+                        data-length="20" value="{{ ad.price }}" required>
                     <label for="price">Item price:</label>
                 </div>
                 <div class="input-field col s12">
                     <select id="payment" name="payment" class="validate" required>
                         <option value="" disabled selected>Preferred payment method:</option>
-                        <option value="1">Cash</option>
-                        <option value="2">PayPal</option>
-                        <option value="3">Crypto</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Cash">PayPal</option>
+                        <option value="Cash">Crypto</option>
                     </select>
                 </div>
             </div>
@@ -101,7 +105,7 @@
                 <div class="input-field col s12">
                     <i class="fas fa-phone prefix"></i>
                     <input id="phone" name="phone" type="number" class="validate" minlength="1" maxlength="5"
-                        data-length="20" required>
+                        data-length="20" value="{{ ad.phone }}" required>
                     <label for="phone">Seller phone number:</label>
                 </div>
             </div>
@@ -115,7 +119,11 @@
                 <div class="input-field col s12">
                     <p>
                         <label for="urgent">
+                            {% if ad.urgent == "on" %}
+                            <input type="checkbox" id="urgent" name="urgent" checked />
+                            {% else %}
                             <input type="checkbox" id="urgent" name="urgent" />
+                            {% endif %}
                             <span>Let others know you will accept lower offer for quick sale.</span>
                         </label>
                     </p>
@@ -124,6 +132,8 @@
         </div>
         <!-- Submit button -->
         <div class="row center-align">
+            <a href="{{ url_for('view_ad', ad_id=ad._id) }}" class="btn waves-effect waves-light red"
+                type="submit">Cancel</a>
             <button class="btn waves-effect waves-light" type="submit">Edit
                 <i class="far fa-edit"></i>
             </button>
