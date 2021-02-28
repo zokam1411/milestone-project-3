@@ -167,6 +167,13 @@ def edit_ad(ad_id):
     return render_template('edit_ad.html', ad=ad, categories=categories)
 
 
+@app.route('/delete_ad/<ad_id>')
+def delete_ad(ad_id):
+    mongo.db.ads.remove({'_id': ObjectId(ad_id)})
+    flash('Ad successfully deleted')
+    return redirect(url_for('get_ads'))
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
