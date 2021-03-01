@@ -109,6 +109,9 @@ def logout():
 def add_ad():
     if request.method == 'POST':
         urgent = 'on' if request.form.get('urgent') else 'off'
+        paypal = 'yes' if request.form.get('paypal') else 'no'
+        cash = 'yes' if request.form.get('cash') else 'no'
+        bitcoin = 'yes' if request.form.get('bitcoin') else 'no'
 
         if 'item_image' in request.files:
             item_image = request.files['item_image']
@@ -124,6 +127,9 @@ def add_ad():
             'location': request.form.get('location'),
             'phone': request.form.get('phone'),
             'urgent': urgent,
+            'paypal': paypal,
+            'bitcoin': bitcoin,
+            'cash': cash,
             'created_by': session['user']
         }
         mongo.db.ads.insert_one(ad)
