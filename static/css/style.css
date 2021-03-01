@@ -7,6 +7,9 @@ body {
 
 /* base.html */
 /* Navbar */
+nav {
+    margin-bottom: 10px;
+}
 nav ul a {
     color:black;
 }
@@ -38,8 +41,10 @@ footer li a:hover {
 }
 
 h5 {
-    margin-bottom: 0;
     font-weight: 700;
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 footer .row {
@@ -48,6 +53,11 @@ footer .row {
 
 .footer-bottom p {
     margin: 0;
+}
+
+/* ads.html */
+.categories {
+    margin-bottom: 50px;
 }
 
 /* Registration */

@@ -14,44 +14,60 @@
     {% endwith %}
 </div>
 <!-- Categories -->
-<h4>Categories:</h4>
-<div class="row categories">
-    {% for category in categories %}
-    <div class="col s4 m2">
-        <div class="grey lighten-4">
-            <a href="{{ url_for('view_category', category_name=category.category) }}">
-                <div class="icon-holder center-align">
-                    <!-- Safe template filter to allow html tags -->
-                    {{category.icon|safe}}
-                </div>
-                <div class="center-align">
-                    {{category.category}}
-                </div>
-            </a>
+<div class="grey lighten-4 ">
+    <div class="container">
+        <div class="row">
+            <h5>Categories:</h5>
         </div>
     </div>
-    {% endfor %}
+</div>
+<div class="container">
+    <div class="row">
+        {% for category in categories %}
+        <div class="col s4 m2">
+            <div>
+                <a href="{{ url_for('view_category', category_name=category.category) }}">
+                    <div class="icon-holder center-align">
+                        <!-- Safe template filter to allow html tags -->
+                        {{category.icon|safe}}
+                    </div>
+                    <div class="center-align">
+                        {{category.category}}
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 <!-- Recent ads -->
-<h4>Recent added ads:</h4>
-<div class="row">
-    {% for ad in ads %}
-    <div class="col s6 m3">
-        <div class="grey lighten-4">
-            <a href="{{ url_for('view_ad', ad_id=ad._id) }}">
-                <div class="img-holder center-align">
-                    Image
-                </div>
+<div class="grey lighten-4 ">
+    <div class="container">
+        <div class="row">
+            <h5>Recently added ads:</h5>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        {% for ad in ads %}
+        <div class="col s6 m3">
+            <div class="grey lighten-4">
+                <a href="{{ url_for('view_ad', ad_id=ad._id) }}">
+                    <div class="img-holder center-align">
+                        Image
+                    </div>
                     <div class="col s7 m8 truncate"><strong>{{ ad.title }}</strong></div>
                     <div class="col s5 m4 right-align"><strong>€{{ ad.price }}</strong></div>
                     <div class="col s8">{{ ad.location }}</div>
                     {% if ad.urgent == "on" %}
                     <div class="col s4 right-align"><i class="fas fa-hammer yellow-text text-accent-4 tooltipped"
                             data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></div>
-                {% endif %}
-            </a>
+                    {% endif %}
+                </a>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock %}
