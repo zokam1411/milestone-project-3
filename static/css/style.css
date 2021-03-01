@@ -92,6 +92,10 @@ img {
     width: 100%;
 }
 
+.m-bottom {
+    margin: 0;
+}
+
 /* Add ad */
 .tab-top {
     padding-top: 5px;

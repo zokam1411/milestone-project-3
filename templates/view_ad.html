@@ -14,12 +14,12 @@
     {% endwith %}
 </div>
 <div class="container">
-    <div class="row">
+    <div class="row m-bottom">
         <div class="col s12">
             <h6><strong>{{ ad.title }}</strong></h6>
         </div>
     </div>
-    <div class="row">
+    <div class="row m-bottom">
         <div class="col s12 m6">
             <img class="materialboxed" src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image">
         </div>
@@ -56,41 +56,27 @@
                 </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12">
-                <h6><strong>Description</strong></h6>
-                <p>{{ ad.description }}</p>
-            </div>
+    </div>
+    <div class="row m-bottom">
+        <div class="col s12">
+            <h6><strong>Description:</strong></h6>
+            <p>{{ ad.description }}</p>
         </div>
-        <div class="row">
-            <div class="col s12">
-                <h6><strong>Payment methods:</strong></h6>
-                <ul class="list-inline">
-                    {% if ad.cash == 'yes' %}
-                    <li><i class="far fa-check-square"></i> Cash</li>
-                    {% endif %}
-                    {% if ad.paypal == 'yes' %}
-                    <li><i class="far fa-check-square"></i> PayPal</li>
-                    {% endif %}
-                    {% if ad.bitcoin == 'yes' %}
-                    <li><i class="far fa-check-square"></i> BitCoin</li>
-                    {% endif %}
-                </ul>
-            </div>
-            <div class="col s12">
-                <h6><strong>Shipping/Collection:</strong></h6>
-                <ul class="list-inline">
-                    {% if ad.cash == 'yes' %}
-                    <li><i class="far fa-check-square"></i> Cash</li>
-                    {% endif %}
-                    {% if ad.paypal == 'yes' %}
-                    <li><i class="far fa-check-square"></i> PayPal</li>
-                    {% endif %}
-                    {% if ad.bitcoin == 'yes' %}
-                    <li><i class="far fa-check-square"></i> BitCoin</li>
-                    {% endif %}
-                </ul>
-            </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <h6><strong>Payment methods:</strong></h6>
+            <ul class="list-inline">
+                {% if ad.cash == 'yes' %}
+                <li><i class="far fa-check-square"></i> Cash</li>
+                {% endif %}
+                {% if ad.paypal == 'yes' %}
+                <li><i class="far fa-check-square"></i> PayPal</li>
+                {% endif %}
+                {% if ad.bitcoin == 'yes' %}
+                <li><i class="far fa-check-square"></i> BitCoin</li>
+                {% endif %}
+            </ul>
         </div>
     </div>
 </div>
