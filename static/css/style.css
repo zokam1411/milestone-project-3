@@ -62,6 +62,11 @@ footer .row {
 .img-holder {
     height: 137px;
     background: grey;
+    width: 100%;
+}
+
+img {
+    width: 100%;
 }
 
 /* Add ad */
