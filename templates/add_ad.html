@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_ad') }}">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_ad') }}" enctype="multipart/form-data">
         <!-- Category -->
         <div class="card-panel grey lighten-2 tab-top">
             <h6><strong>Category:</strong></h6>
@@ -50,11 +50,10 @@
                 <div class="file-field input-field">
                     <div class="btn">
                         <span>File</span>
-                        <input type="file">
+                        <input type="file" id="item_image" name="item_image">
                     </div>
                     <div class="file-path-wrapper">
-                        <input id="photo" name="photo" class="file-path validate" type="text"
-                            placeholder="Upload item picture">
+                        <input class="file-path validate" type="text" placeholder="Upload item image">
                     </div>
                 </div>
                 <p><span class="red-text">*</span>Ads with pictures are selling 5 times faster!</p>

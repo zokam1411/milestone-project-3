@@ -109,11 +109,16 @@ def logout():
 def add_ad():
     if request.method == 'POST':
         urgent = 'on' if request.form.get('urgent') else 'off'
+
+        if 'item_image' in request.files:
+            item_image = request.files['item_image']
+            mongo.save_file(item_image.filename, item_image)
+
         ad = {
             'category': request.form.get('category'),
             'title': request.form.get('title'),
             'description': request.form.get('description'),
-            'photo': request.form.get('photo'),
+            'item_image': item_image.filename,
             'price': request.form.get('price'),
             'payment': request.form.get('payment'),
             'location': request.form.get('location'),
