@@ -133,6 +133,12 @@ def add_ad():
     return render_template('add_ad.html', categories=categories)
 
 
+# retrieve images from mongoDB
+@app.route('/img_uploads/<filename>')
+def img_uploads(filename):
+    return mongo.send_file(filename)
+
+
 @app.route('/view_ad/<ad_id>')
 def view_ad(ad_id):
     ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
