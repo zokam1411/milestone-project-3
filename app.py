@@ -168,7 +168,9 @@ def edit_ad(ad_id):
 
         if 'item_image' in request.files:
             item_image = request.files['item_image']
-            if item_image.filename != '':
+            if item_image.filename == '':
+                item_image.filename = request.form.get('item_image_up')
+            else:
                 mongo.save_file(item_image.filename, item_image)
 
         update = {
@@ -179,13 +181,13 @@ def edit_ad(ad_id):
             'price': request.form.get('price'),
             'location': request.form.get('location'),
             'phone': request.form.get('phone'),
-
             'urgent': urgent,
             'paypal': paypal,
             'bitcoin': bitcoin,
             'cash': cash,
             'created_by': session['user']
         }
+
         mongo.db.ads.update({'_id': ObjectId(ad_id)}, update)
         flash('Ad successfully updated')
         return redirect(url_for('view_ad', ad_id=ad_id))
@@ -206,3 +208,4 @@ if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
             debug=True)
+
