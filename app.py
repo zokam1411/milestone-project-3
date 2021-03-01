@@ -123,7 +123,6 @@ def add_ad():
             'description': request.form.get('description'),
             'item_image': item_image.filename,
             'price': request.form.get('price'),
-            'payment': request.form.get('payment'),
             'location': request.form.get('location'),
             'phone': request.form.get('phone'),
             'urgent': urgent,
