@@ -115,7 +115,8 @@ def add_ad():
 
         if 'item_image' in request.files:
             item_image = request.files['item_image']
-            mongo.save_file(item_image.filename, item_image)
+            if item_image != "":
+                mongo.save_file(item_image.filename, item_image)
 
         ad = {
             'category': request.form.get('category'),
@@ -161,22 +162,31 @@ def view_category(category_name):
 def edit_ad(ad_id):
     if request.method == 'POST':
         urgent = 'on' if request.form.get('urgent') else 'off'
+        paypal = 'yes' if request.form.get('paypal') else 'no'
+        cash = 'yes' if request.form.get('cash') else 'no'
+        bitcoin = 'yes' if request.form.get('bitcoin') else 'no'
+
+        if 'item_image' in request.files:
+            item_image = request.files['item_image']
+            if item_image != "":
+                mongo.save_file(item_image.filename, item_image)
         update = {
             'category': request.form.get('category'),
             'title': request.form.get('title'),
             'description': request.form.get('description'),
-            'photo': request.form.get('photo'),
+            'item_image': item_image.filename,
             'price': request.form.get('price'),
-            'payment': request.form.get('payment'),
             'location': request.form.get('location'),
             'phone': request.form.get('phone'),
             'urgent': urgent,
+            'paypal': paypal,
+            'bitcoin': bitcoin,
+            'cash': cash,
             'created_by': session['user']
         }
         mongo.db.ads.update({'_id': ObjectId(ad_id)}, update)
         flash('Ad successfully updated')
-        ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
-        return render_template('view_ad.html', ad=ad)
+        return redirect(url_for('view_ad', ad_id=ad_id))
 
     ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
     categories = mongo.db.categories.find().sort('category', -1)
