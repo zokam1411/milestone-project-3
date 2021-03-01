@@ -21,7 +21,7 @@
     </div>
     <div class="row m-bottom">
         <div class="col s12 m6">
-            <img class="materialboxed" src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image">
+            <img class="materialboxed view-img" src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image">
         </div>
         <div class="col s12 m6">
             {% if session.user == ad.created_by %}

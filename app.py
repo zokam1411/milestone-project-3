@@ -115,7 +115,7 @@ def add_ad():
 
         if 'item_image' in request.files:
             item_image = request.files['item_image']
-            if item_image != "":
+            if item_image.filename != '':
                 mongo.save_file(item_image.filename, item_image)
 
         ad = {
@@ -168,8 +168,9 @@ def edit_ad(ad_id):
 
         if 'item_image' in request.files:
             item_image = request.files['item_image']
-            if item_image != "":
+            if item_image.filename != '':
                 mongo.save_file(item_image.filename, item_image)
+
         update = {
             'category': request.form.get('category'),
             'title': request.form.get('title'),
@@ -178,6 +179,7 @@ def edit_ad(ad_id):
             'price': request.form.get('price'),
             'location': request.form.get('location'),
             'phone': request.form.get('phone'),
+
             'urgent': urgent,
             'paypal': paypal,
             'bitcoin': bitcoin,

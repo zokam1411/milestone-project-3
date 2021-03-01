@@ -65,6 +65,11 @@ footer .row {
     background: grey;
     width: 100%;
 }
+.img-holder img {
+object-fit: cover;
+height: 137px;
+width: 100%;
+}
 
 .list-inline {
   padding-left: 0;
@@ -88,8 +93,9 @@ footer .row {
 }
 
 /* view_ad.html */
-img {
-    width: 100%;
+.view-img {
+    width: 320px;
+    height: 320px;
 }
 
 .m-bottom {

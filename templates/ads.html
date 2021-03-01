@@ -55,7 +55,7 @@
             <div class="grey lighten-4">
                 <a href="{{ url_for('view_ad', ad_id=ad._id) }}">
                     <div class="img-holder center-align">
-                        Image
+                        <img src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image">
                     </div>
                     <div class="col s7 m8 truncate"><strong>{{ ad.title }}</strong></div>
                     <div class="col s5 m4 right-align"><strong>€{{ ad.price }}</strong></div>
