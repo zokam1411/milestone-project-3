@@ -14,14 +14,15 @@
     {% endwith %}
 </div>
 <div class="container">
-    <div class="row m-bottom">
+    <div class="row mb-0">
         <div class="col s12">
             <h6><strong>{{ ad.title }}</strong></h6>
         </div>
     </div>
-    <div class="row m-bottom">
+    <div class="row mb-0">
         <div class="col s12 m6">
-            <img class="materialboxed view-img" src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image">
+            <img class="materialboxed view-img" src="{{url_for('img_uploads', filename=ad['item_image'])}}"
+                alt="item_image">
         </div>
         <div class="col s12 m6">
             {% if session.user == ad.created_by %}
@@ -34,18 +35,30 @@
             {% endif %}
             <div>
                 {% if ad.urgent == "on" %}
-                <h6><strong>Price: <i class="fas fa-hammer yellow-text text-accent-4 tooltipped" data-position="bottom"
-                            data-tooltip="Price negotiable for quick sale."></i></strong></h6>
+                <h6 class="mb-0"><strong>Price: <i class="fas fa-hammer yellow-text text-accent-4 tooltipped"
+                            data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></strong></h6>
                 {% else %}
-                <h6><strong>Price:</strong></h6>
+                <h6 class="mb-0"><strong>Price:</strong></h6>
                 {% endif %}
-                <ul>
-                    <li>&#8364; {{ ad.price }} </li>
+                <p class="mt-0">&#8364; {{ ad.price }}</p>
+            </div>
+            <div>
+                <h6 class="mb-0"><strong>Payment methods:</strong></h6>
+                <ul class="list-inline mt-0">
+                    {% if ad.cash == 'yes' %}
+                    <li><i class="far fa-check-square"></i> Cash</li>
+                    {% endif %}
+                    {% if ad.paypal == 'yes' %}
+                    <li><i class="far fa-check-square"></i> PayPal</li>
+                    {% endif %}
+                    {% if ad.bitcoin == 'yes' %}
+                    <li><i class="far fa-check-square"></i> BitCoin</li>
+                    {% endif %}
                 </ul>
             </div>
             <div>
-                <h6><strong>Seller info:</strong></h6>
-                <ul>
+                <h6 class="mb-0"><strong>Seller info:</strong></h6>
+                <ul class="mt-0 mb-0">
                     <li>Username: {{ad.created_by}}</li>
                     <li>Location: {{ ad.location }}</li>
                     {% if session.user %}
@@ -57,26 +70,10 @@
             </div>
         </div>
     </div>
-    <div class="row m-bottom">
+    <div class="row mb-0">
         <div class="col s12">
-            <h6><strong>Description:</strong></h6>
-            <p>{{ ad.description }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12">
-            <h6><strong>Payment methods:</strong></h6>
-            <ul class="list-inline">
-                {% if ad.cash == 'yes' %}
-                <li><i class="far fa-check-square"></i> Cash</li>
-                {% endif %}
-                {% if ad.paypal == 'yes' %}
-                <li><i class="far fa-check-square"></i> PayPal</li>
-                {% endif %}
-                {% if ad.bitcoin == 'yes' %}
-                <li><i class="far fa-check-square"></i> BitCoin</li>
-                {% endif %}
-            </ul>
+            <h6 class="mb-0"><strong>Description:</strong></h6>
+            <p class="mt-0">{{ ad.description }}</p>
         </div>
     </div>
 </div>
