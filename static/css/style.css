@@ -60,14 +60,21 @@ footer .row {
     margin-bottom: 50px;
 }
 
-.img-holder {
-    height: 137px;
-    background: grey;
-    width: 100%;
+.main-ad-holder {
+    padding: 10px;
 }
-.img-holder img {
+
+.col .row {
+    margin: 0;
+}
+
+.ad-img-holder {
+    height: 140px;
+}
+
+.ad-img-holder img {
 object-fit: cover;
-height: 137px;
+height: 140px;
 width: 100%;
 }
 

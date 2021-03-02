@@ -48,26 +48,31 @@
         </div>
     </div>
 </div>
+<!-- test -->
 <div class="container">
     <div class="row">
         {% for ad in ads %}
         <div class="col s6 m3">
-            <div class="grey lighten-4">
-                <a href="{{ url_for('view_ad', ad_id=ad._id) }}">
-                    <div class="img-holder center-align">
+            <a href="{{ url_for('view_ad', ad_id=ad._id) }}">
+                <div class="grey lighten-3 main-ad-holder">
+                    <div class="white ad-img-holder">
                         <img src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image">
                     </div>
-                    <div class="col s7 m8 truncate"><strong>{{ ad.title }}</strong></div>
-                    <div class="col s5 m4 right-align"><strong>€{{ ad.price }}</strong></div>
-                    <div class="col s8">{{ ad.location }}</div>
-                    {% if ad.urgent == "on" %}
-                    <div class="col s4 right-align"><i class="fas fa-hammer yellow-text text-accent-4 tooltipped"
-                            data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></div>
-                    {% endif %}
-                </a>
-            </div>
+                    <div class="row">
+                        <div class="truncate"><strong>{{ ad.title }}</strong></div>
+                        {% if ad.urgent == "on" %}
+                        <div><b>&#8364;{{ ad.price }}</b> <i class="fas fa-hammer yellow-text text-accent-4 tooltipped"
+                                data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></div>
+                        {% else %}
+                        <div><b>&#8364;{{ ad.price }}</b></div>
+                        {% endif %}
+                        <div><small>{{ ad.location }}</small></div>
+                    </div>
+                </div>
+            </a>
         </div>
         {% endfor %}
     </div>
 </div>
+
 {% endblock %}
