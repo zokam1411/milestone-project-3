@@ -55,7 +55,13 @@
             <a href="{{ url_for('view_ad', ad_id=ad._id) }}">
                 <div class="grey lighten-3 main-ad-holder">
                     <div class="white ad-img-holder">
-                        <img src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image">
+                        {% if ad.item_image %}
+                        <img src="{{url_for('img_uploads', filename=ad['item_image'])}}"
+                            alt="item_image">
+                        {% else %}
+                        <img  src="{{url_for('static', filename='images/no-image.png')}}"
+                            alt="default_recipe_image">
+                        {% endif %}
                     </div>
                     <div class="row">
                         <div class="truncate"><strong>{{ ad.title }}</strong></div>

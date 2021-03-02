@@ -21,8 +21,12 @@
     </div>
     <div class="row mb-0">
         <div class="col s12 m6">
+            {% if ad.item_image %}
             <img class="materialboxed view-img" src="{{url_for('img_uploads', filename=ad['item_image'])}}"
                 alt="item_image">
+            {% else %}
+                <img class="view-img" src="{{url_for('static', filename='images/no-image.png')}}" alt="default_recipe_image">
+            {% endif %}
         </div>
         <div class="col s12 m6">
             {% if session.user == ad.created_by %}
