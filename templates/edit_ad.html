@@ -164,6 +164,9 @@
                     </div>
                 </div>
             </div>
+            <!-- input hidden -->
+            <input type="hidden" id="views" name="views" value="{{ ad.views }}">
+            <input type="hidden" id="date" name="date" value="{{ ad.date }}">
             <!-- Submit button -->
             <div class="row center-align">
                 <a href="{{ url_for('view_ad', ad_id=ad._id) }}" class="btn waves-effect waves-light red"

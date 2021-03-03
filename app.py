@@ -6,6 +6,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import (generate_password_hash,
                                check_password_hash, safe_str_cmp)
+from datetime import datetime
 if os.path.exists('env.py'):
     import env
 
@@ -129,7 +130,8 @@ def add_ad():
             'paypal': paypal,
             'bitcoin': bitcoin,
             'cash': cash,
-            'created_by': session['user']
+            'created_by': session['user'],
+            'date': datetime.now().strftime("%d/%m/%Y"),
         }
         mongo.db.ads.insert_one(ad)
         flash('Ad successfully added and is live now.')
@@ -193,7 +195,10 @@ def edit_ad(ad_id):
             'paypal': paypal,
             'bitcoin': bitcoin,
             'cash': cash,
-            'created_by': session['user']
+            'created_by': session['user'],
+            'updated': datetime.now().strftime("%d/%m/%Y"),
+            'views': int(request.form.get('views')),
+            'date': request.form.get('date')
         }
 
         mongo.db.ads.update({'_id': ObjectId(ad_id)}, update)

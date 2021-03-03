@@ -87,7 +87,10 @@
         <div class="col s12">
             <ul class="list-inline mt-0 mb-0">
                 <li><small>Ad views: {{ ad.views }}</small></li>
-
+                <li><small>Entered: {{ ad.date }}</small></li>
+                {% if ad.updated %}
+                <li><small>Updated: {{ ad.updated }}</small></li>
+                {% endif %}
             </ul>
         </div>
     </div>
