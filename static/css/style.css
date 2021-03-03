@@ -85,6 +85,16 @@ footer .row {
     margin-bottom: 50px;
 }
 /* Recent ads */
+#col-padding {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.col-margin {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .main-ad-holder {
     padding: 10px;
 }
