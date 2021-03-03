@@ -39,11 +39,11 @@ def register():
         password_confirm = safe_str_cmp(password, confirm)
 
         if existing_user:
-            flash('Username already exists')
+            flash('Username already exists', 'yellow')
             return redirect(url_for('register'))
 
         elif not password_confirm:
-            flash('Passwords do not match, please try again')
+            flash('Passwords do not match, please try again', 'red')
             return redirect(url_for('register'))
 
         register = {
@@ -52,9 +52,7 @@ def register():
         }
         mongo.db.users.insert_one(register)
 
-        # put new user into 'session' cookie
-        session['user'] = username
-        flash('Registration successful! Please Log In using your details.')
+        flash('Registration successful! Please Log in now', 'green')
         return redirect(url_for('login'))
 
     return render_template('register.html')
@@ -72,16 +70,17 @@ def login():
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(existing_user['password'], password):
+                # put new user into session cookie
                 session['user'] = username
                 return redirect(url_for(
                     'profile', username=session['user']))
             else:
                 # invalid password match
-                flash('Incorrect Username or/and Password')
+                flash('Invalid Username or/and Password', 'red')
                 return redirect(url_for('login'))
         else:
             # username doesn't exist
-            flash('Invalid Username or/and Password')
+            flash('Invalid Username or/and Password', 'red')
             return redirect(url_for('login'))
 
     return render_template('login.html')
@@ -100,7 +99,7 @@ def profile(username):
 
 @app.route('/logout')
 def logout():
-    flash('You have been logged out')
+    flash('You have been logged out', 'blue lighten-1')
     session.pop('user')
     return redirect(url_for('get_ads'))
 
@@ -135,8 +134,13 @@ def add_ad():
         mongo.db.ads.insert_one(ad)
         flash('Ad successfully added and is live now.')
         return redirect(url_for('get_ads'))
-    categories = mongo.db.categories.find().sort('category', -1)
-    return render_template('add_ad.html', categories=categories)
+
+    if session:
+        categories = mongo.db.categories.find().sort('category', -1)
+        return render_template('add_ad.html', categories=categories)
+
+    flash('To place ad log in first')
+    return redirect(url_for('login'))
 
 
 # retrieve images from mongoDB

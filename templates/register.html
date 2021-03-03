@@ -8,13 +8,13 @@
                 <h4>Create Buy & Sell account</h4>
                 <p>to buy and sell with us!</p>
             </div>
+            <!-- flash message -->
             <div>
-                <!-- flash message -->
-                {% with messages = get_flashed_messages() %}
+                {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
-                {% for message in messages %}
-                <div class="row flashes">
-                    <p class="red lighten-4 center-align">{{ message }}</p>
+                {% for category, message in messages %}
+                <div class="row flashes center-align">
+                    <p class="{{category}} white-text"><i class="fas fa-info-circle"></i> {{ message }}</p>
                 </div>
                 {% endfor %}
                 {% endif %}
@@ -34,9 +34,11 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-lock prefix"></i>
-                    <input id="password" name="password" type="password" class="validate" pattern="^[a-zA-Z0-9#?!@$%^&*-]{5,10}$" required>
+                    <input id="password" name="password" type="password" class="validate"
+                        pattern="^[a-zA-Z0-9#?!@$%^&*-]{5,10}$" required>
                     <label for="password">Password</label>
-                    <span class="helper-text left-align" data-error="wrong" data-success="right">5 - 10 characters and no spaces</span>
+                    <span class="helper-text left-align" data-error="wrong" data-success="right">5 - 10 characters and
+                        no spaces</span>
                 </div>
                 <!-- Confirm password input field -->
                 <div class="input-field col s12">
