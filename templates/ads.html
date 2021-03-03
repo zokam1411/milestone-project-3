@@ -64,10 +64,10 @@
                     <div class="row">
                         <div class="truncate"><strong>{{ ad.title }}</strong></div>
                         {% if ad.urgent == "on" %}
-                        <div><b>&#8364;{{ ad.price }}</b> <i class="fas fa-hammer yellow-text text-accent-4 tooltipped"
+                        <div><b>&#8364; {{ ad.price }}</b> <i class="fas fa-hammer yellow-text text-accent-4 tooltipped"
                                 data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></div>
                         {% else %}
-                        <div><b>&#8364;{{ ad.price }}</b></div>
+                        <div><b>&#8364; {{ ad.price }}</b></div>
                         {% endif %}
                         <div><small>{{ ad.location }}</small></div>
                     </div>

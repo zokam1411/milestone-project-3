@@ -151,6 +151,10 @@ def img_uploads(filename):
 
 @app.route('/view_ad/<ad_id>')
 def view_ad(ad_id):
+    # increment the number of views everytime a recipe is seen
+    mongo.db.ads.update_one(
+        {"_id": ObjectId(ad_id)}, {'$inc': {'views': 1}})
+
     ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
     return render_template('view_ad.html', ad=ad)
 
