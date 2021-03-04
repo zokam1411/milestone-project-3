@@ -24,12 +24,12 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="far fa-file prefix"></i>
-                        <input id="category_name" name="category_name" type="text" class="validate" required>
+                        <input id="category_name" name="category_name" type="text" value="{{ category.category }}" class="validate" required>
                         <label for="category_name">Category name:</label>
                     </div>
                     <div class="input-field col s12">
                         <i class="fab fa-font-awesome-flag prefix"></i>
-                        <input id="icon" name="icon" type="text" class="validate" required>
+                        <input id="icon" name="icon" type="text" class="validate" value="{{ category.icon }}" required>
                         <label for="icon">Font Awesome icon code:</label>
                     </div>
                 </div>
