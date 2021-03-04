@@ -269,6 +269,13 @@ def delete_category(category_id):
     return redirect(url_for('control_panel'))
 
 
+@app.route('/delete_user/<username>')
+def delete_user(username):
+    mongo.db.users.remove({'username': username})
+    flash('User successfully deleted', 'green')
+    return redirect(url_for('control_panel'))
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

@@ -73,7 +73,7 @@
                 <tr>
                     <td>{{user.username}}</td>
                     <td>
-                        <a href="#" class="waves-effect waves-light btn-small red black-text">Delete</a></td>
+                        <a href="{{ url_for('delete_user', username=user.username) }}" class="waves-effect waves-light btn-small red black-text">Delete</a></td>
                 </tr>
             </tbody>
             {% endfor %}
