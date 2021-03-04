@@ -221,8 +221,9 @@ def delete_ad(ad_id):
 @app.route('/control_panel')
 def control_panel():
     categories = mongo.db.categories.find()
+    users = mongo.db.users.find()
     return render_template('control_panel.html',
-                           categories=categories)
+                           categories=categories, users=users)
 
 
 @app.route('/add_category', methods=['GET', 'POST'])
