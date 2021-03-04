@@ -40,7 +40,7 @@ def register():
         password_confirm = safe_str_cmp(password, confirm)
 
         if existing_user:
-            flash('Username already exists', 'yellow')
+            flash('Username already exists', 'blue lighten-1')
             return redirect(url_for('register'))
 
         elif not password_confirm:
@@ -134,14 +134,14 @@ def add_ad():
             'date': datetime.now().strftime("%d/%m/%Y"),
         }
         mongo.db.ads.insert_one(ad)
-        flash('Ad successfully added and is live now.')
+        flash('Ad successfully added and is live now', 'green')
         return redirect(url_for('get_ads'))
 
     if session:
         categories = mongo.db.categories.find().sort('category', -1)
         return render_template('add_ad.html', categories=categories)
 
-    flash('To place ad log in first')
+    flash('To place ad log in first', 'blue lighten-1')
     return redirect(url_for('login'))
 
 
@@ -202,7 +202,7 @@ def edit_ad(ad_id):
         }
 
         mongo.db.ads.update({'_id': ObjectId(ad_id)}, update)
-        flash('Ad successfully updated')
+        flash('Ad successfully updated', 'green')
         return redirect(url_for('view_ad', ad_id=ad_id))
 
     ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
@@ -213,7 +213,7 @@ def edit_ad(ad_id):
 @app.route('/delete_ad/<ad_id>')
 def delete_ad(ad_id):
     mongo.db.ads.remove({'_id': ObjectId(ad_id)})
-    flash('Ad successfully deleted')
+    flash('Ad successfully deleted', 'green')
     return redirect(url_for('get_ads'))
 
 
@@ -239,11 +239,11 @@ def add_category():
             {'icon': icon})
 
         if existing_category:
-            flash('Category already exists', 'yellow')
+            flash('Category already exists', 'blue lighten-1')
             return redirect(url_for('add_category'))
 
         elif existing_icon:
-            flash('Icon already exists', 'yellow')
+            flash('Icon already exists', 'blue lighten-1')
             return redirect(url_for('add_category'))
 
         cat = {
