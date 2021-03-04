@@ -33,6 +33,10 @@
                     {% if session.user %}
                     <li><a class="dropdown-trigger" data-target="dropdown1">Hello! <strong>{{session['user']}}</strong>
                         <i class="fas fa-angle-down"></i></a></li>
+                    {% if session.user == 'admin' %}
+                    <li><a href="{{ (url_for('control_panel')) }}" class="waves-effect waves-light btn red accent-4"><i
+                                class="fas fa-cog"></i> Control Panel</a></li>
+                    {% endif %}
                     {% else %}
                     <li><a href="{{ url_for('register') }}">Register</a></li>
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
