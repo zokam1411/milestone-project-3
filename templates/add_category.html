@@ -2,12 +2,25 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_ad') }}" enctype="multipart/form-data">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_category') }}"
+            enctype="multipart/form-data">
             <!-- Category -->
             <div class="card-panel grey lighten-2 tab-top">
                 <h6><strong>Category:</strong></h6>
             </div>
             <div class="card-panel tab-bottom">
+                <!-- flash message -->
+                <div>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="row flashes center-align">
+                        <p class="{{category}} white-text"><i class="fas fa-info-circle"></i> {{ message }}</p>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="far fa-file prefix"></i>

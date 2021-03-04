@@ -225,9 +225,33 @@ def control_panel():
                            categories=categories)
 
 
-# admin control panel
-@app.route('/add_category')
+@app.route('/add_category', methods=['GET', 'POST'])
 def add_category():
+    if request.method == 'POST':
+        category_name = request.form.get('category_name')
+        icon = request.form.get('icon')
+        # check if category already exists in db
+        existing_category = mongo.db.categories.find_one(
+            {'category': category_name})
+        # check if icon already exists in db
+        existing_icon = mongo.db.categories.find_one(
+            {'icon': icon})
+
+        if existing_category:
+            flash('Category already exists', 'yellow')
+            return redirect(url_for('add_category'))
+
+        elif existing_icon:
+            flash('Icon already exists', 'yellow')
+            return redirect(url_for('add_category'))
+
+        cat = {
+            'category': request.form.get('category_name'),
+            'icon': request.form.get('icon')
+        }
+        mongo.db.categories.insert_one(cat)
+        flash('Category successfully added' 'green')
+        return redirect(url_for('control_panel'))
     return render_template('add_category.html')
 
 
