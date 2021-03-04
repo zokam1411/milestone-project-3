@@ -137,3 +137,18 @@ width: 100%;
     border-bottom: 1px solid black;
     margin-bottom: 10px;
 }
+
+/* control_panel.html */
+td, th {
+    padding: 0;
+}
+
+tr:hover {
+    background: #eeeeee;
+}
+
+.btn-small {
+    height: 20px;
+    line-height: 20px;
+    font-size: 10px;
+}

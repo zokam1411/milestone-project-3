@@ -220,11 +220,12 @@ def delete_ad(ad_id):
 # admin control panel
 @app.route('/control_panel')
 def control_panel():
-    return render_template('control_panel.html')
+    categories = mongo.db.categories.find()
+    return render_template('control_panel.html',
+                           categories=categories)
 
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
             debug=True)
-
