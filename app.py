@@ -213,10 +213,7 @@ def edit_ad(ad_id):
 
 @app.route('/delete_ad/<ad_id>')
 def delete_ad(ad_id):
-    check_img_id = mongo.db.ads.find_one({'img_id': ObjectId(img)})
-    fs_files = mongo.db.fs.files.find_one({'_id': ObjectId(img)})
-    if check_img_id == fs_files:
-        fs_files.remove()
+
     mongo.db.ads.remove({'_id': ObjectId(ad_id)})
     flash('Ad successfully deleted', 'green')
     return redirect(url_for('get_ads'))
@@ -256,13 +253,21 @@ def add_category():
             'icon': request.form.get('icon')
         }
         mongo.db.categories.insert_one(cat)
-        flash('Category successfully added' 'green')
+        flash('Category successfully added', 'green')
         return redirect(url_for('control_panel'))
     return render_template('add_category.html')
 
 
-@app.route('/edit_category/<category_id>')
+@app.route('/edit_category/<category_id>', methods=['GET', 'POST'])
 def edit_category(category_id):
+    if request.method == 'POST':
+        update = {
+            'category': request.form.get('category_name'),
+            'icon': request.form.get('icon')
+        }
+        mongo.db.categories.update({'_id': ObjectId(category_id)}, update)
+        flash('Category successfully updated', 'green')
+        return redirect(url_for('control_panel'))
     category = mongo.db.categories.find_one({'_id': ObjectId(category_id)})
     return render_template('edit_category.html', category=category)
 
