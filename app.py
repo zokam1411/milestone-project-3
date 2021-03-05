@@ -90,7 +90,7 @@ def login():
 @app.route('/profile/<username>', methods=['GET', 'POST'])
 def profile(username):
     username = mongo.db.users.find_one(
-        {'username': session['user']}['username'])
+        {'username': session['user']})['username']
 
     if session['user']:
         return render_template('profile.html', username=username)
@@ -112,11 +112,11 @@ def add_ad():
         paypal = 'yes' if request.form.get('paypal') else 'no'
         cash = 'yes' if request.form.get('cash') else 'no'
         bitcoin = 'yes' if request.form.get('bitcoin') else 'no'
-
+        result = None
         if 'item_image' in request.files:
             item_image = request.files['item_image']
             if item_image.filename != '':
-                mongo.save_file(item_image.filename, item_image)
+                result = mongo.save_file(item_image.filename, item_image)
 
         ad = {
             'category': request.form.get('category'),
@@ -132,6 +132,7 @@ def add_ad():
             'cash': cash,
             'created_by': session['user'],
             'date': datetime.now().strftime("%d/%m/%Y"),
+            'img_id': result
         }
         mongo.db.ads.insert_one(ad)
         flash('Ad successfully added and is live now', 'green')
@@ -212,6 +213,10 @@ def edit_ad(ad_id):
 
 @app.route('/delete_ad/<ad_id>')
 def delete_ad(ad_id):
+    check_img_id = mongo.db.ads.find_one({'img_id': ObjectId(img)})
+    fs_files = mongo.db.fs.files.find_one({'_id': ObjectId(img)})
+    if check_img_id == fs_files:
+        fs_files.remove()
     mongo.db.ads.remove({'_id': ObjectId(ad_id)})
     flash('Ad successfully deleted', 'green')
     return redirect(url_for('get_ads'))
