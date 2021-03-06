@@ -24,6 +24,12 @@ mongo = PyMongo(app)
 def get_ads():
     categories = mongo.db.categories.find()
     ads = mongo.db.ads.find()
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        return render_template(
+            'ads.html', ads=ads, categories=categories, admin=admin)
+
     return render_template('ads.html', ads=ads, categories=categories)
 
 
