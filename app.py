@@ -238,7 +238,7 @@ def report_ad(ad_id):
 
 @app.route('/delete_report/<ad_id>')
 def delete_report(ad_id):
-    mongo.db.ads.update({'_id': ObjectId(ad_id)}, {'$unset': {'report': ""}})
+    mongo.db.ads.update({'_id': ObjectId(ad_id)}, {'$unset': {'reports': ""}})
     flash('Reports successfully deleted', 'green')
     return redirect(url_for('view_ad', ad_id=ad_id))
 
