@@ -221,7 +221,6 @@ def edit_ad(ad_id):
 
 @app.route('/delete_ad/<ad_id>')
 def delete_ad(ad_id):
-
     mongo.db.ads.remove({'_id': ObjectId(ad_id)})
     flash('Ad successfully deleted', 'green')
     return redirect(url_for('get_ads'))
@@ -234,6 +233,13 @@ def report_ad(ad_id):
             {"_id": ObjectId(ad_id)},
             {'$set': {'report': request.form.get('report')}})
     flash('Ad reported, thank you.', 'green')
+    return redirect(url_for('view_ad', ad_id=ad_id))
+
+
+@app.route('/delete_report/<ad_id>')
+def delete_report(ad_id):
+    mongo.db.ads.update({'_id': ObjectId(ad_id)}, {'$unset': {'report': ""}})
+    flash('Reports successfully deleted', 'green')
     return redirect(url_for('view_ad', ad_id=ad_id))
 
 
