@@ -147,6 +147,12 @@ def add_ad():
     if session:
         counties = mongo.db.counties.find().sort('county', 1)
         categories = mongo.db.categories.find().sort('category', 1)
+        if 'user' in session:
+            admin = mongo.db.users.find_one(
+                {'username': session['user'], 'status': 'admin'})
+            return render_template(
+                'add_ad.html', categories=categories,
+                counties=counties, admin=admin)
         return render_template(
             'add_ad.html', categories=categories, counties=counties)
 
