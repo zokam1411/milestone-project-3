@@ -162,6 +162,10 @@ width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.ol-reports li {
+    padding-top: 10px;
+}
 /*------------------------------------------- add_ad.html */
 .tab-top {
     padding-top: 5px;

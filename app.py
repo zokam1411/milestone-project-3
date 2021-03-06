@@ -231,7 +231,7 @@ def report_ad(ad_id):
     if request.method == 'POST':
         mongo.db.ads.update_one(
             {"_id": ObjectId(ad_id)},
-            {'$set': {'report': request.form.get('report')}})
+            {'$push': {'reports': request.form.get('report')}})
     flash('Ad reported, thank you.', 'green')
     return redirect(url_for('view_ad', ad_id=ad_id))
 
