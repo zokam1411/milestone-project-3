@@ -3,7 +3,7 @@ $(document).ready(function () {
     $(".dropdown-trigger").dropdown({ coverTrigger: false });
     $('.tooltipped').tooltip();
     $('select').formSelect();
-    $('input#title, textarea#description').characterCounter();
+    $('input#title, textarea#description, textarea#report').characterCounter();
     $('.materialboxed').materialbox();
     $('.modal').modal();
     // Materialize selector validator

@@ -2,7 +2,7 @@
 {% block content %}
 
 <!-- flash message -->
-<div>
+<div class="container">
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     {% for category, message in messages %}
@@ -98,44 +98,64 @@
         <div class="col s12">
             <!-- Report ad Modal Trigger -->
             <a class="modal-trigger red-text" href="#modal1"><strong>Report Ad</strong></a>
-            <!-- Report ad Modal Structure -->
-            <div id="modal1" class="modal">
-                <form method="POST" action="{{ url_for('report_ad', ad_id=ad._id) }}">
-                    <div class="modal-content">
-                        <div class="row">
-                            <div class="col s12">
-                                <p class>
-                                    <strong> When browsing Buy & Sell, did you notice content that should not be on the
-                                        website? Report
-                                        this fact to us immediately!</strong>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card-panel grey lighten-2 tab-top">
-                            <h6><strong>Report Ad</strong></h6>
-                        </div>
-                        <div class="card-panel tab-bottom">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <i class="far fa-file-alt prefix"></i>
-                                    <textarea id="report" name="report" class="validate materialize-textarea"
-                                        minlength="10" maxlength="300" data-length="300" required></textarea>
-                                    <label for="report">Why are you reporting?</label>
-                                    <span class="helper-text" data-success="right">Minimum 10 characters</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row center-align">
-                            <button class="modal-close btn waves-effect waves-light red lighten-1"><i
-                                    class="fas fa-times-circle"></i> Cancel</button>
-                            <button class="btn waves-effect waves-light green lighten-1" type="submit"><i
-                                    class="fas fa-plus-circle"></i> Report
-                            </button>
-                        </div>
-                    </div>
-                </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel grey lighten-2 tab-top-report">
+                <h6 class="red-text"><strong>Reports:</strong></h6>
+            </div>
+            <div class="card-panel tab-bottom-report pt-0">
+                <div class="row">
+                    {{ ad.report }}
+                </div>
+                <!-- Delete reports Modal Trigger -->
+                <div class="row center-align">
+                    <a class="modal-trigger del-rep waves-effect waves-light btn red" href="#modal2">Delete</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Report ad Modal Structure -->
+<div id="modal1" class="modal">
+    <form method="POST" action="{{ url_for('report_ad', ad_id=ad._id) }}">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12">
+                    <p class>
+                        <strong> When browsing Buy & Sell, did you notice content that should not be on the
+                            website? Report
+                            this fact to us immediately!</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="card-panel grey lighten-2 tab-top">
+                <h6><strong>Report Ad</strong></h6>
+            </div>
+            <div class="card-panel tab-bottom">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="far fa-file-alt prefix"></i>
+                        <textarea id="report" name="report" class="validate materialize-textarea" minlength="10"
+                            maxlength="300" data-length="300" required></textarea>
+                        <label for="report">Why are you reporting?</label>
+                        <span class="helper-text" data-success="right">Minimum 10 characters</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row center-align">
+                <!-- Cancel button -->
+                <a class="modal-close btn waves-effect waves-light red lighten-1" type="button"><i
+                        class="fas fa-times-circle"></i> Cancel</a>
+                <!-- Submit button -->
+                <button class="btn waves-effect waves-light green lighten-1" type="submit"><i
+                        class="fas fa-plus-circle"></i> Report
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
 {% endblock %}
