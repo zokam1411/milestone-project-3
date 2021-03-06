@@ -35,10 +35,9 @@
                 <div class="input-field col s12">
                     <i class="fas fa-lock prefix"></i>
                     <input id="password" name="password" type="password" class="validate"
-                        pattern="^[a-zA-Z0-9#?!@$%^&*-]{5,10}$" required>
+                        pattern="^[a-zA-Z0-9#?!@$%^&*-]{5,}$" required>
                     <label for="password">Password</label>
-                    <span class="helper-text left-align" data-error="wrong" data-success="right">5 - 10 characters and
-                        no spaces</span>
+                    <span class="helper-text left-align" data-success="right">Minimum 5 characters and no spaces</span>
                 </div>
                 <!-- Confirm password input field -->
                 <div class="input-field col s12">
@@ -47,9 +46,9 @@
                     <label for="confirm">Confirm Password</label>
                 </div>
             </div>
+            <!-- Register button -->
             <div class="row">
-                <button class="btn waves-effect waves-light" type="submit">Submit
-                    <i class="far fa-paper-plane"></i>
+                <button class="btn waves-effect waves-light  green lighten-1" type="submit">Register
                 </button>
             </div>
         </div>
