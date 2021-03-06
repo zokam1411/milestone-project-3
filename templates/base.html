@@ -31,12 +31,12 @@
                     <li><a href="{{ url_for('add_ad') }}" class="waves-effect waves-light btn green accent-4"><i
                                 class="fas fa-plus-square"></i> Place Ad</a></li>
                     {% if session.user %}
-                        <li><a class="dropdown-trigger" data-target="dropdown1">Hello! <strong>{{session.user}}</strong>
+                    <li><a class="dropdown-trigger" data-target="dropdown1">Hello! <strong>{{session.user}}</strong>
                             <i class="fas fa-angle-down"></i></a></li>
-                        {% if admin %}
-                            <li><a href="{{ (url_for('control_panel')) }}" class="waves-effect waves-light btn red accent-4"><i
-                                        class="fas fa-cog"></i> Control Panel</a></li>
-                        {% endif %}
+                    {% if admin %}
+                    <li><a href="{{ (url_for('control_panel')) }}" class="waves-effect waves-light btn red accent-4"><i
+                                class="fas fa-cog"></i> Control Panel</a></li>
+                    {% endif %}
                     {% else %}
                     <li><a href="{{ url_for('register') }}">Register</a></li>
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
@@ -58,7 +58,9 @@
             <!-- <li><a href="{{ url_for('get_ads') }}">Home</a></li> -->
             <li><a href="{{ url_for('add_ad') }}" class="waves-effect waves-light btn green accent-4">Place Ad</a></li>
             {% if session.user %}
-            <li><a href="{{ url_for('profile', username=session['user']) }}" class="waves-effect waves-light btn blue-grey lighten-5 black-text">My Profile<i class="fas fa-user-cog"></i></a></li>
+            <li><a href="{{ url_for('profile', username=session['user']) }}"
+                    class="waves-effect waves-light btn blue-grey lighten-5 black-text">My Profile<i
+                        class="fas fa-user-cog"></i></a></li>
             <li class="divider nav-divider"></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
@@ -72,39 +74,35 @@
         {% endblock %}
     </main>
     <!-- Footer -->
-    <footer class="grey lighten-4">
+    <footer class="grey lighten-2">
         <div class="container">
-            <div class="row">
-                <div class="col s6 m4 text-left">
-                    <h5>Explore:</h5>
-                    <ul>
-                        <li><a href="#">Cars for sale</a></li>
-                        <li><a href="#">House stuff for sale</a></li>
-                        <li><a href="#">Garden stuff for sale</a></li>
-                        <li><a href="#">Electronics for sale</a></li>
-                        <li><a href="#">Clothes for sale</a></li>
-                    </ul>
-                </div>
-                <div class="col s6 m4">
-                    <h5>Join Us!</h5>
-                    <ul>
-                        <li> <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"
-                                aria-label="facebook"><i class="fab fa-facebook-square"></i> on Facebook</a></li>
-                        <li> <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer"
-                                aria-label="twitter"><i class="fab fa-twitter-square"></i> on Twitter</a></li>
-                        <li> <a href="https://www.reddit.com" target="_blank" rel="noopener noreferrer"
-                                aria-label="reddit"><i class="fab fa-reddit-square"></i> on Reddit</a></li>
-                    </ul>
-                </div>
-                <div class="col s12 m4 center-align">
-                    <h5><span class="blue-text text-darken-2 logo">&#8383uy</span><span class="black-text logo">&</span><span
-                        class="red-text logo">$ell</span></h5>
+            <div class="row mb-0">
+                <div class="col s12 m10 offset-m1 center-align">
+                    <h5 class="pb-0"><span class="blue-text text-darken-2 logo">&#8383uy</span><span
+                            class="black-text logo">&</span><span class="red-text logo">$ell</span></h5>
+                    <p><strong>Buy&Sale</strong> offers free local ads in the following categories: Cars, House,
+                        Garden, Electronics, Clothes. You will find interesting ads here quickly and easily contact
+                        the advertiser. If you want to sell something - you can easily add free ads. If you want to buy
+                        something - here you will find interesting bargains, cheaper than in the store. Sell in the
+                        neighborhood on Buy&Sale</p>
                     <p>support@buyandsell.com</p>
+                </div>
+                <div class="col s12 center-align join-us">
+                    <h5 class="pb-0 pt-0">Join Us!</h5>
+                    <ul class="list-inline mb-0 mt-0">
+                        <li> <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"
+                                aria-label="facebook"><i class="fab fa-facebook-square"></i></a></li>
+                        <li> <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer"
+                                aria-label="twitter"><i class="fab fa-twitter-square"></i></a></li>
+                        <li> <a href="https://www.reddit.com" target="_blank" rel="noopener noreferrer"
+                                aria-label="reddit"><i class="fab fa-reddit-square"></i></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom center-align grey lighten-1">
-            <p>© 2021 Buy & Sale. All Rights Reserved</p>
+        <hr class="container mb-0 mt-0">
+        <div class="footer-bottom center-align grey lighten-2">
+            <p class="mb-0 mt-0">© 2021 Buy & Sale. All Rights Reserved</p>
         </div>
     </footer>
 
