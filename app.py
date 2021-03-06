@@ -145,8 +145,10 @@ def add_ad():
         return redirect(url_for('get_ads'))
 
     if session:
-        categories = mongo.db.categories.find().sort('category', -1)
-        return render_template('add_ad.html', categories=categories)
+        counties = mongo.db.counties.find().sort('county', 1)
+        categories = mongo.db.categories.find().sort('category', 1)
+        return render_template(
+            'add_ad.html', categories=categories, counties=counties)
 
     flash('To place ad log in first', 'blue lighten-1')
     return redirect(url_for('login'))

@@ -33,6 +33,11 @@ body {
     padding-top: 0;
 }
 
+.page-nav {
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
 /*------------------------------------------- base.html */
 /* Navbar */
 nav {
