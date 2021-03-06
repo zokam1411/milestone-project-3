@@ -227,6 +227,16 @@ def delete_ad(ad_id):
     return redirect(url_for('get_ads'))
 
 
+@app.route('/report_ad/<ad_id>', methods=['GET', 'POST'])
+def report_ad(ad_id):
+    if request.method == 'POST':
+        mongo.db.ads.update_one(
+            {"_id": ObjectId(ad_id)},
+            {'$set': {'report': request.form.get('report')}})
+    flash('Ad reported, thank you.', 'green')
+    return redirect(url_for('view_ad', ad_id=ad_id))
+
+
 # admin control panel
 @app.route('/control_panel')
 def control_panel():
