@@ -205,13 +205,13 @@ def edit_ad(ad_id):
         paypal = 'yes' if request.form.get('paypal') else 'no'
         cash = 'yes' if request.form.get('cash') else 'no'
         bitcoin = 'yes' if request.form.get('bitcoin') else 'no'
-
+        result = None
         if 'item_image' in request.files:
             item_image = request.files['item_image']
             if item_image.filename == '':
                 item_image.filename = request.form.get('item_image_up')
             else:
-                mongo.save_file(item_image.filename, item_image)
+                result = mongo.save_file(item_image.filename, item_image)
 
         update = {
             'category': request.form.get('category'),
@@ -225,10 +225,11 @@ def edit_ad(ad_id):
             'paypal': paypal,
             'bitcoin': bitcoin,
             'cash': cash,
-            'created_by': session['user'],
+            'created_by': request.form.get('created_by'),
             'updated': datetime.now().strftime("%d/%m/%Y"),
             'views': int(request.form.get('views')),
-            'date': request.form.get('date')
+            'date': request.form.get('date'),
+            'img_id': result
         }
 
         mongo.db.ads.update({'_id': ObjectId(ad_id)}, update)
@@ -237,7 +238,9 @@ def edit_ad(ad_id):
 
     ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
     categories = mongo.db.categories.find().sort('category', -1)
-    return render_template('edit_ad.html', ad=ad, categories=categories)
+    counties = mongo.db.counties.find().sort('category', -1)
+    return render_template('edit_ad.html',
+                           ad=ad, categories=categories, counties=counties)
 
 
 @app.route('/delete_ad/<ad_id>')
