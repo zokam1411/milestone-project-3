@@ -175,8 +175,14 @@ def view_ad(ad_id):
     if 'user' in session:
         admin = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'admin'})
-        return render_template(
-            'view_ad.html', ad=ad, admin=admin)
+        mod = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'mod'})
+        if admin:
+            return render_template(
+                'view_ad.html', ad=ad, admin=admin)
+        elif mod:
+            return render_template(
+                'view_ad.html', ad=ad, mod=mod)
     return render_template('view_ad.html', ad=ad)
 
 
