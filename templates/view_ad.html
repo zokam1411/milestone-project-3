@@ -98,7 +98,11 @@
     <div class="row">
         <div class="col s12">
             <!-- Report ad Modal Trigger -->
+            {% if session.user %}
             <a class="modal-trigger red-text" href="#modal1"><strong>Report Ad</strong></a>
+            {% else %}
+            <a class="modal-trigger red-text" href="{{ url_for('login') }}"><strong>Report Ad</strong></a>
+            {% endif %}
         </div>
     </div>
     {% if ad.reports %}

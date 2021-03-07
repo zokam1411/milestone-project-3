@@ -283,6 +283,7 @@ def delete_ad(ad_id):
             {'username': session['user'], 'status': 'mod'})
         advertiser = mongo.db.ads.find_one(
             {'_id': ObjectId(ad_id), 'created_by': session['user']})
+
         if admin or mod or advertiser:
 
             ad = mongo.db.ads.find_one({"_id": ObjectId(ad_id)})
@@ -302,6 +303,9 @@ def delete_ad(ad_id):
 
 @app.route('/report_ad/<ad_id>', methods=['GET', 'POST'])
 def report_ad(ad_id):
+    if 'user' not in session:
+        return redirect(url_for('view_ad', ad_id=ad_id))
+        
     if request.method == 'POST':
         mongo.db.ads.update_one(
             {"_id": ObjectId(ad_id)},
@@ -312,8 +316,18 @@ def report_ad(ad_id):
 
 @app.route('/delete_report/<ad_id>')
 def delete_report(ad_id):
-    mongo.db.ads.update({'_id': ObjectId(ad_id)}, {'$unset': {'reports': ""}})
-    flash('Reports successfully deleted', 'green')
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        mod = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'mod'})
+
+        if admin or mod:
+            mongo.db.ads.update(
+                {'_id': ObjectId(ad_id)}, {'$unset': {'reports': ""}})
+            flash('Reports successfully deleted', 'green')
+            return redirect(url_for('view_ad', ad_id=ad_id))
+
     return redirect(url_for('view_ad', ad_id=ad_id))
 
 
