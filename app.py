@@ -171,8 +171,12 @@ def view_ad(ad_id):
     # increment the number of views everytime a recipe is seen
     mongo.db.ads.update_one(
         {"_id": ObjectId(ad_id)}, {'$inc': {'views': 1}})
-
     ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        return render_template(
+            'view_ad.html', ad=ad, admin=admin)
     return render_template('view_ad.html', ad=ad)
 
 
