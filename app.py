@@ -276,16 +276,27 @@ def edit_ad(ad_id):
 
 @app.route('/delete_ad/<ad_id>')
 def delete_ad(ad_id):
-    ad = mongo.db.ads.find_one({"_id": ObjectId(ad_id)})
-    img_id = ad["img_id"]
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        mod = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'mod'})
+        advertiser = mongo.db.ads.find_one(
+            {'_id': ObjectId(ad_id), 'created_by': session['user']})
+        if admin or mod or advertiser:
 
-    if img_id:
-        chunk_id = mongo.db.fs.chunks.find_one({"files_id": img_id})["_id"]
-        mongo.db.fs.chunks.remove({"_id": ObjectId(chunk_id)})
-        mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
+            ad = mongo.db.ads.find_one({"_id": ObjectId(ad_id)})
+            img_id = ad["img_id"]
 
-    mongo.db.ads.remove({"_id": ObjectId(ad_id)})
-    flash('Ad successfully deleted', 'green')
+            if img_id:
+                chunk_id = mongo.db.fs.chunks.find_one(
+                    {"files_id": img_id})["_id"]
+                mongo.db.fs.chunks.remove({"_id": ObjectId(chunk_id)})
+                mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
+
+            mongo.db.ads.remove({"_id": ObjectId(ad_id)})
+            flash('Ad successfully deleted', 'green')
+            return redirect(url_for('get_ads'))
     return redirect(url_for('get_ads'))
 
 
