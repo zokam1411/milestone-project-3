@@ -23,6 +23,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_ads')
 def get_ads():
+    # display categories and ads on main page
     categories = mongo.db.categories.find()
     ads = mongo.db.ads.find()
     if 'user' in session:
@@ -36,7 +37,7 @@ def get_ads():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if session:
+    if 'user' in session:
         return redirect(url_for("get_ads"))
     if request.method == 'POST':
         username = request.form.get('username')
@@ -70,8 +71,8 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if session:
-        return redirect(url_for("get_ads"))
+    if 'user' in session:
+        redirect(url_for('get_ads'))
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
@@ -118,53 +119,54 @@ def logout():
 
 @app.route('/add_ad', methods=['GET', 'POST'])
 def add_ad():
-    if session:
-        if request.method == 'POST':
-            urgent = 'on' if request.form.get('urgent') else 'off'
-            paypal = 'yes' if request.form.get('paypal') else 'no'
-            cash = 'yes' if request.form.get('cash') else 'no'
-            bitcoin = 'yes' if request.form.get('bitcoin') else 'no'
-            result = None
+    if 'user' not in session:
+        flash('To place ad log in first', 'blue lighten-1')
+        return redirect(url_for('login'))
 
-            if 'item_image' in request.files:
-                item_image = request.files['item_image']
-                if item_image.filename != '':
-                    result = mongo.save_file(item_image.filename, item_image)
+    if request.method == 'POST':
+        urgent = 'on' if request.form.get('urgent') else 'off'
+        paypal = 'yes' if request.form.get('paypal') else 'no'
+        cash = 'yes' if request.form.get('cash') else 'no'
+        bitcoin = 'yes' if request.form.get('bitcoin') else 'no'
+        result = None
 
-            ad = {
-                'category': request.form.get('category'),
-                'title': request.form.get('title'),
-                'description': request.form.get('description'),
-                'item_image': item_image.filename,
-                'price': request.form.get('price'),
-                'location': request.form.get('location'),
-                'phone': request.form.get('phone'),
-                'urgent': urgent,
-                'paypal': paypal,
-                'bitcoin': bitcoin,
-                'cash': cash,
-                'created_by': session['user'],
-                'date': datetime.now().strftime("%d/%m/%Y"),
-                'img_id': result
-            }
-            mongo.db.ads.insert_one(ad)
-            flash('Ad successfully added and is live now', 'green')
-            return redirect(url_for('get_ads'))
+        if 'item_image' in request.files:
+            item_image = request.files['item_image']
+            if item_image.filename != '':
+                result = mongo.save_file(item_image.filename, item_image)
 
-        counties = mongo.db.counties.find().sort('county', 1)
-        categories = mongo.db.categories.find().sort('category', 1)
-        if 'user' in session:
-            admin = mongo.db.users.find_one(
-                {'username': session['user'], 'status': 'admin'})
-            return render_template(
-                'add_ad.html', categories=categories,
-                counties=counties, admin=admin)
+        ad = {
+            'category': request.form.get('category'),
+            'title': request.form.get('title'),
+            'description': request.form.get('description'),
+            'item_image': item_image.filename,
+            'price': request.form.get('price'),
+            'location': request.form.get('location'),
+            'phone': request.form.get('phone'),
+            'urgent': urgent,
+            'paypal': paypal,
+            'bitcoin': bitcoin,
+            'cash': cash,
+            'created_by': session['user'],
+            'date': datetime.now().strftime("%d/%m/%Y"),
+            'img_id': result
+        }
+        mongo.db.ads.insert_one(ad)
+        flash('Ad successfully added and is live now', 'green')
+        return redirect(url_for('get_ads'))
 
+    counties = mongo.db.counties.find().sort('county', 1)
+    categories = mongo.db.categories.find().sort('category', 1)
+
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
         return render_template(
-            'add_ad.html', categories=categories, counties=counties)
+            'add_ad.html', categories=categories,
+            counties=counties, admin=admin)
 
-    flash('To place ad log in first', 'blue lighten-1')
-    return redirect(url_for('login'))
+    return render_template(
+        'add_ad.html', categories=categories, counties=counties)
 
 
 # retrieve images from mongoDB
@@ -248,23 +250,40 @@ def edit_ad(ad_id):
     ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
     categories = mongo.db.categories.find().sort('category', -1)
     counties = mongo.db.counties.find().sort('category', -1)
-    return render_template('edit_ad.html',
-                           ad=ad, categories=categories, counties=counties)
+
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        mod = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'mod'})
+        advertiser = mongo.db.ads.find_one(
+            {'_id': ObjectId(ad_id), 'created_by': session['user']})
+        if admin:
+            return render_template('edit_ad.html',
+                                   ad=ad, categories=categories,
+                                   counties=counties, admin=admin)
+        elif mod:
+            return render_template('edit_ad.html',
+                                   ad=ad, categories=categories,
+                                   counties=counties, mod=mod)
+        elif advertiser:
+            return render_template('edit_ad.html',
+                                   ad=ad, categories=categories,
+                                   counties=counties, advertiser=advertiser)
+
+    return redirect(url_for('get_ads'))
 
 
 @app.route('/delete_ad/<ad_id>')
 def delete_ad(ad_id):
     ad = mongo.db.ads.find_one({"_id": ObjectId(ad_id)})
     img_id = ad["img_id"]
-    chunk_id = mongo.db.fs.chunks.find_one({"files_id": img_id})["_id"]
 
-    print("ad = ", ad)
-    print("img_id = ", img_id)
-    print("chunk_id = ", chunk_id)
-    print('hello')
+    if img_id:
+        chunk_id = mongo.db.fs.chunks.find_one({"files_id": img_id})["_id"]
+        mongo.db.fs.chunks.remove({"_id": ObjectId(chunk_id)})
+        mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
 
-    mongo.db.fs.chunks.remove({"_id": ObjectId(chunk_id)})
-    mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
     mongo.db.ads.remove({"_id": ObjectId(ad_id)})
     flash('Ad successfully deleted', 'green')
     return redirect(url_for('get_ads'))
