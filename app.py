@@ -130,7 +130,6 @@ def add_ad():
                 item_image = request.files['item_image']
                 if item_image.filename != '':
                     result = mongo.save_file(item_image.filename, item_image)
-                    print(result)
 
             ad = {
                 'category': request.form.get('category'),
@@ -255,7 +254,18 @@ def edit_ad(ad_id):
 
 @app.route('/delete_ad/<ad_id>')
 def delete_ad(ad_id):
-    mongo.db.ads.remove({'_id': ObjectId(ad_id)})
+    ad = mongo.db.ads.find_one({"_id": ObjectId(ad_id)})
+    img_id = ad["img_id"]
+    chunk_id = mongo.db.fs.chunks.find_one({"files_id": img_id})["_id"]
+
+    print("ad = ", ad)
+    print("img_id = ", img_id)
+    print("chunk_id = ", chunk_id)
+    print('hello')
+
+    mongo.db.fs.chunks.remove({"_id": ObjectId(chunk_id)})
+    mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
+    mongo.db.ads.remove({"_id": ObjectId(ad_id)})
     flash('Ad successfully deleted', 'green')
     return redirect(url_for('get_ads'))
 
