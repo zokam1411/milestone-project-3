@@ -36,6 +36,8 @@ def get_ads():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    if session:
+        return redirect(url_for("get_ads"))
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
@@ -68,6 +70,8 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if session:
+        return redirect(url_for("get_ads"))
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
@@ -114,38 +118,40 @@ def logout():
 
 @app.route('/add_ad', methods=['GET', 'POST'])
 def add_ad():
-    if request.method == 'POST':
-        urgent = 'on' if request.form.get('urgent') else 'off'
-        paypal = 'yes' if request.form.get('paypal') else 'no'
-        cash = 'yes' if request.form.get('cash') else 'no'
-        bitcoin = 'yes' if request.form.get('bitcoin') else 'no'
-        result = None
-        if 'item_image' in request.files:
-            item_image = request.files['item_image']
-            if item_image.filename != '':
-                result = mongo.save_file(item_image.filename, item_image)
-
-        ad = {
-            'category': request.form.get('category'),
-            'title': request.form.get('title'),
-            'description': request.form.get('description'),
-            'item_image': item_image.filename,
-            'price': request.form.get('price'),
-            'location': request.form.get('location'),
-            'phone': request.form.get('phone'),
-            'urgent': urgent,
-            'paypal': paypal,
-            'bitcoin': bitcoin,
-            'cash': cash,
-            'created_by': session['user'],
-            'date': datetime.now().strftime("%d/%m/%Y"),
-            'img_id': result
-        }
-        mongo.db.ads.insert_one(ad)
-        flash('Ad successfully added and is live now', 'green')
-        return redirect(url_for('get_ads'))
-
     if session:
+        if request.method == 'POST':
+            urgent = 'on' if request.form.get('urgent') else 'off'
+            paypal = 'yes' if request.form.get('paypal') else 'no'
+            cash = 'yes' if request.form.get('cash') else 'no'
+            bitcoin = 'yes' if request.form.get('bitcoin') else 'no'
+            result = None
+
+            if 'item_image' in request.files:
+                item_image = request.files['item_image']
+                if item_image.filename != '':
+                    result = mongo.save_file(item_image.filename, item_image)
+                    print(result)
+
+            ad = {
+                'category': request.form.get('category'),
+                'title': request.form.get('title'),
+                'description': request.form.get('description'),
+                'item_image': item_image.filename,
+                'price': request.form.get('price'),
+                'location': request.form.get('location'),
+                'phone': request.form.get('phone'),
+                'urgent': urgent,
+                'paypal': paypal,
+                'bitcoin': bitcoin,
+                'cash': cash,
+                'created_by': session['user'],
+                'date': datetime.now().strftime("%d/%m/%Y"),
+                'img_id': result
+            }
+            mongo.db.ads.insert_one(ad)
+            flash('Ad successfully added and is live now', 'green')
+            return redirect(url_for('get_ads'))
+
         counties = mongo.db.counties.find().sort('county', 1)
         categories = mongo.db.categories.find().sort('category', 1)
         if 'user' in session:
@@ -154,6 +160,7 @@ def add_ad():
             return render_template(
                 'add_ad.html', categories=categories,
                 counties=counties, admin=admin)
+
         return render_template(
             'add_ad.html', categories=categories, counties=counties)
 
@@ -191,11 +198,13 @@ def view_ad(ad_id):
 def view_category(category_name):
     category = mongo.db.categories.find_one({'category': category_name})
     ads = mongo.db.ads.find({'category': category_name})
+
     if 'user' in session:
         admin = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'admin'})
         return render_template(
             'view_category.html', category=category, ads=ads, admin=admin)
+
     return render_template('view_category.html', category=category, ads=ads)
 
 
