@@ -58,7 +58,7 @@
             <!-- <li><a href="{{ url_for('get_ads') }}">Home</a></li> -->
             <li><a href="{{ url_for('add_ad') }}" class="waves-effect waves-light btn green accent-4">Place Ad</a></li>
             {% if session.user %}
-            <li><a href="{{ url_for('profile', username=session['user']) }}"
+            <li><a href="{{ url_for('profile', username=username) }}"
                     class="waves-effect waves-light btn blue-grey lighten-5 black-text">My Profile<i
                         class="fas fa-user-cog"></i></a></li>
             <li class="divider nav-divider"></li>

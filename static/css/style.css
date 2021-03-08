@@ -207,3 +207,12 @@ tr:hover {
     line-height: 20px;
     font-size: 10px;
 }
+
+/* profile.html */
+.user-icon .fa-user {
+    font-size: 150px;
+}
+
+.profile-name {
+    font-size: 30px;
+}
