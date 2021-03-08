@@ -66,7 +66,7 @@
             <div>
                 <h6 class="mb-0"><strong>Seller info:</strong></h6>
                 <ul class="mt-0 mb-0">
-                    <li>Username: {{ad.created_by}}</li>
+                    <li>Username: <a href="{{ url_for('profile', username=ad.created_by) }}">{{ad.created_by}}</a></li>
                     <li>Location: {{ ad.location }}</li>
                     {% if session.user %}
                     <li>Contact: {{ ad.phone }}</li>
