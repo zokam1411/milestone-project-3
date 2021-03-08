@@ -99,15 +99,13 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/profile/<username>', methods=['GET', 'POST'])
+@app.route('/profile/<username>')
 def profile(username):
     username = mongo.db.users.find_one(
-        {'username': session['user']})['username']
+        {'username': username})
+    ads = mongo.db.ads.find({'created_by': username['username']})
 
-    if session['user']:
-        return render_template('profile.html', username=username)
-
-    return redirect(url_for('login'))
+    return render_template('profile.html', username=username, ads=ads)
 
 
 @app.route('/logout')
