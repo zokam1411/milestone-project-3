@@ -331,9 +331,9 @@ def delete_ad(ad_id):
             img_id = ad["img_id"]
 
             if img_id:
-                chunk_id = mongo.db.fs.chunks.find_one(
-                    {"files_id": img_id})["_id"]
-                mongo.db.fs.chunks.remove({"_id": ObjectId(chunk_id)})
+                files_id = mongo.db.fs.files.find_one(
+                    {"_id": img_id})["_id"]
+                mongo.db.fs.chunks.remove({"files_id": ObjectId(files_id)})
                 mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
 
             mongo.db.ads.remove({"_id": ObjectId(ad_id)})
