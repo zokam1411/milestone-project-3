@@ -20,11 +20,11 @@
             <h5>Welcome in our marketplace!</h5>
             <h6>What are you looking for today?</h6>
         </div>
-        <form class="col s12 m6 offset-m3">
+        <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('search') }}">
             <div class="row">
                 <div class="search-field input-field col s12 mt-0 mb-0">
                     <i class="fas fa-search prefix"></i>
-                    <input class="mb-0" type="text" name="query" id="query">
+                    <input class="mb-0" type="text" name="query" id="query" required>
                 </div>
                 <div class="col s12">
                     <button type="submit" class="btn blue">Search</button>
