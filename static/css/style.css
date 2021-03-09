@@ -101,6 +101,20 @@ hr {
     padding-top: 5px;
     padding-bottom: 5px;
 }
+/* Search */
+.search-field {
+     border: 1px solid black;
+     margin-bottom: 5px;
+}
+
+#query {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.search-field .prefix.active {
+    color: #000;
+}
 
 /*------------------------------------------- ads.html */
 /* Categories */
