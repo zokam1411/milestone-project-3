@@ -13,6 +13,14 @@
     {% endif %}
     {% endwith %}
 </div>
+<div class="grey lighten-4">
+    <div class="container">
+        <div class="row page-nav">
+            <h6 class="mb-0"><a href="{{ url_for('get_ads') }}">Home</a> <i class="fas fa-chevron-right"></i>
+                <a href="{{ url_for('view_category', category_name=ad.category) }}">{{ ad.category }}</a></h6>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="row mb-0">
         <div class="col s12">
@@ -35,8 +43,7 @@
                 class="waves-effect waves-light btn-small yellow black-text">Edit</a>
             <span>or</span>
             <!-- Delete ad Modal Trigger -->
-            <a href="#modal3"
-                class="modal-trigger waves-effect waves-light btn-small red black-text">Delete</a>
+            <a href="#modal3" class="modal-trigger waves-effect waves-light btn-small red black-text">Delete</a>
             <span>your ad</span>
             {% endif %}
             <div>
