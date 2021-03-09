@@ -154,6 +154,10 @@ height: 140px;
 width: 100%;
 }
 
+.see-all {
+    font-weight: normal;
+    font-size: 14px;
+}
 /*------------------------------------------- register.html / login.html*/
 .card-panel {
     margin: 0;
