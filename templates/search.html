@@ -25,8 +25,7 @@
 <!-- Search -->
 <div class="container">
     <div class="row mb-0 center-align">
-        <form class="search-form col s12 m6 offset-m3" method="POST"
-            action="{{ url_for('search') }}">
+        <form class="search-form col s12 m6 offset-m3" method="POST" action="{{ url_for('search') }}">
             <div class="row">
                 <div class="search-field input-field col s12 mt-0 mb-0">
                     <i class="fas fa-search prefix"></i>
@@ -44,6 +43,7 @@
 </div>
 <!-- All ads -->
 <div class="container">
+    {% if ads.count() > 0 %}
     <div class="row">
         {% for ad in ads %}
         <div class="col s6 m3 col-margin" id="col-padding">
@@ -71,6 +71,9 @@
         </div>
         {% endfor %}
     </div>
+    {% else %}
+    <h6>Sorry, no results matching search criteria.</h6>
+    {% endif %}
 </div>
 
 {% endblock %}
