@@ -258,11 +258,21 @@ def edit_ad(ad_id):
         cash = 'yes' if request.form.get('cash') else 'no'
         bitcoin = 'yes' if request.form.get('bitcoin') else 'no'
         result = None
+        # check if new image selected
         if 'item_image' in request.files:
             item_image = request.files['item_image']
             if item_image.filename == '':
                 item_image.filename = request.form.get('item_image_up')
             else:
+                # if new image selected delete old from db
+                ad = mongo.db.ads.find_one({"_id": ObjectId(ad_id)})
+                img_id = ad["img_id"]
+                if img_id:
+                    files_id = mongo.db.fs.files.find_one(
+                        {"_id": img_id})["_id"]
+                    mongo.db.fs.chunks.remove({"files_id": ObjectId(files_id)})
+                    mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
+
                 result = mongo.save_file(item_image.filename, item_image)
 
         update = {
