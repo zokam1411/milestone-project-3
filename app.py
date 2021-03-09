@@ -39,7 +39,7 @@ def get_ads():
 def search():
     query = request.form.get('query')
     ads = mongo.db.ads.find({'$text': {'$search': query}})
-    return render_template('ads.html', ads=ads)
+    return render_template('all_ads.html', ads=ads)
 
 
 @app.route('/register', methods=['GET', 'POST'])
