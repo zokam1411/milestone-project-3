@@ -35,10 +35,26 @@ def get_ads():
     return render_template('ads.html', ads=ads, categories=categories)
 
 
+@app.route('/all_ads')
+def all_ads():
+    ads = mongo.db.ads.find()
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        return render_template(
+            'all_ads.html', ads=ads,  admin=admin)
+    return render_template('all_ads.html', ads=ads)
+
+
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     query = request.form.get('query')
     ads = mongo.db.ads.find({'$text': {'$search': query}})
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        return render_template(
+            'all_ads.html', ads=ads,  admin=admin)
     return render_template('all_ads.html', ads=ads)
 
 
@@ -310,7 +326,7 @@ def delete_ad(ad_id):
 def report_ad(ad_id):
     if 'user' not in session:
         return redirect(url_for('view_ad', ad_id=ad_id))
-        
+
     if request.method == 'POST':
         mongo.db.ads.update_one(
             {"_id": ObjectId(ad_id)},
