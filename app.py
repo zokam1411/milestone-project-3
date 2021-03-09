@@ -54,7 +54,7 @@ def search():
         admin = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'admin'})
         return render_template(
-            'all_ads.html', ads=ads,  admin=admin)
+            'search.html', ads=ads, admin=admin)
     return render_template('search.html', ads=ads)
 
 
@@ -228,6 +228,20 @@ def view_category(category_name):
             'view_category.html', category=category, ads=ads, admin=admin)
 
     return render_template('view_category.html', category=category, ads=ads)
+
+
+@app.route('/search_cat/<category_name>', methods=['GET', 'POST'])
+def search_cat(category_name):
+    query = request.form.get('query')
+    ads = mongo.db.ads.find({'$text': {'$search': query},
+                             'category': category_name})
+    category = mongo.db.categories.find_one({'category': category_name})
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        return render_template(
+            'search_cat.html', ads=ads, category=category, admin=admin)
+    return render_template('search_cat.html', category=category, ads=ads)
 
 
 @app.route('/edit_ad/<ad_id>', methods=['GET', 'POST'])
