@@ -33,14 +33,14 @@
         </form>
     </div>
 </div>
-<!-- All ads -->
 <div class="grey lighten-4">
     <div class="container">
-        <div class="row">
-            <h5>All items:</h5>
+        <div class="row page-nav">
+            <h6 class="mb-0"><a href="{{ url_for('get_ads') }}">Home</a> <i class="fas fa-chevron-right"></i> All ads </h6>
         </div>
     </div>
 </div>
+<!-- All ads -->
 <div class="container">
     <div class="row">
         {% for ad in ads %}
