@@ -377,8 +377,10 @@ def delete_report(ad_id):
 def control_panel():
     categories = mongo.db.categories.find()
     users = mongo.db.users.find()
+    ads = mongo.db.ads.find()
+
     return render_template('control_panel.html',
-                           categories=categories, users=users)
+                           categories=categories, users=users, ads=ads)
 
 
 @app.route('/add_category', methods=['GET', 'POST'])

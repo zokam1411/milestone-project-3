@@ -104,4 +104,34 @@
         </table>
     </div>
 </div>
+<!-- Reported ads -->
+<div class="grey lighten-4">
+    <div class="container">
+        <div class="row">
+            <h5>Manage reported ads:</h5>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <table>
+            <thead>
+                <tr>
+                    <th>Ads</th>
+                    <th>By</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ad in ads %}
+                {% if ad.reports %}
+                <tr>
+                    <td>{{ad.title}}</td>
+                    <td>{{ad.created_by}}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
