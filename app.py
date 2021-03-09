@@ -55,7 +55,7 @@ def search():
             {'username': session['user'], 'status': 'admin'})
         return render_template(
             'all_ads.html', ads=ads,  admin=admin)
-    return render_template('all_ads.html', ads=ads)
+    return render_template('search.html', ads=ads)
 
 
 @app.route('/register', methods=['GET', 'POST'])

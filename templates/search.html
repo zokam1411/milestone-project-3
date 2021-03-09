@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- flash message -->
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="row flashes center-align">
+        <p class="{{category}} white-text"><i class="fas fa-info-circle"></i> {{ message }}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+<!-- Search -->
+<div class="container">
+    <div class="row center-align">
+        <div class="col s12">
+            <h5>Welcome in our marketplace!</h5>
+            <h6>What are you looking for today?</h6>
+        </div>
+        <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('search') }}">
+            <div class="row">
+                <div class="search-field input-field col s12 mt-0 mb-0">
+                    <i class="fas fa-search prefix"></i>
+                    <input class="mb-0" type="text" name="query" id="query" required>
+                </div>
+                <div class="col s12">
+                    <button type="submit" class="btn blue">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="grey lighten-4">
+    <div class="container">
+        <div class="row page-nav">
+            <h6 class="mb-0"><a href="{{ url_for('get_ads') }}">Home</a> <i class="fas fa-chevron-right"></i> <a
+                    href="{{ url_for('all_ads') }}">All ads</a> <i class="fas fa-chevron-right"></i> Search </h6>
+        </div>
+    </div>
+</div>
+<!-- All ads -->
+<div class="container">
+    <div class="row">
+        {% for ad in ads %}
+        <div class="col s6 m3 col-margin" id="col-padding">
+            <a href="{{ url_for('view_ad', ad_id=ad._id) }}">
+                <div class="grey lighten-3 main-ad-holder">
+                    <div class="white ad-img-holder">
+                        {% if ad.item_image %}
+                        <img src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image">
+                        {% else %}
+                        <img src="{{url_for('static', filename='images/no-image.png')}}" alt="default_recipe_image">
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <div class="truncate"><strong>{{ ad.title }}</strong></div>
+                        {% if ad.urgent == "on" %}
+                        <div><b>&#8364; {{ ad.price }}</b> <i class="fas fa-hammer yellow-text text-accent-4 tooltipped"
+                                data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></div>
+                        {% else %}
+                        <div><b>&#8364; {{ ad.price }}</b></div>
+                        {% endif %}
+                        <div><small>{{ ad.location }}</small></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
