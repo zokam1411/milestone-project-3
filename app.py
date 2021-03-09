@@ -127,6 +127,12 @@ def profile(username):
     username = mongo.db.users.find_one(
         {'username': username})
     ads = mongo.db.ads.find({'created_by': username['username']})
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        return render_template(
+            'profile.html', username=username,
+            ads=ads, admin=admin)
 
     return render_template('profile.html', username=username, ads=ads)
 
