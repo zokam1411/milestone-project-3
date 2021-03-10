@@ -1,5 +1,4 @@
 import os
-import gridfs
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -484,7 +483,8 @@ def edit_category(category_id):
         if admin:
             category = mongo.db.categories.find_one(
                 {'_id': ObjectId(category_id)})
-            return render_template('edit_category.html', category=category)
+            return render_template('edit_category.html',
+                                   category=category, admin=admin)
 
     return redirect(url_for('get_ads'))
 
@@ -504,9 +504,10 @@ def edit_user(username):
         if admin:
             user = mongo.db.users.find_one(
                 {'username': username})
-            return render_template('edit_user.html', username=user)
+            return render_template('edit_user.html',
+                                   username=user, admin=admin)
 
-    return render_template(url_for('get_ads'))
+    return redirect(url_for('get_ads'))
 
 
 @app.route('/delete_category/<category_id>')
