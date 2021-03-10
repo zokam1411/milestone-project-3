@@ -20,12 +20,12 @@ app.secret_key = os.environ.get('SECRET_KEY')
 mongo = PyMongo(app)
 
 
+# display categories and 8 recently added ads on main page
 @app.route('/')
 @app.route('/get_ads')
 def get_ads():
-    # display categories and ads on main page
-    categories = mongo.db.categories.find()
-    ads = mongo.db.ads.find()
+    categories = mongo.db.categories.find().sort('category', 1)
+    ads = mongo.db.ads.find().sort('_id', -1).limit(8)
     if 'user' in session:
         admin = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'admin'})
@@ -35,33 +35,12 @@ def get_ads():
     return render_template('ads.html', ads=ads, categories=categories)
 
 
-@app.route('/all_ads')
-def all_ads():
-    ads = mongo.db.ads.find()
-    if 'user' in session:
-        admin = mongo.db.users.find_one(
-            {'username': session['user'], 'status': 'admin'})
-        return render_template(
-            'all_ads.html', ads=ads,  admin=admin)
-    return render_template('all_ads.html', ads=ads)
-
-
-@app.route('/search', methods=['GET', 'POST'])
-def search():
-    query = request.form.get('query')
-    ads = mongo.db.ads.find({'$text': {'$search': query}})
-    if 'user' in session:
-        admin = mongo.db.users.find_one(
-            {'username': session['user'], 'status': 'admin'})
-        return render_template(
-            'search.html', ads=ads, admin=admin)
-    return render_template('search.html', ads=ads)
-
-
+# register new user
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if 'user' in session:
         return redirect(url_for("get_ads"))
+
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
@@ -87,29 +66,31 @@ def register():
             'status': 'normal'
         }
         mongo.db.users.insert_one(register)
-
         flash('Registration successful! Please Log in now', 'green')
         return redirect(url_for('login'))
 
     return render_template('register.html')
 
 
+# login user
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if 'user' in session:
         redirect(url_for('get_ads'))
+
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {'username': username})
+
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(existing_user['password'], password):
                 # put new user into session cookie
                 session['user'] = username
-
+                # update user login date
                 mongo.db.users.update_one(
                     {'username': session['user']},
                     {'$set': {'last_log':
@@ -117,10 +98,12 @@ def login():
 
                 return redirect(url_for(
                     'profile', username=session['user']))
+
             else:
                 # invalid password match
                 flash('Invalid Username or/and Password', 'red')
                 return redirect(url_for('login'))
+
         else:
             # username doesn't exist
             flash('Invalid Username or/and Password', 'red')
@@ -129,11 +112,13 @@ def login():
     return render_template('login.html')
 
 
+# user profile page
 @app.route('/profile/<username>')
 def profile(username):
     username = mongo.db.users.find_one(
         {'username': username})
     ads = mongo.db.ads.find({'created_by': username['username']})
+
     if 'user' in session:
         admin = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'admin'})
@@ -144,13 +129,7 @@ def profile(username):
     return render_template('profile.html', username=username, ads=ads)
 
 
-@app.route('/logout')
-def logout():
-    flash('You have been logged out', 'blue lighten-1')
-    session.pop('user')
-    return redirect(url_for('get_ads'))
-
-
+# add ad
 @app.route('/add_ad', methods=['GET', 'POST'])
 def add_ad():
     if 'user' not in session:
@@ -164,6 +143,7 @@ def add_ad():
         bitcoin = 'yes' if request.form.get('bitcoin') else 'no'
         result = None
 
+        # add image to database
         if 'item_image' in request.files:
             item_image = request.files['item_image']
             if item_image.filename != '':
@@ -185,6 +165,7 @@ def add_ad():
             'date': datetime.now().strftime("%d/%m/%Y"),
             'img_id': result
         }
+
         mongo.db.ads.insert_one(ad)
         flash('Ad successfully added and is live now', 'green')
         return redirect(url_for('get_ads'))
@@ -209,69 +190,48 @@ def img_uploads(filename):
     return mongo.send_file(filename)
 
 
+# view add
 @app.route('/view_ad/<ad_id>')
 def view_ad(ad_id):
     # increment the number of views everytime a recipe is seen
     mongo.db.ads.update_one(
         {"_id": ObjectId(ad_id)}, {'$inc': {'views': 1}})
+
     ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
     if 'user' in session:
         admin = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'admin'})
         mod = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'mod'})
+
         if admin:
             return render_template(
                 'view_ad.html', ad=ad, admin=admin)
         elif mod:
             return render_template(
                 'view_ad.html', ad=ad, mod=mod)
+
     return render_template('view_ad.html', ad=ad)
 
 
-@app.route('/view_category/<category_name>')
-def view_category(category_name):
-    category = mongo.db.categories.find_one({'category': category_name})
-    ads = mongo.db.ads.find({'category': category_name})
-
-    if 'user' in session:
-        admin = mongo.db.users.find_one(
-            {'username': session['user'], 'status': 'admin'})
-        return render_template(
-            'view_category.html', category=category, ads=ads, admin=admin)
-
-    return render_template('view_category.html', category=category, ads=ads)
-
-
-@app.route('/search_cat/<category_name>', methods=['GET', 'POST'])
-def search_cat(category_name):
-    query = request.form.get('query')
-    ads = mongo.db.ads.find({'$text': {'$search': query},
-                             'category': category_name})
-    category = mongo.db.categories.find_one({'category': category_name})
-    if 'user' in session:
-        admin = mongo.db.users.find_one(
-            {'username': session['user'], 'status': 'admin'})
-        return render_template(
-            'search_cat.html', ads=ads, category=category, admin=admin)
-    return render_template('search_cat.html', category=category, ads=ads)
-
-
+# edit ad
 @app.route('/edit_ad/<ad_id>', methods=['GET', 'POST'])
 def edit_ad(ad_id):
+
     if request.method == 'POST':
         urgent = 'on' if request.form.get('urgent') else 'off'
         paypal = 'yes' if request.form.get('paypal') else 'no'
         cash = 'yes' if request.form.get('cash') else 'no'
         bitcoin = 'yes' if request.form.get('bitcoin') else 'no'
         result = None
+
         # check if new image selected
         if 'item_image' in request.files:
             item_image = request.files['item_image']
             if item_image.filename == '':
                 item_image.filename = request.form.get('item_image_up')
             else:
-                # if new image selected delete old from db
+                # if new image selected delete old from mongoDB
                 ad = mongo.db.ads.find_one({"_id": ObjectId(ad_id)})
                 img_id = ad["img_id"]
                 if img_id:
@@ -316,6 +276,7 @@ def edit_ad(ad_id):
             {'username': session['user'], 'status': 'mod'})
         advertiser = mongo.db.ads.find_one(
             {'_id': ObjectId(ad_id), 'created_by': session['user']})
+
         if admin:
             return render_template('edit_ad.html',
                                    ad=ad, categories=categories,
@@ -330,6 +291,64 @@ def edit_ad(ad_id):
                                    counties=counties, advertiser=advertiser)
 
     return redirect(url_for('get_ads'))
+
+
+@app.route('/all_ads')
+def all_ads():
+    ads = mongo.db.ads.find()
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        return render_template(
+            'all_ads.html', ads=ads,  admin=admin)
+    return render_template('all_ads.html', ads=ads)
+
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    query = request.form.get('query')
+    ads = mongo.db.ads.find({'$text': {'$search': query}})
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        return render_template(
+            'search.html', ads=ads, admin=admin)
+    return render_template('search.html', ads=ads)
+
+
+@app.route('/logout')
+def logout():
+    flash('You have been logged out', 'blue lighten-1')
+    session.pop('user')
+    return redirect(url_for('get_ads'))
+
+
+@app.route('/view_category/<category_name>')
+def view_category(category_name):
+    category = mongo.db.categories.find_one({'category': category_name})
+    ads = mongo.db.ads.find({'category': category_name})
+
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        return render_template(
+            'view_category.html', category=category, ads=ads, admin=admin)
+
+    return render_template('view_category.html', category=category, ads=ads)
+
+
+@app.route('/search_cat/<category_name>', methods=['GET', 'POST'])
+def search_cat(category_name):
+    query = request.form.get('query')
+    ads = mongo.db.ads.find({'$text': {'$search': query},
+                             'category': category_name})
+    category = mongo.db.categories.find_one({'category': category_name})
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        return render_template(
+            'search_cat.html', ads=ads, category=category, admin=admin)
+    return render_template('search_cat.html', category=category, ads=ads)
 
 
 @app.route('/delete_ad/<ad_id>')
