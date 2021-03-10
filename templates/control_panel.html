@@ -88,13 +88,17 @@
             <thead>
                 <tr>
                     <th>Username</th>
+                    <th>Join date</th>
+                    <th>Last activity</th>
                     <th>Action</th>
                 </tr>
             </thead>
             {% for user in users %}
             <tbody>
                 <tr>
-                    <td>{{user.username}}</td>
+                    <td><a href="{{ url_for('profile', username=user.username) }}">{{user.username}}</a></td>
+                    <td>{{user.join_date}}</td>
+                    <td>{{user.last_log}}</td>
                     <td>
                         <a href="{{ url_for('delete_user', username=user.username) }}"
                             class="waves-effect waves-light btn-small red black-text">Delete</a></td>
@@ -125,7 +129,7 @@
                 {% for ad in ads %}
                 {% if ad.reports %}
                 <tr>
-                    <td>{{ad.title}}</td>
+                    <td><a href="{{ url_for('view_ad', ad_id=ad._id) }}">{{ad.title}}</a></td>
                     <td>{{ad.created_by}}</td>
                 </tr>
                 {% endif %}

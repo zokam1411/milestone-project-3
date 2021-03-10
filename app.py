@@ -473,7 +473,7 @@ def delete_category(category_id):
 @app.route('/delete_user/<username>')
 def delete_user(username):
     # check if user have ads
-    check_ads = mongo.db.ads.find_one({'created_by': username})
+    check_ads = mongo.db.ads.find({'created_by': username})
     if check_ads:
         mongo.db.ads.remove({'created_by': username})
     mongo.db.users.remove({'username': username})
