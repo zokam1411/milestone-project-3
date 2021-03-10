@@ -258,7 +258,20 @@ In order to deploy the website to Heroku:
 
 ### Media:
 
-???????????????????????????????????????????????????????????
+Ads images:
+- Playstation 2 - Photo by <a href="https://unsplash.com/@dmjdenise?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Denise Jans</a> on <a href="/s/photos/playstation-3?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- Samsung Galaxy S10 - Photo by <a href="https://unsplash.com/@emilianocicero?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Emiliano Cicero</a> on <a href="/s/photos/samsung-galaxy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- Audi r8 - Photo by <a href="https://unsplash.com/@taiscaptures?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Tai's Captures</a> on <a href="/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- Jeep - Photo by <a href="https://unsplash.com/@orca23?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dan Gomer</a> on <a href="/s/photos/jeep?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- Jacket - Photo by <a href="https://unsplash.com/@orca23?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dan Gomer</a> on <a href="/s/photos/jeep?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- Shoes - Photo by <a href="https://unsplash.com/@revolt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">REVOLT</a> on <a href="/s/photos/shoes?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- Chainsaws - Photo by <a href="https://unsplash.com/@gregory16?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Greg Evans</a> on <a href="/s/photos/lawn-mower?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- Wheelbarrow - Photo by <a href="https://unsplash.com/@philhearing?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Phil Hearing</a> on <a href="/s/photos/wheelbarrow?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- Chair - Photo by <a href="https://unsplash.com/@itssammoqadam?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sam Moqadam</a> on <a href="/s/photos/chair?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- Couch - Photo by <a href="https://unsplash.com/@martinpechy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Martin Péchy</a> on <a href="/s/photos/couch?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- Bike - Photo by <a href="https://unsplash.com/@robertbye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Robert Bye</a> on <a href="/s/photos/bike?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- Fitness equipment - Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="/s/photos/weights?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
 
 <p id="ack"></p>
 
