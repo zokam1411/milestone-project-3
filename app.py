@@ -82,7 +82,9 @@ def register():
 
         register = {
             'username': username,
-            'password': generate_password_hash(password)
+            'password': generate_password_hash(password),
+            'join_date': datetime.now().strftime('%d-%m-%y %H:%M:%S'),
+            'status': 'normal'
         }
         mongo.db.users.insert_one(register)
 
