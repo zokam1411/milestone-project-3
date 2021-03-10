@@ -411,12 +411,19 @@ def delete_report(ad_id):
 # admin control panel
 @app.route('/control_panel')
 def control_panel():
-    categories = mongo.db.categories.find()
-    users = mongo.db.users.find()
-    ads = mongo.db.ads.find()
+    # only user with status admin has access to control panel
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        if admin:
+            categories = mongo.db.categories.find()
+            users = mongo.db.users.find()
+            ads = mongo.db.ads.find()
+            return render_template('control_panel.html',
+                                   categories=categories,
+                                   users=users, ads=ads, admin=admin)
 
-    return render_template('control_panel.html',
-                           categories=categories, users=users, ads=ads)
+    # return redirect(url_for('get_ads'))
 
 
 @app.route('/add_category', methods=['GET', 'POST'])
@@ -446,6 +453,7 @@ def add_category():
         mongo.db.categories.insert_one(cat)
         flash('Category successfully added', 'green')
         return redirect(url_for('control_panel'))
+
     return render_template('add_category.html')
 
 
@@ -459,6 +467,7 @@ def edit_category(category_id):
         mongo.db.categories.update({'_id': ObjectId(category_id)}, update)
         flash('Category successfully updated', 'green')
         return redirect(url_for('control_panel'))
+
     category = mongo.db.categories.find_one({'_id': ObjectId(category_id)})
     return render_template('edit_category.html', category=category)
 
