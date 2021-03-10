@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action=""
+            enctype="multipart/form-data">
+            <!-- User -->
+            <div class="card-panel grey lighten-2 tab-top">
+                <h6><strong>User</strong></h6>
+            </div>
+            <div class="card-panel tab-bottom">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="far fa-user prefix"></i>
+                        <input id="username" name="username" type="text" value="{{username.username}}" class="validate" disabled required>
+                        <label for="username">User:</label>
+                    </div>
+                   <div class="input-field col s12">
+                        <i class="far fa-folder-open prefix"></i>
+                        <select id="status" name="status" class="validate" required>
+                            <option disabled selected value="{{ username.status }}">{{ username.status }}</option>
+                            <option value="normal">normal</option>
+                            <option value="mod">mod</option>
+                            <option value="admin">admin</option>
+                        </select>
+                        <label for="status">Select user status:</label>
+                    </div>
+                </div>
+            </div>
+            <!-- Submit button -->
+            <div class="row center-align">
+                <button class="btn waves-effect waves-light" type="submit">Submit
+                    <i class="far fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

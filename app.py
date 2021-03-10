@@ -489,6 +489,13 @@ def edit_category(category_id):
     return redirect(url_for('get_ads'))
 
 
+@app.route('/edit_user/<username>')
+def edit_user(username):
+    username = mongo.db.users.find_one(
+        {'username': username})
+    return render_template('edit_user.html', username=username)
+
+
 @app.route('/delete_category/<category_id>')
 def delete_category(category_id):
     if 'user' in session:
