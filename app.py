@@ -458,7 +458,13 @@ def add_category():
         flash('Category successfully added', 'green')
         return redirect(url_for('control_panel'))
 
-    return render_template('add_category.html')
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        if admin:
+            return render_template('add_category.html')
+    
+    return redirect(url_for('get_ads'))
 
 
 @app.route('/edit_category/<category_id>', methods=['GET', 'POST'])
@@ -472,47 +478,69 @@ def edit_category(category_id):
         flash('Category successfully updated', 'green')
         return redirect(url_for('control_panel'))
 
-    category = mongo.db.categories.find_one({'_id': ObjectId(category_id)})
-    return render_template('edit_category.html', category=category)
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        if admin:
+            category = mongo.db.categories.find_one(
+                {'_id': ObjectId(category_id)})
+            return render_template('edit_category.html', category=category)
+
+    return redirect(url_for('get_ads'))
 
 
 @app.route('/delete_category/<category_id>')
 def delete_category(category_id):
-    mongo.db.categories.remove({'_id': ObjectId(category_id)})
-    flash('Category successfully deleted', 'green')
-    return redirect(url_for('control_panel'))
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        if admin:
+            mongo.db.categories.remove({'_id': ObjectId(category_id)})
+            flash('Category successfully deleted', 'green')
+            return redirect(url_for('control_panel'))
+
+    return redirect(url_for('get_ads'))
 
 
 @app.route('/delete_user/<username>')
 def delete_user(username):
-    # check if user has ads in db
-    user_ads = mongo.db.ads.find({'created_by': username})
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        if admin:
+            # check if user has ads in db
+            user_ads = mongo.db.ads.find({'created_by': username})
 
-    # loop over user ads and remove ads with images and images files from db
-    while user_ads:
-        check_ad = mongo.db.ads.find_one({'created_by': username})
-        if check_ad:
-            img_id = check_ad["img_id"]
-            if img_id:
-                files_id = mongo.db.fs.files.find_one(
-                    {"_id": img_id})["_id"]
-                mongo.db.fs.chunks.remove({"files_id": ObjectId(files_id)})
-                mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
-                mongo.db.ads.remove({'img_id': img_id})
-            else:
-                break
-        else:
-            break
+            # loop over user ads and remove ads with images
+            # remove images files from db
+            while user_ads:
+                check_ad = mongo.db.ads.find_one({'created_by': username})
+                if check_ad:
+                    img_id = check_ad["img_id"]
+                    if img_id:
+                        files_id = mongo.db.fs.files.find_one(
+                            {"_id": img_id})["_id"]
+                        mongo.db.fs.chunks.remove(
+                            {"files_id": ObjectId(files_id)})
+                        mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
+                        mongo.db.ads.remove({'img_id': img_id})
+                    else:
+                        break
+                else:
+                    break
 
-    # delete rest of ads and user from db
-    mongo.db.ads.remove({'created_by': username})
-    mongo.db.users.remove({'username': username})
+            # delete rest of ads and user from db
+            mongo.db.ads.remove({'created_by': username})
+            mongo.db.users.remove({'username': username})
 
-    flash('User successfully deleted', 'green')
-    return redirect(url_for('control_panel'))
+            flash('User successfully deleted', 'green')
+            return redirect(url_for('control_panel'))
 
+    return redirect(url_for('get_ads'))
 
 # error page 404
+
+
 @app.errorhandler(404)
 def page_not_found(error):
 
