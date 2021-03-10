@@ -13,7 +13,11 @@
         <div class="col s12">
             <div>
                 <div class="profile-name">
-                    <p class="mt-0" ><strong>{{ username.username }}</strong>'s profile</p>
+                    {% if  username.username == session.user %}
+                    <p class="mt-0"> Welcome <strong>{{ username.username }}</strong>!</p>
+                    {% else %}
+                    <p class="mt-0"> <strong>{{ username.username }}</strong>'s profile</p>
+                    {% endif %}
                 </div>
             </div>
             <div class="user-icon left">
@@ -25,9 +29,7 @@
                         <strong>Member since:</strong>
                     </li>
                     <li>{{username.join_date}}</li>
-                    <li>
-                        <strong>Last online:</strong>
-                    </li>
+                    <li><strong>Last login:</strong></li>
                     <li>{{username.last_log}}</li>
                 </ul>
             </div>
@@ -37,7 +39,11 @@
 
 <div class="container">
     <div class="row">
+        {% if  username.username == session.user %}
+        <h6>Your ads:</h6>
+        {% else %}
         <h6><strong>{{username.username}}</strong>'s ads:</h6>
+        {% endif %}
         {% if ads.count() > 0 %}
         {% for ad in ads %}
         <div class="col s6 m3 col-margin" id="col-padding">
@@ -65,7 +71,11 @@
         </div>
         {% endfor %}
         {% else %}
-        <p>User has no ads.</p>
+        {% if  username.username == session.user %}
+        <h6><strong>{{ username.username }}</strong> you have no ads <i class="far fa-frown"></i></h6>
+        {% else %}
+        <h6>User has no ads.</h6>
+        {% endif %}
         {% endif %}
     </div>
 </div>
