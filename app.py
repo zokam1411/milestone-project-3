@@ -420,7 +420,7 @@ def control_panel():
         admin = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'admin'})
         if admin:
-            categories = mongo.db.categories.find()
+            categories = mongo.db.categories.find().sort('category', 1)
             users = mongo.db.users.find()
             ads = mongo.db.ads.find()
             return render_template('control_panel.html',
@@ -463,7 +463,7 @@ def add_category():
             {'username': session['user'], 'status': 'admin'})
         if admin:
             return render_template('add_category.html')
-    
+
     return redirect(url_for('get_ads'))
 
 
@@ -489,11 +489,24 @@ def edit_category(category_id):
     return redirect(url_for('get_ads'))
 
 
-@app.route('/edit_user/<username>')
+@app.route('/edit_user/<username>', methods=['GET', 'POST'])
 def edit_user(username):
-    username = mongo.db.users.find_one(
-        {'username': username})
-    return render_template('edit_user.html', username=username)
+    if request.method == 'POST':
+        status = request.form.get('status')
+        mongo.db.users.update_one({'username': username},
+                                  {'$set': {'status': status}})
+        flash('User status successfully updated', 'green')
+        return redirect(url_for('control_panel'))
+
+    if 'user' in session:
+        admin = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'admin'})
+        if admin:
+            user = mongo.db.users.find_one(
+                {'username': username})
+            return render_template('edit_user.html', username=user)
+
+    return render_template(url_for('get_ads'))
 
 
 @app.route('/delete_category/<category_id>')
