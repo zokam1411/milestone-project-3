@@ -481,6 +481,13 @@ def delete_user(username):
     return redirect(url_for('control_panel'))
 
 
+# error page 404
+@app.errorhandler(404)
+def page_not_found(error):
+
+    return render_template("error/404.html")
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

@@ -238,3 +238,12 @@ tr:hover {
 .profile-name {
     font-size: 30px;
 }
+
+/* 404.html */
+.big-text {
+    font-size: 150px;
+}
+
+.smaller-text {
+    font-size: 50px;
+}
