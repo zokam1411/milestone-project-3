@@ -214,7 +214,6 @@ def view_ad(ad_id):
     return render_template('view_ad.html', ad=ad)
 
 
-# edit ad
 @app.route('/edit_ad/<ad_id>', methods=['GET', 'POST'])
 def edit_ad(ad_id):
 
@@ -301,6 +300,7 @@ def all_ads():
             {'username': session['user'], 'status': 'admin'})
         return render_template(
             'all_ads.html', ads=ads,  admin=admin)
+
     return render_template('all_ads.html', ads=ads)
 
 
@@ -313,6 +313,7 @@ def search():
             {'username': session['user'], 'status': 'admin'})
         return render_template(
             'search.html', ads=ads, admin=admin)
+
     return render_template('search.html', ads=ads)
 
 
@@ -348,11 +349,13 @@ def search_cat(category_name):
             {'username': session['user'], 'status': 'admin'})
         return render_template(
             'search_cat.html', ads=ads, category=category, admin=admin)
+
     return render_template('search_cat.html', category=category, ads=ads)
 
 
 @app.route('/delete_ad/<ad_id>')
 def delete_ad(ad_id):
+    # only admin or mod or advertiser can delete ad
     if 'user' in session:
         admin = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'admin'})
@@ -363,6 +366,7 @@ def delete_ad(ad_id):
 
         if admin or mod or advertiser:
 
+            # check if ad has image
             ad = mongo.db.ads.find_one({"_id": ObjectId(ad_id)})
             img_id = ad["img_id"]
 
@@ -372,9 +376,9 @@ def delete_ad(ad_id):
                 mongo.db.fs.chunks.remove({"files_id": ObjectId(files_id)})
                 mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
 
-            mongo.db.ads.remove({"_id": ObjectId(ad_id)})
-            flash('Ad successfully deleted', 'green')
-            return redirect(url_for('get_ads'))
+        mongo.db.ads.remove({"_id": ObjectId(ad_id)})
+        flash('Ad successfully deleted', 'green')
+        return redirect(url_for('get_ads'))
     return redirect(url_for('get_ads'))
 
 
@@ -423,7 +427,7 @@ def control_panel():
                                    categories=categories,
                                    users=users, ads=ads, admin=admin)
 
-    # return redirect(url_for('get_ads'))
+    return redirect(url_for('get_ads'))
 
 
 @app.route('/add_category', methods=['GET', 'POST'])
