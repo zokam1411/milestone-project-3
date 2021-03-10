@@ -472,11 +472,29 @@ def delete_category(category_id):
 
 @app.route('/delete_user/<username>')
 def delete_user(username):
-    # check if user have ads
-    check_ads = mongo.db.ads.find({'created_by': username})
-    if check_ads:
-        mongo.db.ads.remove({'created_by': username})
+    # check if user has ads in db
+    user_ads = mongo.db.ads.find({'created_by': username})
+
+    # loop over user ads and remove ads with images and images files from db
+    while user_ads:
+        check_ad = mongo.db.ads.find_one({'created_by': username})
+        if check_ad:
+            img_id = check_ad["img_id"]
+            if img_id:
+                files_id = mongo.db.fs.files.find_one(
+                    {"_id": img_id})["_id"]
+                mongo.db.fs.chunks.remove({"files_id": ObjectId(files_id)})
+                mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
+                mongo.db.ads.remove({'img_id': img_id})
+            else:
+                break
+        else:
+            break
+
+    # delete rest of ads and user from db
+    mongo.db.ads.remove({'created_by': username})
     mongo.db.users.remove({'username': username})
+
     flash('User successfully deleted', 'green')
     return redirect(url_for('control_panel'))
 
