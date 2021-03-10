@@ -1,28 +1,24 @@
-{% extends 'base.html' %}
-{% block content %}
-
+{% extends 'base.html' %} {% block content %}
+<!-- Page nav -->
 <div class="grey lighten-4">
     <div class="container">
         <div class="row page-nav">
-            <h6 class="mb-0"><a href="{{ url_for('get_ads') }}">Home</a> <i class="fas fa-chevron-right"></i>
-                {{ category.category }}</h6>
+            <h6 class="mb-0"><a href="{{ url_for('get_ads') }}">Home</a> <i class="fas fa-chevron-right"></i> {{ category.category }}</h6>
         </div>
     </div>
 </div>
 <!-- Search category -->
 <div class="container">
     <div class="row mb-0 center-align">
-        <form class=" search-form col s12 m6 offset-m3" method="POST"
-            action="{{ url_for('search_cat', category_name=category.category) }}">
+        <form class="search-form col s12 m6 offset-m3" method="POST" action="{{ url_for('search_cat', category_name=category.category) }}">
             <div class="row">
                 <div class="search-field input-field col s12 mt-0 mb-0">
                     <i class="fas fa-search prefix"></i>
-                    <input class="mb-0" type="text" name="query" id="query" required>
+                    <input class="mb-0" type="text" name="query" id="query" required />
                 </div>
                 <div class="row center-align">
                     <div class="col s12">
-                        <button type="submit" class="btn blue">Search</button><span> in <strong>
-                                {{ category.category }}</strong></span>
+                        <button type="submit" class="btn blue">Search</button><span> in <strong> {{ category.category }}</strong></span>
                     </div>
                 </div>
             </div>
@@ -39,16 +35,15 @@
                 <div class="grey lighten-3 main-ad-holder">
                     <div class="white ad-img-holder">
                         {% if ad.item_image %}
-                        <img src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image">
+                        <img src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image" />
                         {% else %}
-                        <img src="{{url_for('static', filename='images/no-image.png')}}" alt="default_recipe_image">
+                        <img src="{{url_for('static', filename='images/no-image.png')}}" alt="default_recipe_image" />
                         {% endif %}
                     </div>
                     <div class="row">
                         <div class="truncate"><strong>{{ ad.title }}</strong></div>
                         {% if ad.urgent == "on" %}
-                        <div><b>&#8364; {{ ad.price }}</b> <i class="fas fa-hammer yellow-text text-accent-4 tooltipped"
-                                data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></div>
+                        <div><b>&#8364; {{ ad.price }}</b> <i class="fas fa-hammer yellow-text text-accent-4 tooltipped" data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></div>
                         {% else %}
                         <div><b>&#8364; {{ ad.price }}</b></div>
                         {% endif %}

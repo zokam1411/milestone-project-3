@@ -1,26 +1,21 @@
-{% extends 'base.html' %}
-{% block content %}
-
+{% extends 'base.html' %} {% block content %}
 <!-- flash message -->
 <div class="container">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    {% for category, message in messages %}
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
     <div class="row flashes center-align">
         <p class="{{category}} white-text"><i class="fas fa-info-circle"></i> {{ message }}</p>
     </div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
+    {% endfor %} {% endif %} {% endwith %}
 </div>
+<!-- Page nav -->
 <div class="grey lighten-4">
     <div class="container">
         <div class="row page-nav">
-            <h6 class="mb-0"><a href="{{ url_for('get_ads') }}">Home</a> <i class="fas fa-chevron-right"></i>
-                <a href="{{ url_for('view_category', category_name=ad.category) }}">{{ ad.category }}</a></h6>
+            <h6 class="mb-0"><a href="{{ url_for('get_ads') }}">Home</a> <i class="fas fa-chevron-right"></i> <a href="{{ url_for('view_category', category_name=ad.category) }}">{{ ad.category }}</a></h6>
         </div>
     </div>
 </div>
+<!-- Ad info -->
 <div class="container">
     <div class="row mb-0">
         <div class="col s12">
@@ -30,17 +25,14 @@
     <div class="row mb-0">
         <div class="col s12 m6">
             {% if ad.item_image %}
-            <img class="materialboxed view-img" src="{{url_for('img_uploads', filename=ad['item_image'])}}"
-                alt="item_image">
+            <img class="materialboxed view-img" src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image" />
             {% else %}
-            <img class="view-img" src="{{url_for('static', filename='images/no-image.png')}}"
-                alt="default_recipe_image">
+            <img class="view-img" src="{{url_for('static', filename='images/no-image.png')}}" alt="default_recipe_image" />
             {% endif %}
         </div>
         <div class="col s12 m6">
             {% if admin or mod or session.user == ad.created_by %}
-            <a href="{{ url_for('edit_ad', ad_id=ad._id) }}"
-                class="waves-effect waves-light btn-small yellow black-text">Edit</a>
+            <a href="{{ url_for('edit_ad', ad_id=ad._id) }}" class="waves-effect waves-light btn-small yellow black-text">Edit</a>
             <span>or</span>
             <!-- Delete ad Modal Trigger -->
             <a href="#modal3" class="modal-trigger waves-effect waves-light btn-small red black-text">Delete</a>
@@ -48,8 +40,8 @@
             {% endif %}
             <div>
                 {% if ad.urgent == "on" %}
-                <h6 class="mb-0"><strong>Price: <i class="fas fa-hammer yellow-text text-accent-4 tooltipped"
-                            data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></strong>
+                <h6 class="mb-0">
+                    <strong>Price: <i class="fas fa-hammer yellow-text text-accent-4 tooltipped" data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></strong>
                 </h6>
                 {% else %}
                 <h6 class="mb-0"><strong>Price:</strong></h6>
@@ -61,11 +53,9 @@
                 <ul class="list-inline mt-0">
                     {% if ad.cash == 'yes' %}
                     <li><i class="far fa-check-square"></i> Cash</li>
-                    {% endif %}
-                    {% if ad.paypal == 'yes' %}
+                    {% endif %} {% if ad.paypal == 'yes' %}
                     <li><i class="far fa-check-square"></i> PayPal</li>
-                    {% endif %}
-                    {% if ad.bitcoin == 'yes' %}
+                    {% endif %} {% if ad.bitcoin == 'yes' %}
                     <li><i class="far fa-check-square"></i> BitCoin</li>
                     {% endif %}
                 </ul>
@@ -78,13 +68,15 @@
                     {% if session.user %}
                     <li>Contact: {{ ad.phone }}</li>
                     {% else %}
-                    <li>Contact: <small><a href="{{ url_for('login') }}">Log In</a> to see contact details</small>
+                    <li>
+                        Contact: <small><a href="{{ url_for('login') }}">Log In</a> to see contact details</small>
                     </li>
                     {% endif %}
                 </ul>
             </div>
         </div>
     </div>
+    <!-- Ad description -->
     <div class="row mb-0">
         <div class="col s12">
             <h6 class="mb-0"><strong>Description:</strong></h6>
@@ -112,8 +104,8 @@
             {% endif %}
         </div>
     </div>
-    {% if ad.reports %}
-    {% if admin or mod %}
+    <!-- Reports -->
+    {% if ad.reports %} {% if admin or mod %}
     <div class="row">
         <div class="col s12">
             <div class="card-panel grey lighten-2 tab-top-report">
@@ -134,8 +126,7 @@
             </div>
         </div>
     </div>
-    {% endif %}
-    {% endif %}
+    {% endif %} {% endif %}
 </div>
 <!-- Report ad Modal Structure -->
 <div id="modal1" class="modal">
@@ -144,9 +135,7 @@
             <div class="row">
                 <div class="col s12">
                     <p class>
-                        <strong> When browsing Buy & Sell, did you notice content that should not be on the
-                            website? Report
-                            this fact to us immediately!</strong>
+                        <strong> When browsing Buy & Sell, did you notice content that should not be on the website? Report this fact to us immediately!</strong>
                     </p>
                 </div>
             </div>
@@ -157,8 +146,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="far fa-file-alt prefix"></i>
-                        <textarea id="report" name="report" class="validate materialize-textarea" minlength="10"
-                            maxlength="300" data-length="300" required></textarea>
+                        <textarea id="report" name="report" class="validate materialize-textarea" minlength="10" maxlength="300" data-length="300" required></textarea>
                         <label for="report">Why are you reporting?</label>
                         <span class="helper-text" data-success="right">Minimum 10 characters</span>
                     </div>
@@ -166,12 +154,9 @@
             </div>
             <div class="row center-align">
                 <!-- Cancel button -->
-                <a class="modal-close btn waves-effect waves-light red lighten-1" type="button"><i
-                        class="fas fa-times-circle"></i> Cancel</a>
+                <a class="modal-close btn waves-effect waves-light red lighten-1" type="button"><i class="fas fa-times-circle"></i> Cancel</a>
                 <!-- Submit button -->
-                <button class="btn waves-effect waves-light green lighten-1" type="submit"><i
-                        class="fas fa-plus-circle"></i> Report
-                </button>
+                <button class="btn waves-effect waves-light green lighten-1" type="submit"><i class="fas fa-plus-circle"></i> Report</button>
             </div>
         </div>
     </form>
@@ -184,16 +169,14 @@
                 <div class="col s12">
                     <p class>
                         <strong> Are you sure you want to delete all reports?</strong>
-
                     </p>
                     <p>You can't undo this action.</p>
                 </div>
-                <!-- Cancel button -->
-                <a class="modal-close btn waves-effect waves-light red lighten-1"><i class="fas fa-times-circle"></i>
-                    No</a>
-                <!-- Submit button -->
-                <a href="{{ url_for('delete_report', ad_id=ad._id) }}"
-                    class="btn waves-effect waves-light green lighten-1"><i class="fas fa-plus-circle"></i>
+                <!-- No button -->
+                <a class="modal-close btn waves-effect waves-light red lighten-1"><i class="fas fa-times-circle"></i> No</a>
+                <!-- Yes button -->
+                <a href="{{ url_for('delete_report', ad_id=ad._id) }}" class="btn waves-effect waves-light green lighten-1">
+                    <i class="fas fa-plus-circle"></i>
                     Yes
                 </a>
             </div>
@@ -208,21 +191,18 @@
                 <div class="col s12">
                     <p class>
                         <strong> Are you sure you want to delete this ad?</strong>
-
                     </p>
                     <p>You can't undo this action.</p>
                 </div>
-                <!-- Cancel button -->
-                <a class="modal-close btn waves-effect waves-light red lighten-1"><i class="fas fa-times-circle"></i>
-                    No</a>
-                <!-- Submit button -->
-                <a href="{{ url_for('delete_ad', ad_id=ad._id) }}"
-                    class="btn waves-effect waves-light green lighten-1"><i class="fas fa-plus-circle"></i>
+                <!-- No button -->
+                <a class="modal-close btn waves-effect waves-light red lighten-1"><i class="fas fa-times-circle"></i> No</a>
+                <!-- Yes button -->
+                <a href="{{ url_for('delete_ad', ad_id=ad._id) }}" class="btn waves-effect waves-light green lighten-1">
+                    <i class="fas fa-plus-circle"></i>
                     Yes
                 </a>
             </div>
         </div>
     </form>
 </div>
-
 {% endblock %}

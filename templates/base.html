@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Static css file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
     <title>Buy & Sell</title>
 </head>
-
 <body>
     <header>
         <!-- Top navbar -->
@@ -55,10 +52,10 @@
             {% if session.user %}
             <li>Hello! <strong>{{session.user}}</strong></li>
             {% endif %}
-            <!-- <li><a href="{{ url_for('get_ads') }}">Home</a></li> -->
+            <li><a href="{{ url_for('get_ads') }}">Home</a></li>
             <li><a href="{{ url_for('add_ad') }}" class="waves-effect waves-light btn green accent-4">Place Ad</a></li>
             {% if session.user %}
-            <li><a href="{{ url_for('profile', username=username) }}"
+            <li><a href="{{ url_for('profile', username=session['user']) }}"
                     class="waves-effect waves-light btn blue-grey lighten-5 black-text">My Profile<i
                         class="fas fa-user-cog"></i></a></li>
             <li class="divider nav-divider"></li>
@@ -113,5 +110,4 @@
     <!-- Static JS file -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
-
 </html>

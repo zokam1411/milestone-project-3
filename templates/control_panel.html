@@ -1,17 +1,11 @@
-{% extends 'base.html' %}
-{% block content %}
-
+{% extends 'base.html' %} {% block content %}
 <!-- flash message -->
 <div>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    {% for category, message in messages %}
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
     <div class="row flashes center-align">
         <p class="{{category}} white-text"><i class="fas fa-info-circle"></i> {{ message }}</p>
     </div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
+    {% endfor %} {% endif %} {% endwith %}
 </div>
 <!-- Manage categories -->
 <div class="grey lighten-4">
@@ -36,12 +30,12 @@
                 <tr>
                     <td>{{category.category}}</td>
                     <td>{{category.icon|safe}} {{category.icon}}</td>
-                    <td><a href="{{ url_for('edit_category', category_id=category._id) }}"
-                            class="waves-effect waves-light btn-small yellow black-text">Edit</a>
+                    <td>
+                        <a href="{{ url_for('edit_category', category_id=category._id) }}" class="waves-effect waves-light btn-small yellow black-text">Edit</a>
                         <span>or</span>
                         <!-- Delete category Modal Trigger -->
-                        <a href="#del{{ category._id }}"
-                            class="modal-trigger waves-effect waves-light btn-small red black-text">Delete</a></td>
+                        <a href="#del{{ category._id }}" class="modal-trigger waves-effect waves-light btn-small red black-text">Delete</a>
+                    </td>
                 </tr>
                 <!-- Delete category Modal Structure -->
                 <div id="del{{ category._id }}" class="modal">
@@ -49,20 +43,14 @@
                         <div class="row center-align">
                             <div class="col s12">
                                 <p>
-                                    <strong> Are you sure you want to delete <span
-                                            class="blue-text">{{category.category}}</span> category?</strong>
+                                    <strong> Are you sure you want to delete <span class="blue-text">{{category.category}}</span> category?</strong>
                                 </p>
                                 <p>You can't undo this actin.</p>
                             </div>
                             <!-- No button -->
-                            <a class="modal-close btn waves-effect waves-light red lighten-1"><i
-                                    class="fas fa-times-circle"></i>
-                                No</a>
+                            <a class="modal-close btn waves-effect waves-light red lighten-1"><i class="fas fa-times-circle"></i> No</a>
                             <!-- Yes button -->
-                            <a href="{{ url_for('delete_category', category_id=category._id) }}"
-                                class="modal-close btn waves-effect waves-light green lighten-1">Yes <i
-                                    class="fas fa-plus-circle"></i>
-                            </a>
+                            <a href="{{ url_for('delete_category', category_id=category._id) }}" class="modal-close btn waves-effect waves-light green lighten-1">Yes <i class="fas fa-plus-circle"></i> </a>
                         </div>
                     </div>
                 </div>
@@ -102,12 +90,12 @@
                     <td>{{user.join_date}}</td>
                     <td>{{user.last_log}}</td>
                     <td>{{user.status}}</td>
-                    <td><a href="{{ url_for('edit_user', username=user.username) }}"
-                            class="waves-effect waves-light btn-small yellow black-text">Edit</a>
+                    <td>
+                        <a href="{{ url_for('edit_user', username=user.username) }}" class="waves-effect waves-light btn-small yellow black-text">Edit</a>
                         <span>or</span>
                         <!-- Delete ad Modal Trigger -->
-                        <a href="#del{{ user.username }}"
-                            class="modal-trigger waves-effect waves-light btn-small red black-text">Delete</a></td>
+                        <a href="#del{{ user.username }}" class="modal-trigger waves-effect waves-light btn-small red black-text">Delete</a>
+                    </td>
                 </tr>
                 <!-- Delete user Modal Structure -->
                 <div id="del{{ user.username }}" class="modal">
@@ -115,21 +103,15 @@
                         <div class="row center-align">
                             <div class="col s12">
                                 <p>
-                                    <strong> Are you sure you want to remove <span
-                                            class="blue-text">{{user.username}}</span>?</strong>
+                                    <strong> Are you sure you want to remove <span class="blue-text">{{user.username}}</span>?</strong>
                                 </p>
                                 <p><strong>It will automatically delete user ads.</strong></p>
                                 <p>You can't undo this actin.</p>
                             </div>
                             <!-- No button -->
-                            <a class="modal-close btn waves-effect waves-light red lighten-1"><i
-                                    class="fas fa-times-circle"></i>
-                                No</a>
+                            <a class="modal-close btn waves-effect waves-light red lighten-1"><i class="fas fa-times-circle"></i> No</a>
                             <!-- Yes button -->
-                            <a href="{{ url_for('delete_user', username=user.username) }}"
-                                class="modal-close btn waves-effect waves-light green lighten-1">Yes <i
-                                    class="fas fa-plus-circle"></i>
-                            </a>
+                            <a href="{{ url_for('delete_user', username=user.username) }}" class="modal-close btn waves-effect waves-light green lighten-1">Yes <i class="fas fa-plus-circle"></i> </a>
                         </div>
                     </div>
                 </div>
@@ -138,7 +120,7 @@
         </table>
     </div>
 </div>
-<!-- Reported ads -->
+<!-- Manage reported ads -->
 <div class="grey lighten-4">
     <div class="container">
         <div class="row">
@@ -156,14 +138,12 @@
                 </tr>
             </thead>
             <tbody>
-                {% for ad in ads %}
-                {% if ad.reports %}
+                {% for ad in ads %} {% if ad.reports %}
                 <tr>
                     <td><a href="{{ url_for('view_ad', ad_id=ad._id) }}">{{ad.title}}</a></td>
                     <td>{{ad.created_by}}</td>
                 </tr>
-                {% endif %}
-                {% endfor %}
+                {% endif %} {% endfor %}
             </tbody>
         </table>
     </div>

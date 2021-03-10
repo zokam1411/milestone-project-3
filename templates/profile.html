@@ -1,22 +1,22 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
+<!-- Page nav -->
 <div class="grey lighten-4">
     <div class="container">
         <div class="row page-nav">
-            <h6 class="mb-0"><a href="{{ url_for('get_ads') }}">Home</a> <i class="fas fa-chevron-right"></i>
-                Profile</h6>
+            <h6 class="mb-0"><a href="{{ url_for('get_ads') }}">Home</a> <i class="fas fa-chevron-right"></i> Profile</h6>
         </div>
     </div>
 </div>
+<!-- User info -->
 <div class="container">
     <div class="row">
         <div class="col s12">
             <div>
                 <div class="profile-name">
-                    {% if  username.username == session.user %}
-                    <p class="mt-0"> Welcome <strong>{{ username.username }}</strong>!</p>
+                    {% if username.username == session.user %}
+                    <p class="mt-0">Welcome <strong>{{ username.username }}</strong>!</p>
                     {% else %}
-                    <p class="mt-0"> <strong>{{ username.username }}</strong>'s profile</p>
+                    <p class="mt-0"><strong>{{ username.username }}</strong>'s profile</p>
                     {% endif %}
                 </div>
             </div>
@@ -36,31 +36,28 @@
         </div>
     </div>
 </div>
-
+<!-- User ads -->
 <div class="container">
     <div class="row">
-        {% if  username.username == session.user %}
+        {% if username.username == session.user %}
         <h6>Your ads:</h6>
         {% else %}
         <h6><strong>{{username.username}}</strong>'s ads:</h6>
-        {% endif %}
-        {% if ads.count() > 0 %}
-        {% for ad in ads %}
+        {% endif %} {% if ads.count() > 0 %} {% for ad in ads %}
         <div class="col s6 m3 col-margin" id="col-padding">
             <a href="{{ url_for('view_ad', ad_id=ad._id) }}">
                 <div class="grey lighten-3 main-ad-holder">
                     <div class="white ad-img-holder">
                         {% if ad.item_image %}
-                        <img src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image">
+                        <img src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image" />
                         {% else %}
-                        <img src="{{url_for('static', filename='images/no-image.png')}}" alt="default_recipe_image">
+                        <img src="{{url_for('static', filename='images/no-image.png')}}" alt="default_recipe_image" />
                         {% endif %}
                     </div>
                     <div class="row">
                         <div class="truncate"><strong>{{ ad.title }}</strong></div>
                         {% if ad.urgent == "on" %}
-                        <div><b>&#8364; {{ ad.price }}</b> <i class="fas fa-hammer yellow-text text-accent-4 tooltipped"
-                                data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></div>
+                        <div><b>&#8364; {{ ad.price }}</b> <i class="fas fa-hammer yellow-text text-accent-4 tooltipped" data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></div>
                         {% else %}
                         <div><b>&#8364; {{ ad.price }}</b></div>
                         {% endif %}
@@ -69,17 +66,11 @@
                 </div>
             </a>
         </div>
-        {% endfor %}
-        {% else %}
-        {% if  username.username == session.user %}
+        {% endfor %} {% else %} {% if username.username == session.user %}
         <h6><strong>{{ username.username }}</strong> you have no ads <i class="far fa-frown"></i></h6>
         {% else %}
         <h6>User has no ads.</h6>
-        {% endif %}
-        {% endif %}
+        {% endif %} {% endif %}
     </div>
 </div>
-
-
-
 {% endblock %}

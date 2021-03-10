@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="row">
     <form class="col s12 m8 offset-m2 l6 offset-l3 center-align" method="POST" action="{{url_for('login')}}">
         <div class="card-panel grey lighten-4">
@@ -8,21 +7,17 @@
             </div>
             <!-- flash message -->
             <div>
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                {% for category, message in messages %}
+                {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
                 <div class="row flashes center-align">
                     <p class="{{category}} white-text"><i class="fas fa-info-circle"></i> {{ message }}</p>
                 </div>
-                {% endfor %}
-                {% endif %}
-                {% endwith %}
+                {% endfor %} {% endif %} {% endwith %}
             </div>
             <!-- Username input field -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-user prefix"></i>
-                    <input id="username" name="username" type="text" class="validate" required>
+                    <input id="username" name="username" type="text" class="validate" required />
                     <label for="username">Username</label>
                 </div>
             </div>
@@ -30,20 +25,16 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-lock prefix"></i>
-                    <input id="password" name="password" type="password" class="validate" required>
+                    <input id="password" name="password" type="password" class="validate" required />
                     <label for="password">Password</label>
                 </div>
             </div>
             <!-- Log in button -->
             <div class="row">
-                <button class="btn waves-effect waves-light green lighten-1" type="submit">Log in
-                </button>
+                <button class="btn waves-effect waves-light green lighten-1" type="submit">Log in</button>
             </div>
         </div>
-        <div class="card-panel grey lighten-2">
-            Do not have an account yet? <a href="{{url_for('register')}}">Register</a>
-        </div>
+        <div class="card-panel grey lighten-2">Do not have an account yet? <a href="{{url_for('register')}}">Register</a></div>
     </form>
 </div>
-
 {% endblock %}
