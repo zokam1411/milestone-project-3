@@ -104,12 +104,17 @@ def login():
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {'username': username})
-
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(existing_user['password'], password):
                 # put new user into session cookie
                 session['user'] = username
+
+                mongo.db.users.update_one(
+                    {'username': session['user']},
+                    {'$set': {'last_log':
+                              datetime.now().strftime('%d-%m-%y %H:%M:%S')}})
+
                 return redirect(url_for(
                     'profile', username=session['user']))
             else:
