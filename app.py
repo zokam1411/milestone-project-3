@@ -293,7 +293,7 @@ def edit_ad(ad_id):
 
 @app.route('/all_ads')
 def all_ads():
-    ads = mongo.db.ads.find()
+    ads = mongo.db.ads.find().sort('_id', -1)
     if 'user' in session:
         admin = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'admin'})
@@ -326,7 +326,7 @@ def logout():
 @app.route('/view_category/<category_name>')
 def view_category(category_name):
     category = mongo.db.categories.find_one({'category': category_name})
-    ads = mongo.db.ads.find({'category': category_name})
+    ads = mongo.db.ads.find({'category': category_name}).sort('_id', -1)
 
     if 'user' in session:
         admin = mongo.db.users.find_one(
