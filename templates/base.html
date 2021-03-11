@@ -53,6 +53,10 @@
             <li>Hello! <strong>{{session.user}}</strong></li>
             {% endif %}
             <li><a href="{{ url_for('get_ads') }}">Home</a></li>
+            {% if admin %}
+            <li><a href="{{ (url_for('control_panel')) }}" class="waves-effect waves-light btn red accent-4"><i
+                        class="fas fa-cog"></i> Control Panel</a></li>
+            {% endif %}
             <li><a href="{{ url_for('add_ad') }}" class="waves-effect waves-light btn green accent-4">Place Ad</a></li>
             {% if session.user %}
             <li><a href="{{ url_for('profile', username=session['user']) }}"
@@ -78,10 +82,10 @@
                     <h5 class="pb-0"><span class="blue-text text-darken-2 logo">&#8383uy</span><span
                             class="black-text logo">&</span><span class="red-text logo">$ell</span></h5>
                     <p><strong>Buy&Sale</strong> offers free local ads in categories like: Cars, House,
-                        Garden, Electronics, Clothes, Sport. You will find interesting ads here quickly and easily contact
-                        the advertiser. If you want to sell something - here you can easily add free ads. If you want to buy
-                        something - here you will find interesting bargains, cheaper than in the store. Sell in the
-                        neighborhood on Buy&Sale</p>
+                        Garden, Electronics, Clothes, Sport. You will find interesting ads here quickly and easily
+                        contact the advertiser. If you want to sell something - here you can easily add free ads.
+                        If you want to buy something - here you will find interesting bargains, cheaper than in the
+                        store. Sell in the neighborhood on Buy&Sale</p>
                     <p>support@buyandsell.com</p>
                 </div>
                 <div class="col s12 center-align join-us">
