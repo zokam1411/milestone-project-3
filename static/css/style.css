@@ -41,12 +41,12 @@ body {
 }
 
 .page-nav {
-    margin-bottom: 50px;
-    margin-top: 50px;
+    margin-bottom: 40px;
+    margin-top: 30px;
 }
 
 .search-form {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 /*------------------------------------------- base.html */
@@ -74,7 +74,7 @@ nav ul a {
 /* Footer */
 footer {
     border-top: 3px solid #4fc3f7;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .join-us li a {
@@ -212,12 +212,12 @@ width: 100%;
     margin-bottom: 10px;
 }
 
-/* view_category.html */
+/*------------------------------------------- view_category.html */
 .fa-chevron-right {
     font-size: 12px;
 }
 
-/* control_panel.html */
+/*------------------------------------------- control_panel.html */
 td, th {
     padding: 0;
 }
@@ -232,7 +232,7 @@ tr:hover {
     font-size: 10px;
 }
 
-/* profile.html */
+/*------------------------------------------- profile.html */
 .user-icon .fa-user {
     font-size: 150px;
 }
@@ -241,7 +241,7 @@ tr:hover {
     font-size: 30px;
 }
 
-/* 404.html */
+/*------------------------------------------- 404.html */
 .big-text {
     font-size: 150px;
 }
