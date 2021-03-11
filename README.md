@@ -130,6 +130,8 @@ Despite the large amount of content, the user is not overwhelmed, thanks to simp
 - <a href="static/readmeimages/desktop-wireframes.pdf" target="_blank">Desktop wireframes</a>
 - <a href="static/readmeimages/mobile-wireframes.pdf" target="_blank">Mobile wireframes</a>
 
+Update:
+
 The first raw design wos drawn on a piece of paper and then the idea was transferred to an advanced creator. However, while creating application changes were made to improve the appearance and functionality.
 
 - Footer has been completely redesigned. The explore links have been removed, social media has been limited to icons, about info has been added so that the user can familiarize with website assumptions. All info has been placed vertically on all screen sizes.
@@ -271,7 +273,9 @@ In order to deploy the website to Heroku:
 
 ### Code:
 
-????????????????????????????????????????????????????
+- <a href="https://materializecss.com//">Materialize</a> library mainly to make site responsive and implement simple style for margins, padding and elements alignment.
+- <a href="https://www.youtube.com/watch?v=DsgAuceHha4&ab_channel=PrettyPrinted">Save and Retrieve Files In a MongoDB With Flask-Pymongo</a> I used this tutorial to learn how to store and retrieve images from mongoDB.
+
 
 <p id="media"></p>
 
