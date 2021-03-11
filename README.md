@@ -36,7 +36,7 @@ Buy & Sell app is an online marketplace where users can buy and sell items. Purp
 
 ## 1️⃣ Project Construction 👷
 
-This application contains the key CRUD requirement functionality and utilises a data handling document based database, MongoDB. Functionality is created using Flask, HTML5, CSS and JavaScript. Bootstrap framework was used in building fronted structure to make sure app is responsive as possible and can be used on multiple screen sizes.
+This application contains the key CRUD requirement functionality and utilises a data handling document based database, MongoDB. Functionality is created using Flask, HTML5, CSS and JavaScript. Materialize framework was used in building fronted structure to make sure app is responsive as possible and can be used on multiple screen sizes.
 
 Application offer a registration and login system with password hashing to protect each user. Logged user can browse ads created by other registered users and create, update and delete ads created by him.
 
@@ -57,7 +57,7 @@ Un-registered users can also use the application, but their permissions are limi
 1. As a Guest user, I want to browse the ads added by registered users.
 - All users can browse ads by selecting ad category or by search option on welcome page.
 2. As a Guest user, I want to be able to see seller contact details or add my ads.
-- For more permissions Guest can register and login using quick registration form.
+- For more permissions Guest can register using quick registration form and then login .
 3. As a Guest user, I want app to be visually appealing and easy in use.
 - Application is very intuitive to use and has clear layout.
 4. As a Guest user,  I want to contact someone in the event something is wrong with the app.
@@ -70,21 +70,32 @@ Un-registered users can also use the application, but their permissions are limi
 2. As a Registered User, I want to add my ads.
 - Registered User can start adding ad by clicking 'Place Ad' button in navigation bar.
 3. As a Registered User, I want to Edit or Delete my ads.
-- Edit and Delete buttons are visible for ads created by user only.
-4. As a Registered user, I want 'Profile' page where I can see my ads and statistics.
+- Edit and Delete buttons are placed in ad view page and are visible for advertiser.
+4. As a Registered user, I want 'Profile' page where I can see my all ads.
 -  Registered user will see 'Profile' tab in navigation after Log In.
+5. As a Registered user, I want report ad when item is suspicious or not appropriate.
+- Registered used can use 'Report Ad' button under ad.
 5. As a Registered user, I want to 'Log Out'.
+
+### Moderators
+
+1. As Moderator, I want to delete or update any ad.
+- Moderator can see Edit and Delete buttons for all ads.
+2. As, Admin I want to see ad reports.
+- Moderator can see all reports in table under ad.
 
 ### Admin:
 
 1. As Admin, I want to ad new 'Categories'
-- Admin can ad new 'Categories' by clicking 'Ad Category' in 'Profile' page.
-2. As Admin, I want delete or update any ad.
-Edit and Delete buttons are visible for all ads.
+- Admin have dedicated page where he can click 'Add Category' button.
+2. As Admin, I want to delete or update any ad.
+- Admin can see Edit and Delete buttons for all ads.
 3. As, Admin I want to remove 'Registered User'.
-Admin can remove users by clicking 'Remove User' button in 'Profile' page.
-4. As, Admin I want to see app statistics.
-Admin can see various statistics in 'Profile' page.
+- Admin have dedicated page where he can delete any user.
+4. As, Admin I want to see ad reports.
+- Admin can see all reports in table under ad.
+5. As Admin I want to edit users permissions.
+- Admin can create moderators and other admins.
 
 ### Developer:
 
