@@ -461,7 +461,7 @@ def add_category():
         admin = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'admin'})
         if admin:
-            return render_template('add_category.html')
+            return render_template('add_category.html', admin=admin)
 
     return redirect(url_for('get_ads'))
 
