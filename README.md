@@ -109,7 +109,7 @@ Un-registered users can also use the application, but their permissions are limi
 
 #### Color Scheme:
 
-The assumption for the application was simple: must look proffessional so the color selection is the key.
+The assumption for the application was simple: must look professional so the color selection is the key.
 
 #### Typography:
 
@@ -118,7 +118,10 @@ Roboto offers a pleasing reading ability to the user and is easy on the eyes. Fo
 
 #### Content Structure:
 
+The application is primarily rectangular shaped with by default subtle rounded edges around buttons to create a nice flow for the user. Content is grouped in sections. An example of this would be the Home page:
+- The main body of the page is horizontally separated into sections, we have a search section where user can find ads by text, category section where user can choose ads by their category, and finally we have a recent added ads section where user can see 8 last added ads. Page is finished by footer  where we can find short site description, email address and social links.
 
+Despite the large amount of content, the user is not overwhelmed, thanks to simple but effective layout.
 
 #### Images:
 
