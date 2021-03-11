@@ -110,6 +110,8 @@ Un-registered users can also use the application, but their permissions are limi
 #### Color Scheme:
 
 The assumption for the application was simple: must look professional so the color selection is the key.
+- Main colors are:
+
 
 #### Typography:
 
@@ -123,14 +125,16 @@ The application is primarily rectangular shaped with by default subtle rounded e
 
 Despite the large amount of content, the user is not overwhelmed, thanks to simple but effective layout.
 
-#### Images:
-
-??????????????????????????????????????????????????????????????????????????
-
 #### Wireframes:
 
 - <a href="static/readmeimages/desktop-wireframes.pdf" target="_blank">Desktop wireframes</a>
 - <a href="static/readmeimages/mobile-wireframes.pdf" target="_blank">Mobile wireframes</a>
+
+The first raw design wos drawn on a piece of paper and then the idea was transferred to an advanced creator. However, while creating application changes were made to improve the appearance and functionality.
+
+- Footer has been completely redesigned. The explore links have been removed, social media has been limited to icons, about info has been added so that the user can familiarize with website assumptions. All info has been placed vertically on all screen sizes.
+- Login and registration pages has been split into two separate pages.
+- On admin site tables with all categories, all users and reported ads have been added.
 
 <div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
 
