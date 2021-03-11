@@ -177,7 +177,34 @@ The first raw design wos drawn on a piece of paper and then the idea was transfe
 
 ### Existing features:
 
-?????????????????????????????????????????????????????????
+1. Create features:
+
+- Guest user can create new user in database thanks to registration form and log in to app. Guest user can see PLACE AD button but after click he will be redirected to Log In page.
+    
+    - To register Guest user have to click register link located on navbar.
+     
+    ![navbar](static/readmeimages/navbar.jpg)
+    
+    - Registration page will show up, Guest user can choose username and password.
+
+    ![registration](static/readmeimages/registration.jpg)
+
+    - After successfully registration, user will be able to log in to app.
+
+    ![login](static/readmeimages/login.jpg)
+    
+    
+    - Logged in user can create new ads.
+    - Admin can create new categories.
+
+- Read functions:
+
+    - All users can navigate thru app and see ads in all categories. However Guest user is not able to see advertiser contact information.
+
+- Update:
+
+    - This is available for advertiser to edit all his ads and push changes to database. 
+
 
 <p id="future"></p>
 
