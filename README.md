@@ -179,20 +179,27 @@ The first raw design wos drawn on a piece of paper and then the idea was transfe
 
 1. Create features:
 
-- Guest user can create new user in database thanks to registration form and log in to app. Guest user can see PLACE AD button but after click he will be redirected to Log In page.
-    
-    - To register Guest user have to click register link located on navbar.
+<details>
+<summary>Guest:</summary>
+
+Guest user can create new user in database thanks to registration form and log in to app. Guest user can see PLACE AD button but after click he will be redirected to Log In page.
+
+- To register Guest user have to click register link located on navbar.
      
-    ![navbar](static/readmeimages/navbar.jpg)
+![navbar](static/readmeimages/navbar.jpg)
     
-    - Registration page will show up, Guest user can choose username and password.
+- Registration page will show up, Guest user can choose username and password.
 
-    ![registration](static/readmeimages/registration.jpg)
+![registration](static/readmeimages/registration.jpg)
 
-    - After successfully registration, user will be able to log in to app.
+- After successfully registration, user will be able to log in to app.
 
-    ![login](static/readmeimages/login.jpg)
-    
+![login](static/readmeimages/login.jpg)
+</details>
+
+<details>
+<summary>Logged in User:</summary>
+
 - Logged in user can create new ads.
 
     - To place new ad user have to click PLACE AD.
@@ -202,6 +209,10 @@ The first raw design wos drawn on a piece of paper and then the idea was transfe
     - Place ad form will show up. 
 
     ![Place ad](static/readmeimages/placead.jpg)
+</details>
+
+<details>
+<summary>Admin:</summary>
 
 - Admin can create new categories.
 
@@ -216,6 +227,7 @@ The first raw design wos drawn on a piece of paper and then the idea was transfe
     - Add category form will show up.
 
     ![Add category](static/readmeimages/add-cat.jpg)
+</details>
 
 
 - Read functions:
