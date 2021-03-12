@@ -149,6 +149,14 @@ The first raw design wos drawn on a piece of paper and then the idea was transfe
 
 <p id="lang"></p>
 
+### database
+
+- <a href="https://www.mongodb.com/" rel="noopener" target="_blank">mongoDB</a> -general purpose, document-based, distributed database built for modern application developers and for the cloud era.
+
+Schema:
+
+![Schema](static/readmeimages/schema.jpg)
+
 ### Languages Used:
 
 - <a href="https://en.wikipedia.org/wiki/HTML" rel="noopener" target="_blank">HTML</a> - Standard mark-up language for documents designed to be displayed in a web browser.
@@ -384,7 +392,13 @@ Reported ad will also show up in Admins Manage Reported ad section in control pa
 
 ### Future features:
 
-??????????????????????????????????????????????????????????
+**Sort:**  I would lke to implement sort option that will sort ads by category, price, date added.
+
+**Watch ad:** I would like to implement this feature to save ads created by others so user can have quick access to this ads.
+
+**Message system:** I would like to implement internal message system where users can message to each other.
+
+**Feedback:** I would like to implement feedback system so the users can score each other, depends how the transaction went.
 
 <div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
 
