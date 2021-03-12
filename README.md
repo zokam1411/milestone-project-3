@@ -279,7 +279,41 @@ Admin has logged in user and moderator functionality and also can edit categorie
 ![User status](static/readmeimages/user-status.jpg)
 </details>
 
-4. Delete
+4. Delete features:
+
+<details>
+<summary>Logged in User / Moderator:</summary>
+
+Logged in user can delete ads he created. Moderator can delete any ad.
+
+- To delete ad user has to navigate to ad view page and click red delete button.
+
+![Ad view](static/readmeimages/edit-del-ad.jpg)
+</details>
+
+<details>
+<summary>Admin:</summary>
+
+Admin has logged in user and moderator functionality and also can delete categories and  users.
+
+- To delete category admin has to click CONTROL PANEL button visible only for him.
+
+![Admin navbar](static/readmeimages/navbar-admin.jpg)
+
+- On Control Panel page in Manage Category section admin has to click red DELETE button.
+
+![Manage categories](static/readmeimages/manage-cat.jpg)
+
+- To delete user, admin has to click CONTROL PANEL button visible only for him.
+
+![Admin navbar](static/readmeimages/navbar-admin.jpg)
+
+- On Control Panel page in Manage Users section admin has to click red DELETE button.
+
+![Manage users](static/readmeimages/manage-users.jpg)
+</details>
+
+5. Search features:
 
 <p id="future"></p>
 
