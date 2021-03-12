@@ -238,13 +238,13 @@ Admin has logged in user and moderator functionality and also can create new cat
 ![Add category](static/readmeimages/add-cat.jpg)
 </details>
 
-2. Read features:
+#### Read features:
 
 All users can navigate thru app and see ads in all categories.
 
 However Guest has no permission to see Users Profiles or contact information. This restriction was put in place to encourage Guest to registration.
 
-3. Update features:
+#### Update features:
 
 <details>
 <summary>User / Moderator:</summary>
@@ -290,7 +290,7 @@ Admin has User and Moderator functionality and also can edit categories and upda
 ![User status](static/readmeimages/user-status.jpg)
 </details>
 
-4. Delete features:
+#### Delete features:
 
 <details>
 <summary>User / Moderator:</summary>
@@ -306,20 +306,78 @@ User can delete ads he created. Moderator can delete any ad.
 ![Ad view](static/readmeimages/edit-del-ad.jpg)
 </details>
 
-5. Search features:
+<details>
+<summary>Admin:</summary>
 
-All users can search for ads by text. It will find ads if search phrase will be in ad title or description. The search is not case sensitive. Users can search in all ads or in particular category.
+Admin has User and Moderator functionality and also can delete categories and users.
+
+- To delete category, admin has to click CONTROL PANEL button thats located on navbar and is visible only for him.
+
+![Admin navbar](static/readmeimages/navbar-admin.jpg)
+
+- On Control Panel page in Manage Category Section admin has to click red Delete button.
+
+![Manage categories](static/readmeimages/manage-cat.jpg)
+
+- To delete User, admin has to click CONTROL PANEL button thats located on navbar and is visible only for him.
+
+![Admin navbar](static/readmeimages/navbar-admin.jpg)
+
+- On Control Panel page in Manage Users section Admin has to click red Delete button beside user he wants to delete.
+This action will also delete user ads.
+
+![Manage users](static/readmeimages/manage-users.jpg)
+
+</details>
+
+#### Search features:
+
+All users can search for ads by text. It will find ads if search phrase will be detected in ad title or description. The search is not case sensitive. Users can use search form in all ads or in particular category.
 
 <details>
 <summary>All users:</summary>
 
-- To search in all ads user can use search form on main page, which will redirect user to all ads.
+- To search in all ads visitor can use search form on main page, which will redirect user to all ads.
 
 ![Search form](static/readmeimages/search-main.jpg)
 
-- To search in particular category user can use in category search form
+- To search in particular category visitor can use in category search form
 
 ![Search cat](static/readmeimages/search-cat.jpg)
+</details>
+
+#### Report ad
+
+This option is created for users to report to moderators and administrators the content that, according to them, violates the rules of the website. When the ad is reported, Mod and Admin will be able to see the report log in the table that will show up on the bottom of ad view.
+Reported ad will also show up in Admins Manage Reported ad section in control panel. Moderator and admin can read reports and take appropriate action.
+
+<details>
+<summary>User:</summary>
+
+- Report ad option is located on the bottom of view ad page.
+
+![Report ad](static/readmeimages/edit-del-ad.jpg)
+
+- After clicking, modal form with text area will show up.
+
+![Report ad modal](static/readmeimages/report-ad.jpg)
+</details>
+
+<details>
+<summary>Admin / Moderator:</summary>
+
+- To see if there are reported ads, Admin has to click CONTROL PANEL button thats located on navbar and is visible only for him.
+
+![Admin navbar](static/readmeimages/navbar-admin.jpg)
+
+- Scroll down on Control Panel page and check Reported Ad section
+
+![Reports tab](static/readmeimages/report-table.jpg)
+
+- Click on ad title will redirect Admin to ad view page. Report log table will be located on the bottom of the page.
+
+![Reports log](static/readmeimages/report-log.jpg)
+
 </details>
 
 <p id="future"></p>
