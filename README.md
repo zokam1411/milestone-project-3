@@ -65,8 +65,8 @@ Un-registered users can also use the application, but their permissions are limi
 
 #### Registered User:
 
-1. As a Registered User, I want to 'Log In' to my profile.
-- Registered User can Log In using registered username and password.
+1. As a Registered User, I want to 'Log in' to my profile.
+- Registered User can 'Log in' using registered username and password.
 2. As a Registered User, I want to add my ads.
 - Registered User can start adding ad by clicking 'Place Ad' button in navigation bar.
 3. As a Registered User, I want to Edit or Delete my ads.
@@ -74,32 +74,35 @@ Un-registered users can also use the application, but their permissions are limi
 4. As a Registered user, I want 'Profile' page where I can see my all ads.
 -  Registered user will see 'Profile' tab in navigation after Log In.
 5. As a Registered user, I want report ad when item is suspicious or not appropriate.
-- Registered used can use 'Report Ad' button under ad.
-5. As a Registered user, I want to 'Log Out'.
+- Registered used can use 'Report Ad' button under ad on ad view page.
+5. As a Registered user, I want to 'Log out'.
+- 'Log out' button is located on navbar.
 
-### Moderators
+#### Moderators
 
-1. As Moderator, I want to delete or update any ad.
-- Moderator can see Edit and Delete buttons for all ads.
-2. As, Admin I want to see ad reports.
+1. As Moderator, I want Registered user functionality.
+- Mod has Registered User functionality.
+2. As Moderator I want to Edit or Delete any ad.
+- Moderator can see Edit and Delete buttons for all ads on ad view page.
+2. As Moderator, I want to see ad reports.
 - Moderator can see all reports in table under ad.
+3. As Moderator, I want to delete reports.
+- Moderator can delete reports using Delete button.
 
-### Admin:
-
-1. As Admin, I want to ad new 'Categories'
+#### Admin:
+1. As Admin, I want Registered User and Moderator functionality.
+- Admin has Registered User and Mod functionality.
+2. As Admin, I want to ad new 'Categories'
 - Admin has dedicated page where he can click 'Add Category' button.
-2. As Admin, I want to delete or update any ad.
-- Admin can see Edit and Delete buttons for all ads.
 3. As, Admin I want to remove 'Registered User'.
 - Admin has dedicated page where he can delete any user.
-4. As, Admin I want to see ad reports.
-- Admin can see all reports in table under ad.
 5. As Admin I want to edit users permissions.
-- Admin can create moderators and other admins.
+- Admin has dedicated page where he can update status for users.
 
-### Developer:
+#### Developer:
 
 1. As a Developer, I want to create database application app using Python and Flask.
+- Application functionality is created thanks to use Flask and Python.
 2. As a developer, I want to create fully responsive app.
 - Application is fully responsive thanks to Materialize framework.
 
@@ -120,7 +123,7 @@ Roboto offers a pleasing reading ability to the user and is easy on the eyes. Fo
 
 #### Content Structure:
 
-The application is primarily rectangular shaped with by default subtle rounded edges around buttons to create a nice flow for the user. Content is grouped in sections. An example of this would be the Home page:
+The application is primarily rectangular shaped with by default subtle rounded edges around buttons to create a nice flow for the user. Content is grouped in sections, an example of this would be the Home page:
 - The main body of the page is horizontally separated into sections, we have a search section where user can find ads by text, category section where user can choose ads by their category, and finally we have a recent added ads section where user can see 8 last added ads. Page is finished by footer  where we can find short site description, email address and social links.
 
 Despite the large amount of content, the user is not overwhelmed, thanks to simple but effective layout.
@@ -177,32 +180,38 @@ The first raw design wos drawn on a piece of paper and then the idea was transfe
 
 ### Existing features:
 
-1. Create features:
+This application has different features for different users. User status determines what kind of functions a given user has:
+- Guest - unregistered / not logged in user with minimum permissions.
+- User - registered in database and logged in to application.
+- Moderator - User with higher level of permissions. The moderator ensures that the content of the website is in accordance with the rules and the law.
+- Admin has the highest level of permissions.
+
+#### Create features:
 
 <details>
 <summary>Guest:</summary>
 
-Guest user can create new user in database thanks to registration form and log in to app. Guest user can see PLACE AD button but after click he will be redirected to Log In page.
+Guest can create new User in database thanks to registration form and then log in to app. Guest can see PLACE AD button but click will redirected to Log in page.
 
-- To register Guest user has to click register link located on navbar.
+- To register Guest has to click 'Register' link located on navbar.
      
 ![navbar](static/readmeimages/navbar.jpg)
     
-- Registration page will show up, Guest user can choose username and password.
+- Registration page will show up, Guest can choose username and password.
 
 ![registration](static/readmeimages/registration.jpg)
 
-- After successfully registration, user will be able to log in to app.
+- After successfully registration, Guest will be able to log in to app using details provided on registration.
 
 ![login](static/readmeimages/login.jpg)
 </details>
 
 <details>
-<summary>Logged in User / Moderator:</summary>
+<summary>User / Moderator:</summary>
 
-Logged in users or Moderators can create new ads.
+Logged in Users or Moderators can create new ads.
 
-- To place new ad user has to click PLACE AD.
+- To place new ad User has to click PLACE AD button that is located on navbar.
 
 ![Login navbar](static/readmeimages/navbar-log.jpg)
 
@@ -216,7 +225,7 @@ Logged in users or Moderators can create new ads.
 
 Admin has logged in user and moderator functionality and also can create new categories.
 
-- To create new category admin has to click CONTROL PANEL button visible only for him.
+- To create new category admin has to click CONTROL PANEL button that is visible only for him.
 
 ![Admin navbar](static/readmeimages/navbar-admin.jpg)
 
@@ -231,20 +240,22 @@ Admin has logged in user and moderator functionality and also can create new cat
 
 2. Read features:
 
-All users can navigate thru app and see ads in all categories. However Guest user is not able to see advertiser contact information.
+All users can navigate thru app and see ads in all categories.
+
+However Guest has no permission to see Users Profiles or contact information. This restriction was put in place to encourage Guest to registration.
 
 3. Update features:
 
 <details>
-<summary>Logged in User / Moderator:</summary>
+<summary>User / Moderator:</summary>
 
-Logged in user can edit ads he created. Moderator can edit any ad.
+User can edit ads he created. Moderator can edit any ad.
 
-- To update ad user has to navigate to ad view page and click yellow edit button.
+- To update ad User / Mod has to navigate to ad view page and click yellow edit button.
 
 ![Ad view](static/readmeimages/edit-del-ad.jpg)
 
-- Edit ad page will show up with pre filled input fields.
+- Edit ad page will show up with fields that contain ad details. 
 
 ![Edit ad](static/readmeimages/edit-ad.jpg)
 </details>
@@ -252,9 +263,9 @@ Logged in user can edit ads he created. Moderator can edit any ad.
 <details>
 <summary>Admin:</summary>
 
-Admin has logged in user and moderator functionality and also can edit categories and update user status.
+Admin has User and Moderator functionality and also can edit categories and update user status.
 
-- To edit category admin has to click CONTROL PANEL button visible only for him.
+- To edit category admin has to click CONTROL PANEL button thats located on navbar and is visible only for him.
 
 ![Admin navbar](static/readmeimages/navbar-admin.jpg)
 
@@ -266,15 +277,15 @@ Admin has logged in user and moderator functionality and also can edit categorie
 
 ![Edit category](static/readmeimages/edit-cat.jpg)
 
-- To update user status admin has to click CONTROL PANEL button visible only for him.
+- To update User status admin has to click CONTROL PANEL button thats located on navbar and is visible only for him.
 
 ![Admin navbar](static/readmeimages/navbar-admin.jpg)
 
-- On Control Panel page in Manage Users section admin has to click yellow EDIT button.
+- On Control Panel page in Manage Users section Admin has to click yellow EDIT button.
 
 ![Manage users](static/readmeimages/manage-users.jpg)
 
-- Update user status form will show up and from dropdown menu admin can select status.
+- Update user status form will show up and from dropdown menu admin can select new status.
 
 ![User status](static/readmeimages/user-status.jpg)
 </details>
@@ -282,11 +293,15 @@ Admin has logged in user and moderator functionality and also can edit categorie
 4. Delete features:
 
 <details>
-<summary>Logged in User / Moderator:</summary>
+<summary>User / Moderator:</summary>
 
-Logged in user can delete ads he created. Moderator can delete any ad.
+User can delete ads he created. Moderator can delete any ad.
 
-- To delete ad user has to navigate to ad view page and click red delete button.
+- To delete ad User / Mod has to navigate to ad view page by clicking on ad preview.
+
+![Preview](static/readmeimages/preview.jpg)
+
+- Then on ad view page User has to click red Delete button.
 
 ![Ad view](static/readmeimages/edit-del-ad.jpg)
 </details>
