@@ -132,7 +132,7 @@ hr {
     margin-bottom: 50px;
 }
 /* Recent ads */
-#col-padding {
+.row .col-padding {
     padding-left: 5px;
     padding-right: 5px;
 }

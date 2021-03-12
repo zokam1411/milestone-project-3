@@ -30,7 +30,7 @@
     {% if ads.count() > 0 %}
     <div class="row">
         {% for ad in ads %}
-        <div class="col s6 m3 col-margin" id="col-padding">
+        <div class="col s6 m3 col-margin col-padding">
             <a href="{{ url_for('view_ad', ad_id=ad._id) }}">
                 <div class="grey lighten-3 main-ad-holder">
                     <div class="white ad-img-holder">
