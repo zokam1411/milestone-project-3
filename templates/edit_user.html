@@ -24,7 +24,7 @@
                     <div class="input-field col s12">
                         <i class="fas fa-arrow-circle-right prefix"></i>
                         <select id="status" name="status" class="validate" required>
-                            <option disabled selected value="{{ username.status }}">{{ username.status }}</option>
+                            <option disabled selected value="">{{ username.status }}</option>
                             {% if username.status == 'normal' %}
                             <option value="mod">mod</option>
                             <option value="admin">admin</option>
