@@ -87,11 +87,11 @@ Un-registered users can also use the application, but their permissions are limi
 ### Admin:
 
 1. As Admin, I want to ad new 'Categories'
-- Admin have dedicated page where he can click 'Add Category' button.
+- Admin has dedicated page where he can click 'Add Category' button.
 2. As Admin, I want to delete or update any ad.
 - Admin can see Edit and Delete buttons for all ads.
 3. As, Admin I want to remove 'Registered User'.
-- Admin have dedicated page where he can delete any user.
+- Admin has dedicated page where he can delete any user.
 4. As, Admin I want to see ad reports.
 - Admin can see all reports in table under ad.
 5. As Admin I want to edit users permissions.
@@ -184,7 +184,7 @@ The first raw design wos drawn on a piece of paper and then the idea was transfe
 
 Guest user can create new user in database thanks to registration form and log in to app. Guest user can see PLACE AD button but after click he will be redirected to Log In page.
 
-- To register Guest user have to click register link located on navbar.
+- To register Guest user has to click register link located on navbar.
      
 ![navbar](static/readmeimages/navbar.jpg)
     
@@ -198,46 +198,88 @@ Guest user can create new user in database thanks to registration form and log i
 </details>
 
 <details>
-<summary>Logged in User:</summary>
+<summary>Logged in User / Moderator:</summary>
 
-- Logged in user can create new ads.
+Logged in users or Moderators can create new ads.
 
-    - To place new ad user have to click PLACE AD.
+- To place new ad user has to click PLACE AD.
 
-    ![Login navbar](static/readmeimages/navbar-log.jpg)
+![Login navbar](static/readmeimages/navbar-log.jpg)
 
-    - Place ad form will show up. 
+- Place ad form will show up. 
 
-    ![Place ad](static/readmeimages/placead.jpg)
+![Place ad](static/readmeimages/placead.jpg)
 </details>
 
 <details>
 <summary>Admin:</summary>
 
-- Admin can create new categories.
+Admin has logged in user and moderator functionality and also can create new categories.
 
-    - To place new category admin have to click CONTROL PANEL button visible only for him.
+- To create new category admin has to click CONTROL PANEL button visible only for him.
 
-    ![Admin navbar](static/readmeimages/navbar-admin.jpg)
+![Admin navbar](static/readmeimages/navbar-admin.jpg)
 
-    - On Control Panel page in Manage Category section admin have to click ADD CATEGORY button.
+- On Control Panel page in Manage Category section admin has to click ADD CATEGORY button.
 
-    ![Manage categories](static/readmeimages/manage-cat.jpg)
+![Manage categories](static/readmeimages/manage-cat.jpg)
 
-    - Add category form will show up.
+- Add category form will show up.
 
-    ![Add category](static/readmeimages/add-cat.jpg)
+![Add category](static/readmeimages/add-cat.jpg)
 </details>
 
+2. Read features:
 
-- Read functions:
+All users can navigate thru app and see ads in all categories. However Guest user is not able to see advertiser contact information.
 
-    - All users can navigate thru app and see ads in all categories. However Guest user is not able to see advertiser contact information.
+3. Update features:
 
-- Update:
+<details>
+<summary>Logged in User / Moderator:</summary>
 
-    - This is available for advertiser to edit all his ads and push changes to database. 
+Logged in user can edit ads he created. Moderator can edit any ad.
 
+- To update ad user has to navigate to ad view page and click yellow edit button.
+
+![Ad view](static/readmeimages/edit-del-ad.jpg)
+
+- Edit ad page will show up with pre filled input fields.
+
+![Edit ad](static/readmeimages/edit-ad.jpg)
+</details>
+
+<details>
+<summary>Admin:</summary>
+
+Admin has logged in user and moderator functionality and also can edit categories and update user status.
+
+- To edit category admin has to click CONTROL PANEL button visible only for him.
+
+![Admin navbar](static/readmeimages/navbar-admin.jpg)
+
+- On Control Panel page in Manage Category section admin has to click yellow EDIT button.
+
+![Manage categories](static/readmeimages/manage-cat.jpg)
+
+- Edit category page will show up.
+
+![Edit category](static/readmeimages/edit-cat.jpg)
+
+- To update user status admin has to click CONTROL PANEL button visible only for him.
+
+![Admin navbar](static/readmeimages/navbar-admin.jpg)
+
+- On Control Panel page in Manage Users section admin has to click yellow EDIT button.
+
+![Manage users](static/readmeimages/manage-users.jpg)
+
+- Update user status form will show up and from dropdown menu admin can select status.
+
+![User status](static/readmeimages/user-status.jpg)
+</details>
+
+4. Delete
 
 <p id="future"></p>
 
