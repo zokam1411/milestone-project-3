@@ -291,29 +291,21 @@ Logged in user can delete ads he created. Moderator can delete any ad.
 ![Ad view](static/readmeimages/edit-del-ad.jpg)
 </details>
 
-<details>
-<summary>Admin:</summary>
-
-Admin has logged in user and moderator functionality and also can delete categories and  users.
-
-- To delete category admin has to click CONTROL PANEL button visible only for him.
-
-![Admin navbar](static/readmeimages/navbar-admin.jpg)
-
-- On Control Panel page in Manage Category section admin has to click red DELETE button.
-
-![Manage categories](static/readmeimages/manage-cat.jpg)
-
-- To delete user, admin has to click CONTROL PANEL button visible only for him.
-
-![Admin navbar](static/readmeimages/navbar-admin.jpg)
-
-- On Control Panel page in Manage Users section admin has to click red DELETE button.
-
-![Manage users](static/readmeimages/manage-users.jpg)
-</details>
-
 5. Search features:
+
+All users can search for ads by text. It will find ads if search phrase will be in ad title or description. The search is not case sensitive. Users can search in all ads or in particular category.
+
+<details>
+<summary>All users:</summary>
+
+- To search in all ads user can use search form on main page, which will redirect user to all ads.
+
+![Search form](static/readmeimages/search-main.jpg)
+
+- To search in particular category user can use in category search form
+
+![Search cat](static/readmeimages/search-cat.jpg)
+</details>
 
 <p id="future"></p>
 
