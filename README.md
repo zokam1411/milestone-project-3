@@ -426,7 +426,52 @@ Passing the HTML file content through the W3C Validator for HTML resulted in num
 
  ### User Stories:
 
- ???????????????????????????????????????????????????????
+ #### Guest user:
+
+ Here are the steps and results from the testing carried based on the project user stories to determine that the app and functionality are fit for purpose:
+1. As a Guest user, I want to browse the ads added by registered users.
+- Open <a href="https://buy-and-sell-project.herokuapp.com/">Buy & Sale</a>
+- To browse ads by category:
+    - Click on one of the categories in category section.
+    - On category page browse ads added by registered users.
+    - Browse ads displayed in Recently Added Ads section 
+- To browse recently added ads:
+    - Locate 'Recently added ads' section and browse ads.
+- To browse all ads:
+    - Locate 'Recently added ads' section.
+    - Click 'see all'
+    - New page will display all ads.
+
+Result: Everything works as it should, all ads are displayed in correct places. Page nav helping to determinate currently location.
+
+2. As a Guest user, I want to be able to see seller contact details or add my ads.
+- On any page in application click 'Register' tab located on navbar.
+- Fill up registration form and click register button.
+- After redirection to login page fill up login form using registered details.
+- After login, view ads without restrictions and add your ads.
+
+Result: Registration works as it should. Username and password requirements are displayed on form and if they are missed form will not be submitted.
+If client validation is correct, form is checked on back end side to make sure username is not already in database. User is informed about every situation by flash messages.
+Login is secured on back end side to make sure user will match username with password. Flash messages works as they should.
+
+3. As a Guest user, I want app to be visually appealing and easy in use.
+- Open <a href="https://buy-and-sell-project.herokuapp.com/">Buy & Sale</a>
+- Click on one of the categories in category section.
+- Click one of the ads.
+- On the 'ad view' page locate page navigation and click on Home
+- Locate 'Recently added ads' section and click one of the ads.
+- On the 'ad view' page locate page navigation and click on Category.
+- On the 'category' page click on Buy&Sell logo located on navbar.
+
+Result: Using application is very easy. You can always locate yourself thanks to intelligent page navigation. Colors 'catch' user eyes and page layout is very friendly for user.
+
+4. As a Guest user, I want to contact someone in the event something is wrong with the app.
+- On any page in application scroll down to footer.
+- Footer provides email contact information and redirection to most popular social media.
+
+Result: Information display works as it should. User can't miss footer with logo and ways of contact. Email and social media are currently the fastest ways to contact any company.
+
+
 
  <p id="bugs"></p>
 
