@@ -114,6 +114,9 @@ def login():
 # user profile page
 @app.route('/profile/<username>')
 def profile(username):
+    if 'user' not in session:
+        flash('please log in to see user profile', 'blue lighten-1')
+        return redirect(url_for('login'))
     username = mongo.db.users.find_one(
         {'username': username})
     ads = mongo.db.ads.find({'created_by': username['username']})
