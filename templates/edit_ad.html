@@ -18,7 +18,6 @@
                     <div class="input-field col s12">
                         <i class="far fa-folder-open prefix"></i>
                         <select id="category" name="category" class="validate" required>
-                            <option value="" disabled>Categories:</option>
                             {% for category in categories %} {% if category.category == ad.category %}
                             <option value="{{ category.category }}" selected>{{ category.category }}</option>
                             {% else %}
