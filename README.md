@@ -193,9 +193,30 @@ The first raw design wos drawn on a piece of paper and then the idea was transfe
 
     ![login](static/readmeimages/login.jpg)
     
-    
-    - Logged in user can create new ads.
-    - Admin can create new categories.
+- Logged in user can create new ads.
+
+    - To place new ad user have to click PLACE AD.
+
+    ![Login navbar](static/readmeimages/navbar-log.jpg)
+
+    - Place ad form will show up. 
+
+    ![Place ad](static/readmeimages/placead.jpg)
+
+- Admin can create new categories.
+
+    - To place new category admin have to click CONTROL PANEL button visible only for him.
+
+    ![Admin navbar](static/readmeimages/navbar-admin.jpg)
+
+    - On Control Panel page in Manage Category section admin have to click ADD CATEGORY button.
+
+    ![Manage categories](static/readmeimages/manage-cat.jpg)
+
+    - Add category form will show up.
+
+    ![Add category](static/readmeimages/add-cat.jpg)
+
 
 - Read functions:
 
