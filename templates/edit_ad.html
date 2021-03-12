@@ -36,12 +36,14 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-pen-alt prefix"></i>
-                        <input id="title" name="title" type="text" class="validate" minlength="5" maxlength="20" data-length="20" value="{{ ad.title }}" required />
+                        <input id="title" name="title" type="text" class="validate" minlength="5" maxlength="20"
+                            data-length="20" value="{{ ad.title }}" required />
                         <label for="title">Ad title:</label>
                     </div>
                     <div class="input-field col s12">
                         <i class="far fa-file-alt prefix"></i>
-                        <textarea id="description" name="description" class="validate materialize-textarea" minlength="10" maxlength="300" data-length="300" required>{{ ad.description }}</textarea>
+                        <textarea id="description" name="description" class="validate materialize-textarea"
+                            minlength="10" maxlength="300" data-length="300" required>{{ ad.description }}</textarea>
                         <label for="description">Describe your item:</label>
                     </div>
                 </div>
@@ -58,7 +60,8 @@
                             <input type="file" id="item_image" name="item_image" />
                         </div>
                         <div class="file-path-wrapper">
-                            <input class="file-path validate" id="item_image_up" name="item_image_up" type="text" value="{{ad.item_image}}" placeholder="Upload item image" />
+                            <input class="file-path validate" id="item_image_up" name="item_image_up" type="text"
+                                value="{{ad.item_image}}" placeholder="Upload item image" />
                         </div>
                     </div>
                     <p><span class="red-text"></span>Not required but ads with pictures are selling 5 times faster!</p>
@@ -72,7 +75,8 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-euro-sign prefix"></i>
-                        <input id="price" name="price" type="text" pattern="^[0-9]{1,6}$" class="validate" minlength="1" maxlength="6" data-length="20" value="{{ ad.price }}" required />
+                        <input id="price" name="price" type="text" pattern="^[0-9]{1,6}$" class="validate" minlength="1"
+                            maxlength="6" data-length="20" value="{{ ad.price }}" required />
                         <label for="price">Item price:</label>
                     </div>
                     <div class="center-align">
@@ -127,7 +131,6 @@
                     <div class="input-field col s12">
                         <i class="fas fa-map-marker-alt prefix"></i>
                         <select id="location" name="location" class="validate" required>
-                            <option value="" disabled selected>Locations:</option>
                             {% for county in counties %} {% if county.county == ad.location %}
                             <option value="{{county.county}}" selected>{{county.county}}</option>
                             {% else %}
@@ -138,7 +141,8 @@
                     </div>
                     <div class="input-field col s12">
                         <i class="fas fa-phone prefix"></i>
-                        <input id="phone" name="phone" type="text" pattern="^[0-9]{1,11}$" class="validate" minlength="1" data-length="20" value="{{ ad.phone }}" required />
+                        <input id="phone" name="phone" type="text" pattern="^[0-9]{1,11}$" class="validate"
+                            minlength="1" data-length="20" value="{{ ad.phone }}" required />
                         <label for="phone">Seller phone number:</label>
                     </div>
                 </div>
