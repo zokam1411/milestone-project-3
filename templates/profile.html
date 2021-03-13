@@ -39,9 +39,9 @@
                     <li>{{username.join_date}}</li>
                     <li><strong>Last login:</strong></li>
                     <li>{{username.last_log}}</li>
-                    {% if mod %}
+                    {% if username.status == 'mod' %}
                     <li><b class="green-text">Moderator</b></li>
-                    {% elif admin %}
+                    {% elif username.status == 'admin' %}
                     <li><b class="red-text">Admin</b></li>    
                     {% endif %}
                 </ul>
