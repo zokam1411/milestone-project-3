@@ -39,6 +39,11 @@
                     <li>{{username.join_date}}</li>
                     <li><strong>Last login:</strong></li>
                     <li>{{username.last_log}}</li>
+                    {% if mod %}
+                    <li><b class="green-text">Moderator</b></li>
+                    {% elif admin %}
+                    <li><b class="red-text">Admin</b></li>    
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -51,25 +56,25 @@
         <h6>Your ads:</h6>
         {% else %}
         <h6><strong>{{username.username}}</strong>'s ads:</h6>
-        {% endif %} {% if ads.count() > 0 %} {% for ad in ads %}
+        {% endif %} {% if user_ads.count() > 0 %} {% for user_ad in user_ads %}
         <div class="col s6 m3 col-margin" id="col-padding">
-            <a href="{{ url_for('view_ad', ad_id=ad._id) }}">
+            <a href="{{ url_for('view_ad', ad_id=user_ad._id) }}">
                 <div class="grey lighten-3 main-ad-holder">
                     <div class="white ad-img-holder">
-                        {% if ad.item_image %}
-                        <img src="{{url_for('img_uploads', filename=ad['item_image'])}}" alt="item_image" />
+                        {% if user_ad.item_image %}
+                        <img src="{{url_for('img_uploads', filename=user_ad['item_image'])}}" alt="item_image" />
                         {% else %}
                         <img src="{{url_for('static', filename='images/no-image.png')}}" alt="default_recipe_image" />
                         {% endif %}
                     </div>
                     <div class="row">
-                        <div class="truncate"><strong>{{ ad.title }}</strong></div>
-                        {% if ad.urgent == "on" %}
+                        <div class="truncate"><strong>{{ user_ad.title }}</strong></div>
+                        {% if user_ad.urgent == "on" %}
                         <div><b>&#8364; {{ ad.price }}</b> <i class="fas fa-hammer yellow-text text-accent-4 tooltipped" data-position="bottom" data-tooltip="Price negotiable for quick sale."></i></div>
                         {% else %}
-                        <div><b>&#8364; {{ ad.price }}</b></div>
+                        <div><b>&#8364; {{ user_ad.price }}</b></div>
                         {% endif %}
-                        <div><small>{{ ad.location }}</small></div>
+                        <div><small>{{ user_ad.location }}</small></div>
                     </div>
                 </div>
             </a>
@@ -81,4 +86,34 @@
         {% endif %} {% endif %}
     </div>
 </div>
+{% if mod %}
+<!-- Manage reported ads -->
+<div class="grey lighten-4">
+    <div class="container">
+        <div class="row">
+            <h5>Moderation Queue:</h5>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <table>
+            <thead>
+                <tr>
+                    <th>Ads</th>
+                    <th>By</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ad in ads %} {% if ad.reports %}
+                <tr>
+                    <td><a href="{{ url_for('view_ad', ad_id=ad._id) }}">{{ad.title}}</a></td>
+                    <td>{{ad.created_by}}</td>
+                </tr>
+                {% endif %} {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
 {% endblock %}

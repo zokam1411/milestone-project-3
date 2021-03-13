@@ -117,18 +117,28 @@ def profile(username):
     if 'user' not in session:
         flash('please log in to see user profile', 'blue lighten-1')
         return redirect(url_for('login'))
+
     username = mongo.db.users.find_one(
         {'username': username})
-    ads = mongo.db.ads.find({'created_by': username['username']})
+    user_ads = mongo.db.ads.find({'created_by': username['username']})
+    ads = mongo.db.ads.find()
 
     if 'user' in session:
         admin = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'admin'})
-        return render_template(
-            'profile.html', username=username,
-            ads=ads, admin=admin)
+        mod = mongo.db.users.find_one(
+            {'username': session['user'], 'status': 'mod'})
+        if admin:
+            return render_template(
+                'profile.html', username=username,
+                user_ads=user_ads, admin=admin)
+        if mod:
+            return render_template(
+                'profile.html', username=username,
+                user_ads=user_ads, mod=mod, ads=ads)
 
-    return render_template('profile.html', username=username, ads=ads)
+    return render_template('profile.html',
+                           username=username, user_ads=user_ads)
 
 
 # add ad
