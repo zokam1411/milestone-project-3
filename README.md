@@ -617,13 +617,30 @@ Result: Everything works as it should. Admin can 'upgrade' or 'downgrade' user s
 
 ## 6️⃣ Deployment 🚀
 
-This project was developed in GitPod. All developments were pushed to the corresponding repository in GitHub account. App was deployed in Heroku.
+This project was developed in GitPod and deployed to Heroku for production.
 
-In order to deploy the website to Heroku:
+### Deploying to Heroku
 
-- I ensured that app.py, requirements.txt and Procfile files are created and pushed to GitHub.  
+- Changed the settings to Debug=False ("FLASK_DEBUG": "0")
 
-- I Created new account on Heroku and I set up new application.
+- Made sure that the env.py file is included in the gitignore file.
+
+- Removed import env from the app.py
+
+- Created an app in Heroku
+
+- In the settings (Config Vars) I've added my environmental variables for the IP, PORT, MONGODB_URI and SECRET_KEY
+
+- From the command line in vs code I have created a requirements.txt file with the following command:
+```
+python -m pip freeze > requirements.txt
+```
+
+- From the command line in vs code I have created the Procfile with the following command:
+```
+echo web: python app.py > Procfile
+```
+- Then I have pushed all the code to my GitHub repository
 
 - In 'Deploy' tab I set 'Deployment method' to 'GitHub' so Heroku is automatically updated with GitHub.
 
@@ -635,17 +652,21 @@ In order to deploy the website to Heroku:
 
 - To see my deployed app I clicked 'Open App' on the top of Heroku page.
 
-### Run this project locally:
+### Run this project in GitPod cloud environment:
 
 - Select the Repository from the GitHub Dashboard.
 
-- Click the green button labelled 'Code'.
+- Click the green button labelled 'GitPod'.
 
-- Click 'Download ZIP'.
+- Once in GitPod file named 'env.py' needs to be created with the following content:
 
-- Extract ZIP file on your computer.
+```
+os.environ.setdefault('SECRET_KEY', <SECRET_KEY>)
+os.environ.setdefault('MONGO_URI', 'mongodb+srv://zokam1411:<PASSWORD>@myfirstcluster.qsa9i.mongodb.net/buySellDB?retryWrites=true&w=majority')
+os.environ.setdefault('DBNAME', <DB_NAME>)
+```
+and replace parameters with the real values. Notice that parameters are enclosed in angulars '<>'.
 
-- Open folder and open index.html in web browser.
 
 ### Clone this project:
 
