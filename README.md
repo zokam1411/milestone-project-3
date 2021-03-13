@@ -88,19 +88,17 @@ Un-registered users can also use the application, but their permissions are limi
 - Moderator can delete reports using Delete button.
 
 #### Admin:
-1. As Admin, I want Registered User and Moderator functionality.
-- Admin has Registered User and Mod functionality.
-2. As Admin, I want to ad new 'Categories'
+1. As Admin, I want to ad new 'Category'
 - Admin has dedicated page where he can click 'Add Category' button.
-3. As, Admin I want to remove 'Registered User'.
+2. As, Admin I want to remove 'Registered User'.
 - Admin has dedicated page where he can delete any user.
-5. As Admin I want to edit users permissions.
+3. As Admin I want to edit users permissions.
 - Admin has dedicated page where he can update status for users.
 
 #### Developer:
 
 1. As a Developer, I want to create database application app using Python and Flask.
-- Application functionality is created thanks to use Flask and Python.
+- Application functionality is created thanks to using Flask and Python.
 2. As a developer, I want to create fully responsive app.
 - Application is fully responsive thanks to Materialize framework.
 
@@ -427,12 +425,12 @@ Passing the HTML file content through the W3C Validator for HTML resulted in num
  #### Guest user:
 
  Here are the steps and results from the testing carried based on the project user stories to determine that the app and functionality are fit for purpose:
+
 1. As a Guest user, I want to browse the ads added by registered users.
 - Open <a href="https://buy-and-sell-project.herokuapp.com/">Buy & Sale</a>
 - To browse ads by category:
     - Click on one of the categories in category section.
     - On category page browse ads added by registered users.
-    - Browse ads displayed in Recently Added Ads section 
 - To browse recently added ads:
     - Locate 'Recently added ads' section and browse ads.
 - To browse all ads:
@@ -455,19 +453,20 @@ Login is secured on back end side to make sure user will match username with pas
 3. As a Guest user, I want app to be visually appealing and easy in use.
 - Open <a href="https://buy-and-sell-project.herokuapp.com/">Buy & Sale</a>
 - Click on one of the categories in category section.
-- Click one of the ads.
+- Click on one of the ads.
 - On the 'ad view' page locate page navigation and click on Home
 - Locate 'Recently added ads' section and click one of the ads.
 - On the 'ad view' page locate page navigation and click on Category.
-- On the 'category' page click on Buy&Sell logo located on navbar.
+- On the 'Category' page click on Buy&Sell logo located on navbar.
+- User will be redirected to main page.
 
-Result: Using application is very easy. You can always locate yourself thanks to intelligent page navigation. Colors 'catch' user eyes and page layout is very friendly for user.
+Result: Using application is very easy. You can always locate yourself thanks to intelligent page navigation. Colors 'catch' user eye and page layout is user friendly.
 
 4. As a Guest user, I want to contact someone in the event something is wrong with the app.
 - From any page in application scroll down to footer.
 - Footer provides email contact information and redirection to most popular social media.
 
-Result: Information display works as it should. User can't miss footer with logo and ways of contact. Email and social media are currently the fastest ways to contact any company.
+Result: Information in footer are displayed correctly. User can't miss footer with logo and ways of contact. Email and social media are currently the fastest ways to contact any company.
 
 #### Registered User
 
@@ -482,18 +481,18 @@ Result: Login works as it should. Login is secured on back end side to make sure
 - Using form put all requested details in fields: Category, Description, Photo, Payment, Contact
 - Click Place Ad button and click YES on confirmation modal.
 
-Result: Everything works as expected. After modal confirm user is redirected to his new ad page and he can see flash message. If image is not provided, then default image will be used. 
+Result: Everything works as expected. When modal confirmation is confirmed user is redirected to his new ad page and he can see flash message. If image is not provided, then default image will be used. 
 
 3. As a Registered user, I want to Edit or Delete my ads.
 - From any page in application locate your username on navbar.
 - Click on dropdown menu and click My Profile.
 - On Profile page locate ad yo want to edit or delete.
 - To Edit ad:
-    - Click yellow EDIT button.
+    - Click yellow Edit button.
     - Using form, edit requested fields: Category, Description, Photo, Payment, Contact
-    - Click EDIT button and click YES on modal confirmation
+    - Click Edit button and click YES on modal confirmation
 - To DELETE ad:
-    - Click red DELETE button and click YES on modal confirmation.
+    - Click red delete button and click YES on modal confirmation.
 
 Result: Everything works as expected. After successfully editing user is redirected to updated ad so he can see changes immediately.
 Successfully delete redirecting user to his profile page.  Both operations are confirmed by flash messages.
@@ -503,13 +502,13 @@ Successfully delete redirecting user to his profile page.  Both operations are c
 - Click on dropdown menu and click My Profile.
 - On Profile page user ads will be displayed.
 
-Result: Everything works as it should. User can display his ads in two clicks from any page of website. If there are no ads in collection info message will be displayed.
+Result: Everything works as it should. User can display his ads in two clicks from any page on website. If there are no ads in collection info message will be displayed.
 
 5. As a Registered user, I want report ad when item is suspicious or not appropriate.
 - Navigate to any ad you want to report.
 - Click 'Report Ad' link and modal with textarea will pop up.
 - Describe why you want to report this ad.
-- Click REPORT button.
+- Click Report button.
 
 Result: Everything work as expected. I want only add, that Report Ad feature is very important on any social application .
 
@@ -525,7 +524,7 @@ Result: Everything works as expected. After successfully logout user can see fla
 
 1. As Moderator I want to Edit or Delete any ad.
 - On main page click on any category.
-- On category page choose ad and click.
+- On category page choose ad and click on it.
 - On ad view page EDIT and DELETE buttons are visible.
 - Locate page navigation and click Home.
 - On home page click on the one of recent added ads.
@@ -539,9 +538,9 @@ Result: Everything works as expected. Mod can choose any ad, Edit and Delete but
 - Click My Profile.
 - On Profile page locate Moderation Queue if any ad is visible.
 - Click on ad title.
-- on ad view page scroll down to see table with reports.
+- On ad view page scroll down to see table with reports.
 
-Result: Everything works as it should. Moderator can see reports.
+Result: Everything works as it should. Moderator will see if there is any Moderation Queue on his profile page. He can then choose ad which reports he wants to see. Reports table on ad view page is displayed correctly.
 
 3. As Moderator, I want to delete reports.
 - From any page in application locate your username on navbar.
@@ -553,6 +552,38 @@ Result: Everything works as it should. Moderator can see reports.
 - Click DELETE reports button and click yes on confirmation modal.
 
 Result: Everything is working as expected. Moderator can delete reports.
+
+#### Admin
+
+1. As Admin, I want to add new 'Category':
+- From any page in application locate Control Panel button on navbar.
+- Click on it and locate Manage Categories section on new page.
+- Click Add Category button.
+- Add category form will show up.
+- Fill up form required fields and click Add Category button.
+- Click YES on confirmation modal.
+
+Result: Everything works as it should. Implementing icon code works perfect, hoverer user have to be very careful when doing this because missing tag can cause visual problems.
+I assuming admin is a person that knows basics on how to fix such situation. On app like this it's very important to manage categories, editing and deleting is a must.
+
+2. As, Admin I want to remove 'Registered Users'.
+- From any page in application locate Control Panel button on navbar.
+- Locate Manage Users section.
+- Choose user you want to delete and click delete.
+- This will also delete user ads.
+- Click yes on modal confirmation.
+
+Result: Everything works as it should. User and his ads are deleted from database.
+
+3. As Admin I want to edit users permissions.
+- From any page in application locate Control Panel button on navbar.
+- Locate Manage Users section.
+- Choose user which status you want to edit and click edit.
+- From selecting field select new user status and click Edit button.
+- Click Yes on modal confirmation.
+
+Result: Everything works as it should. Admin can 'upgrade' or 'downgrade' user status. This is very useful option for admin to have somebody to help with managing website. Status upgrade also works as reward for active users.
+
 
  <p id="bugs"></p>
 
