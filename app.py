@@ -232,6 +232,8 @@ def view_ad(ad_id):
 
 @app.route('/edit_ad/<ad_id>', methods=['GET', 'POST'])
 def edit_ad(ad_id):
+    if 'user' not in session:
+        return redirect(url_for('get_ads'))
 
     if request.method == 'POST':
         urgent = 'on' if request.form.get('urgent') else 'off'
