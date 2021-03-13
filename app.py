@@ -1,4 +1,5 @@
 import os
+import uuid
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -159,6 +160,8 @@ def add_ad():
         if 'item_image' in request.files:
             item_image = request.files['item_image']
             if item_image.filename != '':
+                # generate filename using an uuid
+                item_image.filename = str(uuid.uuid4())
                 result = mongo.save_file(item_image.filename, item_image)
 
         ad = {
@@ -252,6 +255,8 @@ def edit_ad(ad_id):
                     mongo.db.fs.chunks.remove({"files_id": ObjectId(files_id)})
                     mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
 
+                # generate filename using an uuid
+                item_image.filename = str(uuid.uuid4())
                 result = mongo.save_file(item_image.filename, item_image)
 
         update = {
