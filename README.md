@@ -80,13 +80,11 @@ Un-registered users can also use the application, but their permissions are limi
 
 #### Moderator:
 
-1. As Moderator, I want Registered user functionality.
-- Mod has Registered User functionality.
-2. As Moderator I want to Edit or Delete any ad.
+1. As Moderator I want to Edit or Delete any ad.
 - Moderator can see Edit and Delete buttons for all ads on ad view page.
-3. As Moderator, I want to see ad reports.
+2. As Moderator, I want to see ad reports.
 - Moderator can see all reports in table under ad.
-4. As Moderator, I want to delete reports.
+3. As Moderator, I want to delete reports.
 - Moderator can delete reports using Delete button.
 
 #### Admin:
@@ -522,6 +520,39 @@ Result: Everything work as expected. I want only add, that Report Ad feature is 
 
 Result: Everything works as expected. After successfully logout user can see flash message and when he look on navbar he will see 'Log in' link, this can be another confirmation that he left session.
 
+
+#### Moderator:
+
+1. As Moderator I want to Edit or Delete any ad.
+- On main page click on any category.
+- On category page choose ad and click.
+- On ad view page EDIT and DELETE buttons are visible.
+- Locate page navigation and click Home.
+- On home page click on the one of recent added ads.
+- On ad view page EDIT and DELETE buttons are visible.
+
+Result: Everything works as expected. Mod can choose any ad, Edit and Delete buttons will be visible. This is achieved thanks to create mod instance.
+
+2. As Moderator, I want to see ad reports.
+- From any page in application locate your username on navbar.
+- Click dropdown menu icon.
+- Click My Profile.
+- On Profile page locate Moderation Queue if any ad is visible.
+- Click on ad title.
+- on ad view page scroll down to see table with reports.
+
+Result: Everything works as it should. Moderator can see reports.
+
+3. As Moderator, I want to delete reports.
+- From any page in application locate your username on navbar.
+- Click dropdown menu icon.
+- Click My Profile.
+- On Profile page locate Moderation Queue if any ad is visible.
+- Click on ad title.
+- On ad view page scroll down to see table with reports.
+- Click DELETE reports button and click yes on confirmation modal.
+
+Result: Everything is working as expected. Moderator can delete reports.
 
  <p id="bugs"></p>
 
