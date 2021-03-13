@@ -4,6 +4,8 @@
 
 <p id="top"></p>
 
+![Game logo](static/readmeimages/responsive.jpg)
+
 ## Buy & Sell Marketplace
 
 This project is a summary of study from the eight, ninth and tenth modules of the Full Stack Developer Course - Python Fundamentals, Practical Python and Data Centric Development, to create a fully Mobile Responsive CRUD Web Application.
