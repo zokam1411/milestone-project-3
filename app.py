@@ -381,6 +381,10 @@ def delete_ad(ad_id):
 
         mongo.db.ads.remove({"_id": ObjectId(ad_id)})
         flash('Ad successfully deleted', 'green')
+
+        if advertiser:
+            return redirect(url_for('profile', username=session['user']))
+
         return redirect(url_for('get_ads'))
     return redirect(url_for('get_ads'))
 
