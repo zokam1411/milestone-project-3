@@ -119,7 +119,7 @@ def profile(username):
         flash('please log in to see user profile', 'blue lighten-1')
         return redirect(url_for('login'))
 
-    username = mongo.db.users.find_one(
+    username = mongo.db.users.find_one_or_404(
         {'username': username})
     user_ads = mongo.db.ads.find({'created_by': username['username']})
     ads = mongo.db.ads.find()
@@ -209,11 +209,12 @@ def img_uploads(filename):
 # view add
 @app.route('/view_ad/<ad_id>')
 def view_ad(ad_id):
+    ad = mongo.db.ads.find_one_or_404({'_id': ObjectId(ad_id)})
+
     # increment the number of views everytime a recipe is seen
     mongo.db.ads.update_one(
         {"_id": ObjectId(ad_id)}, {'$inc': {'views': 1}})
 
-    ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
     if 'user' in session:
         admin = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'admin'})
@@ -249,10 +250,10 @@ def edit_ad(ad_id):
                 item_image.filename = request.form.get('item_image_up')
             else:
                 # if new image selected delete old from mongoDB
-                ad = mongo.db.ads.find_one({"_id": ObjectId(ad_id)})
+                ad = mongo.db.ads.find_one_or_404({"_id": ObjectId(ad_id)})
                 img_id = ad["img_id"]
                 if img_id:
-                    files_id = mongo.db.fs.files.find_one(
+                    files_id = mongo.db.fs.files.find_one_or_404(
                         {"_id": img_id})["_id"]
                     mongo.db.fs.chunks.remove({"files_id": ObjectId(files_id)})
                     mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
@@ -284,7 +285,7 @@ def edit_ad(ad_id):
         flash('Ad successfully updated', 'green')
         return redirect(url_for('view_ad', ad_id=ad_id))
 
-    ad = mongo.db.ads.find_one({'_id': ObjectId(ad_id)})
+    ad = mongo.db.ads.find_one_or_404({'_id': ObjectId(ad_id)})
     categories = mongo.db.categories.find().sort('category', -1)
     counties = mongo.db.counties.find().sort('category', -1)
 
@@ -346,7 +347,7 @@ def logout():
 
 @app.route('/view_category/<category_name>')
 def view_category(category_name):
-    category = mongo.db.categories.find_one({'category': category_name})
+    category = mongo.db.categories.find_one_or_404({'category': category_name})
     ads = mongo.db.ads.find({'category': category_name}).sort('_id', -1)
 
     if 'user' in session:
@@ -363,7 +364,7 @@ def search_cat(category_name):
     query = request.form.get('query')
     ads = mongo.db.ads.find({'$text': {'$search': query},
                              'category': category_name})
-    category = mongo.db.categories.find_one({'category': category_name})
+    category = mongo.db.categories.find_one_or_404({'category': category_name})
     if 'user' in session:
         admin = mongo.db.users.find_one(
             {'username': session['user'], 'status': 'admin'})
@@ -387,11 +388,11 @@ def delete_ad(ad_id):
         if admin or mod or advertiser:
 
             # check if ad has image
-            ad = mongo.db.ads.find_one({"_id": ObjectId(ad_id)})
+            ad = mongo.db.ads.find_one_or_404({"_id": ObjectId(ad_id)})
             img_id = ad["img_id"]
 
             if img_id:
-                files_id = mongo.db.fs.files.find_one(
+                files_id = mongo.db.fs.files.find_one_or_404(
                     {"_id": img_id})["_id"]
                 mongo.db.fs.chunks.remove({"files_id": ObjectId(files_id)})
                 mongo.db.fs.files.remove({"_id": ObjectId(img_id)})
@@ -503,13 +504,12 @@ def edit_category(category_id):
         return redirect(url_for('control_panel'))
 
     if 'user' in session:
-        admin = mongo.db.users.find_one(
+        admin = mongo.db.users.find_one_or_404(
             {'username': session['user'], 'status': 'admin'})
-        if admin:
-            category = mongo.db.categories.find_one(
-                {'_id': ObjectId(category_id)})
-            return render_template('edit_category.html',
-                                   category=category, admin=admin)
+        category = mongo.db.categories.find_one_or_404(
+            {'_id': ObjectId(category_id)})
+        return render_template('edit_category.html',
+                               category=category, admin=admin)
 
     return redirect(url_for('get_ads'))
 
@@ -524,13 +524,12 @@ def edit_user(username):
         return redirect(url_for('control_panel'))
 
     if 'user' in session:
-        admin = mongo.db.users.find_one(
+        admin = mongo.db.users.find_one_or_404(
             {'username': session['user'], 'status': 'admin'})
-        if admin:
-            user = mongo.db.users.find_one(
+        user = mongo.db.users.find_one_or_404(
                 {'username': username})
-            return render_template('edit_user.html',
-                                   username=user, admin=admin)
+        return render_template('edit_user.html',
+                               username=user, admin=admin)
 
     return redirect(url_for('get_ads'))
 
@@ -560,11 +559,12 @@ def delete_user(username):
             # loop over user ads and remove ads with images
             # remove images files from db
             while user_ads:
-                check_ad = mongo.db.ads.find_one({'created_by': username})
+                check_ad = mongo.db.ads.find_one(
+                    {'created_by': username})
                 if check_ad:
                     img_id = check_ad["img_id"]
                     if img_id:
-                        files_id = mongo.db.fs.files.find_one(
+                        files_id = mongo.db.fs.files.find_one_or_404(
                             {"_id": img_id})["_id"]
                         mongo.db.fs.chunks.remove(
                             {"files_id": ObjectId(files_id)})
@@ -596,4 +596,4 @@ def page_not_found(error):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=os.environ.get('DEBUG'))
+            debug=os.environ.get('DEBUG') == 'True')
