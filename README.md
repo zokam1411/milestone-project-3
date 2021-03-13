@@ -589,6 +589,8 @@ Result: Everything works as it should. Admin can 'upgrade' or 'downgrade' user s
 
  ### Bugs:
 
+ #### Fixed:
+
  The biggest issue with application was caused by adding images option. After user add image to database it creates two additional folders fs.files and fs.chunks.
  First problem I detected it was the content of the folders were not deleting together with ads and this could lid to 'clog' database. First thing I noticed this two folders are connected with fs.files ID (please check database schema image).
  
@@ -599,6 +601,10 @@ Result: Everything works as it should. Admin can 'upgrade' or 'downgrade' user s
  Third problem was when admin wanted to delete user with his ads. I noticed if user has more than one ad with image it delete only one image file from database. To fix this problem I created a while loop to remove ad images one by one. I have to say this was achievement I was very proud because I thought I will never understand when to use loops.
 
  ![Loop](static/readmeimages/loop.jpg)
+
+ #### Ongoing:
+
+ This problem is also related to images. When there are two images with the same name in database then the newer image replace the other ad image.
 
  <div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
  
