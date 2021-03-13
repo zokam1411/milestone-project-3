@@ -169,8 +169,9 @@ def add_ad():
         }
 
         mongo.db.ads.insert_one(ad)
+        show_ad = ad['_id']
         flash('Ad successfully added and is live now', 'green')
-        return redirect(url_for('get_ads'))
+        return redirect(url_for('view_ad', ad_id=show_ad))
 
     counties = mongo.db.counties.find().sort('county', 1)
     categories = mongo.db.categories.find().sort('category', 1)
