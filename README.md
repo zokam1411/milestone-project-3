@@ -75,18 +75,18 @@ Un-registered users can also use the application, but their permissions are limi
 -  Registered user will see 'Profile' tab in navigation after Log In.
 5. As a Registered user, I want report ad when item is suspicious or not appropriate.
 - Registered used can use 'Report Ad' button under ad on ad view page.
-5. As a Registered user, I want to 'Log out'.
+6. As a Registered user, I want to 'Log out'.
 - 'Log out' button is located on navbar.
 
-#### Moderators
+#### Moderator:
 
 1. As Moderator, I want Registered user functionality.
 - Mod has Registered User functionality.
 2. As Moderator I want to Edit or Delete any ad.
 - Moderator can see Edit and Delete buttons for all ads on ad view page.
-2. As Moderator, I want to see ad reports.
+3. As Moderator, I want to see ad reports.
 - Moderator can see all reports in table under ad.
-3. As Moderator, I want to delete reports.
+4. As Moderator, I want to delete reports.
 - Moderator can delete reports using Delete button.
 
 #### Admin:
@@ -445,7 +445,7 @@ Passing the HTML file content through the W3C Validator for HTML resulted in num
 Result: Everything works as it should, all ads are displayed in correct places. Page nav helping to determinate currently location.
 
 2. As a Guest user, I want to be able to see seller contact details or add my ads.
-- On any page in application click 'Register' tab located on navbar.
+- From any page in application click 'Register' tab located on navbar.
 - Fill up registration form and click register button.
 - After redirection to login page fill up login form using registered details.
 - After login, view ads without restrictions and add your ads.
@@ -466,11 +466,61 @@ Login is secured on back end side to make sure user will match username with pas
 Result: Using application is very easy. You can always locate yourself thanks to intelligent page navigation. Colors 'catch' user eyes and page layout is very friendly for user.
 
 4. As a Guest user, I want to contact someone in the event something is wrong with the app.
-- On any page in application scroll down to footer.
+- From any page in application scroll down to footer.
 - Footer provides email contact information and redirection to most popular social media.
 
 Result: Information display works as it should. User can't miss footer with logo and ways of contact. Email and social media are currently the fastest ways to contact any company.
 
+#### Registered User
+
+1. As a Registered user, I want to 'Log in' to my profile.
+- From any page in application locate and click Log in link on navbar.
+- Using log in form provide username and password and click log in.
+
+Result: Login works as it should. Login is secured on back end side to make sure user will match username with password. Flash messages works as they should.
+
+2. As a Registered user, I want to add my ads.
+- From any page in application locate and click Place Ad button on navbar.
+- Using form put all requested details in fields: Category, Description, Photo, Payment, Contact
+- Click Place Ad button and click YES on confirmation modal.
+
+Result: Everything works as expected. After modal confirm user is redirected to his new ad page and he can see flash message. If image is not provided, then default image will be used. 
+
+3. As a Registered user, I want to Edit or Delete my ads.
+- From any page in application locate your username on navbar.
+- Click on dropdown menu and click My Profile.
+- On Profile page locate ad yo want to edit or delete.
+- To Edit ad:
+    - Click yellow EDIT button.
+    - Using form, edit requested fields: Category, Description, Photo, Payment, Contact
+    - Click EDIT button and click YES on modal confirmation
+- To DELETE ad:
+    - Click red DELETE button and click YES on modal confirmation.
+
+Result: Everything works as expected. After successfully editing user is redirected to updated ad so he can see changes immediately.
+Successfully delete redirecting user to his profile page.  Both operations are confirmed by flash messages.
+
+4. As a Registered user, I want 'Profile' page where I can see my all ads.
+- From any page in application locate your username on navbar.
+- Click on dropdown menu and click My Profile.
+- On Profile page user ads will be displayed.
+
+Result: Everything works as it should. User can display his ads in two clicks from any page of website. If there are no ads in collection info message will be displayed.
+
+5. As a Registered user, I want report ad when item is suspicious or not appropriate.
+- Navigate to any ad you want to report.
+- Click 'Report Ad' link and modal with textarea will pop up.
+- Describe why you want to report this ad.
+- Click REPORT button.
+
+Result: Everything work as expected. I want only add, that Report Ad feature is very important on any social application .
+
+6. As a Registered user, I want to 'Log out'.
+- From any page in application locate your username on navbar.
+- Click dropdown menu icon.
+- Click Log out on the bottom of dropdown.
+
+Result: Everything works as expected. After successfully logout user can see flash message and when he look on navbar he will see 'Log in' link, this can be another confirmation that he left session.
 
 
  <p id="bugs"></p>
