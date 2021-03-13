@@ -109,8 +109,7 @@ Un-registered users can also use the application, but their permissions are limi
 #### Color Scheme:
 
 The assumption for the application was simple: must look professional so the color selection is the key.
-- Main colors are:
-
+- Main colors are: Green, Blue, Grey, and White.
 
 #### Typography:
 
@@ -388,13 +387,19 @@ Reported ad will also show up in Admins Manage Reported ad section in control pa
 
 ### Future features:
 
-**Sort:**  I would lke to implement sort option that will sort ads by category, price, date added.
+**Sort:**  I would like to implement sort options that will sort ads by category, price, and date.
 
-**Watch ad:** I would like to implement this feature to save ads created by others so user can have quick access to this ads.
+**Watch ad:** I would like to implement a feature to save favorite ads created by others users, so that users can have quick access to ads.
 
 **Message system:** I would like to implement internal message system where users can message to each other.
 
 **Feedback:** I would like to implement feedback system so the users can score each other, depends how the transaction went.
+
+#### Features left for implementation (features required by this release but they were not implemented due to time)
+
+- Preview of the uploaded images in the client-side. 
+- Image validation in the back-end. Images are not been validated when sent to the back-end by their content-type.
+- Integration with Travis for CI/CD and unit-test.
 
 <div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
 
@@ -602,9 +607,7 @@ Result: Everything works as it should. Admin can 'upgrade' or 'downgrade' user s
 
  ![Loop](static/readmeimages/loop.jpg)
 
- #### Ongoing:
-
- This problem is also related to images. When there are two images with the same name in database then the newer image replace the other ad image.
+ This problem was also related to images. When there were two images with the same name in database then the newer image was replacing the other ad image. It was fixed by adding randomly generated name.
 
  <div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
  
