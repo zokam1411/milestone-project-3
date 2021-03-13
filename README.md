@@ -613,6 +613,13 @@ Result: Everything works as it should. Admin can 'upgrade' or 'downgrade' user s
 
  <div align="center"><p style="text-align: center"><a href="#top">Back to top ⬆️</a></p></div>
  
+#### Bug List
+- When invalid ObjectId are passed in the URL we get an InvalidId exception.
+Solutions:
+- Enclose the current code between try-catch and then return 404.
+- Use the 'bson.objectid.ObjectId.is_valid()' to validate Id and then return 404 if it is invalid.
+![Loop](static/readmeimages/error.jpg)
+
  <p id="deployment"></p>
 
 ## 6️⃣ Deployment 🚀
